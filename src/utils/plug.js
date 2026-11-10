@@ -16,18 +16,14 @@ const SOCKET_SHAPES = {
   O: '둥근 핀 3개 모양 콘센트',
 }
 
-const compatible = (types) => types.some((t) => KOREA_PLUG.types.includes(t))
+const has = (types, list) => types.some((t) => list.includes(t))
 const voltageOk = (v) => v >= KOREA_PLUG.minVoltage && v <= KOREA_PLUG.maxVoltage
 
-// 판단 규칙: C, E, F 중 하나라도 있고 전압이 220~240V면 어댑터 필요 없음 (PLANNING.md 4.3)
-export function needsAdapter({ types, voltage }) {
-  return !(compatible(types) && voltageOk(voltage))
-}
-
-export function adapterText(plug) {
-  if (!needsAdapter(plug)) return '어댑터 필요 없음'
-  if (compatible(plug.types)) return '변환 어댑터 필요'
-  const shapes = [...new Set(plug.types.map((t) => SOCKET_SHAPES[t] ?? '한국과 다른 모양 콘센트'))]
+// 판단 규칙 (PLANNING.md 4.3): E·F가 있으면 그대로, C만 있으면 얇은 플러그만, 둘 다 아니면 변환 어댑터. 전압은 voltageText가 따로 안내
+export function adapterText({ types }) {
+  if (has(types, KOREA_PLUG.fullTypes)) return '어댑터 필요 없음'
+  if (has(types, KOREA_PLUG.thinTypes)) return '얇은 플러그는 그대로 꽂혀요. 굵은 접지형 플러그(노트북, 드라이기 등)는 어댑터가 필요해요'
+  const shapes = [...new Set(types.map((t) => SOCKET_SHAPES[t] ?? '한국과 다른 모양 콘센트'))]
   return `변환 어댑터 필요 · ${shapes.join(' 또는 ')}예요`
 }
 

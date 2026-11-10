@@ -11,6 +11,7 @@ import { COLORS, PIN_COLOR, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP } from '../config
 import { countryStatus } from '../utils/countryStatus.js'
 import { countryName } from '../utils/countryName.js'
 import { splitOverseas } from '../utils/overseas.js'
+import { dangerText } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 
 const WIDTH = 960
@@ -83,7 +84,7 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
     if (status === 'ok') return onSelect?.(data)
     const body =
       status === 'danger'
-        ? `${name} · 여행경보 ${data.risk.level}단계 · 정보를 제공하지 않아요`
+        ? `${name} · ${dangerText(data.risk)}`
         : `${name} · 곧 추가될 예정이에요~`
     toast({ body, uniqueID: 'map-click' })
   }

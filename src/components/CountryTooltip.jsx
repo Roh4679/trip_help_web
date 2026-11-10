@@ -1,4 +1,4 @@
-import { flightText, timeDiffText, riskText } from '../utils/format.js'
+import { flightText, timeDiffText, riskText, dangerText } from '../utils/format.js'
 
 const WIDTH = 300
 const GAP = 14
@@ -29,7 +29,7 @@ export default function CountryTooltip({ name, data, status, x, y }) {
         {data?.iso2 && <img src={`https://flagcdn.com/w40/${data.iso2}.png`} alt="" width={24} />}
         {name}
       </div>
-      {status === 'danger' && <div>여행경보 {data.risk.level}단계 · 정보를 제공하지 않아요</div>}
+      {status === 'danger' && <div>{dangerText(data.risk)}</div>}
       {status === 'ok' && (
         <>
           <div>{riskText(data.risk)}</div>
