@@ -1,0 +1,1746 @@
+[
+  {
+    "id": "392",
+    "iso2": "jp",
+    "iso3": "JPN",
+    "name": "일본",
+    "pin": [
+      139.69,
+      35.69
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": "후쿠시마 원전 주변 일부 지역은 별도 안내 확인"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 2.5,
+      "transitNote": null
+    },
+    "timeDiff": 0,
+    "dstTimeDiff": null,
+    "climateCity": "도쿄",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 5.4,
+        "rain": 60,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 6.1,
+        "rain": 57,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 9.4,
+        "rain": 116,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 14.3,
+        "rain": 134,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 18.8,
+        "rain": 140,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 21.9,
+        "rain": 168,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 25.7,
+        "rain": 156,
+        "rainy": true
+      },
+      {
+        "month": 8,
+        "temp": 26.9,
+        "rain": 155,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 23.3,
+        "rain": 225,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 18.0,
+        "rain": 235,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 12.5,
+        "rain": 96,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 7.7,
+        "rain": 58,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 100
+    },
+    "items": [
+      "동전 지갑",
+      "교통카드 앱(스이카 등)"
+    ],
+    "currency": {
+      "code": "JPY",
+      "name": "엔",
+      "unit": 100,
+      "krw": 850,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 3,
+      "coffee": "약 500엔",
+      "meal": "약 1,000엔"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "입국 전 Visit Japan Web 등록 권장"
+      ]
+    },
+    "culture": [
+      "팁 문화가 없다",
+      "길을 걸으면서 먹는 것을 좋지 않게 본다",
+      "전철 안에서 통화를 하지 않는다",
+      "에스컬레이터 서는 쪽이 지역마다 다르다 (도쿄는 왼쪽, 오사카는 오른쪽)"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "こんにちは",
+        "pron": "곤니치와"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "ありがとうございます",
+        "pron": "아리가토 고자이마스"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "いくらですか",
+        "pron": "이쿠라 데스카"
+      }
+    ],
+    "moods": [
+      "전통",
+      "미래도시"
+    ]
+  },
+  {
+    "id": "764",
+    "iso2": "th",
+    "iso3": "THA",
+    "name": "태국",
+    "pin": [
+      100.5,
+      13.75
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": "남부 국경 지역(나라티왓, 얄라, 빠따니 등)과 캄보디아 국경 일부는 더 높은 단계"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 6,
+      "transitNote": null
+    },
+    "timeDiff": -2,
+    "dstTimeDiff": null,
+    "climateCity": "방콕",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 27.0,
+        "rain": 13,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 28.3,
+        "rain": 20,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 29.5,
+        "rain": 42,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 30.5,
+        "rain": 91,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 30.0,
+        "rain": 248,
+        "rainy": true
+      },
+      {
+        "month": 6,
+        "temp": 29.5,
+        "rain": 233,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 29.0,
+        "rain": 197,
+        "rainy": true
+      },
+      {
+        "month": 8,
+        "temp": 28.8,
+        "rain": 226,
+        "rainy": true
+      },
+      {
+        "month": 9,
+        "temp": 28.3,
+        "rain": 339,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 28.0,
+        "rain": 241,
+        "rainy": true
+      },
+      {
+        "month": 11,
+        "temp": 27.6,
+        "rain": 49,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 26.5,
+        "rain": 10,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B",
+        "C",
+        "O"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "모기 기피제",
+      "선크림",
+      "얇은 긴팔 겉옷(실내 냉방, 사원 방문용)",
+      "우산 또는 우비"
+    ],
+    "currency": {
+      "code": "THB",
+      "name": "바트",
+      "unit": 1,
+      "krw": 43,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 60바트",
+      "meal": "약 80바트(길거리 음식)"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "TDAC(태국 디지털 입국신고서) 필수: 도착 3일 전부터 공식 사이트(tdac.immigration.go.th)에서 무료 작성",
+        "왕복 항공권과 체류 자금 확인을 요구할 수 있음"
+      ]
+    },
+    "culture": [
+      "왕실을 비판하는 말은 법으로 처벌받는다",
+      "사원에서는 어깨와 무릎을 가리는 옷을 입는다",
+      "사람의 머리를 만지지 않는다",
+      "발로 사람이나 물건을 가리키지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "สวัสดีครับ / ค่ะ",
+        "pron": "사와디 캅 / 카"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "ขอบคุณครับ / ค่ะ",
+        "pron": "콥쿤 캅 / 카"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "เท่าไหร่ครับ / คะ",
+        "pron": "타오라이 캅 / 카"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "전통",
+      "자연"
+    ]
+  },
+  {
+    "id": "250",
+    "iso2": "fr",
+    "iso3": "FRA",
+    "name": "프랑스",
+    "pin": [
+      2.35,
+      48.86
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 14,
+      "transitNote": null
+    },
+    "timeDiff": -8,
+    "dstTimeDiff": -7,
+    "climateCity": "파리",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 5.0,
+        "rain": 51,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 5.6,
+        "rain": 41,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 8.8,
+        "rain": 48,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 11.6,
+        "rain": 52,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 15.2,
+        "rain": 63,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 18.4,
+        "rain": 50,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 20.6,
+        "rain": 63,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 20.4,
+        "rain": 48,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 16.8,
+        "rain": 48,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 12.8,
+        "rain": 62,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 8.3,
+        "rain": 52,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 5.5,
+        "rain": 58,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "E"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "소매치기 방지 가방",
+      "동전 지갑(유료 화장실용)",
+      "편한 운동화"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "유로",
+      "unit": 1,
+      "krw": 1600,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 3유로",
+      "meal": "약 20유로"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "출국 예정일 기준 3개월 이상 남아 있고, 발급 10년 이내일 것",
+      "notes": [
+        "솅겐 지역 전체에서 180일 중 90일까지 무비자 체류",
+        "ETIAS(유럽 여행정보 인증) 시행 예정, 날짜 미정, 현재는 필요 없음",
+        "유럽 출입국 시스템(EES)으로 입국 시 지문·얼굴 등록"
+      ]
+    },
+    "culture": [
+      "가게에 들어가면 먼저 'Bonjour'라고 인사한다",
+      "식당 계산서에 봉사료가 포함되어 있어 팁은 선택이다",
+      "식당에서는 직원을 큰 소리로 부르지 않고 눈을 맞춰 부른다",
+      "볼을 맞대는 인사(비주)를 하기도 한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Bonjour",
+        "pron": "봉주르"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Merci",
+        "pron": "메르시"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "C'est combien ?",
+        "pron": "쎄 꽁비앵"
+      }
+    ],
+    "moods": [
+      "로맨스",
+      "건축양식"
+    ]
+  },
+  {
+    "id": "704",
+    "iso2": "vn",
+    "iso3": "VNM",
+    "name": "베트남",
+    "pin": [
+      105.85,
+      21.03
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 4.5,
+      "transitNote": null
+    },
+    "timeDiff": -2,
+    "dstTimeDiff": null,
+    "climateCity": "하노이",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 16.4,
+        "rain": 19,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 17.0,
+        "rain": 26,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 20.2,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 23.7,
+        "rain": 90,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 27.3,
+        "rain": 188,
+        "rainy": true
+      },
+      {
+        "month": 6,
+        "temp": 28.8,
+        "rain": 240,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 28.9,
+        "rain": 288,
+        "rainy": true
+      },
+      {
+        "month": 8,
+        "temp": 28.6,
+        "rain": 318,
+        "rainy": true
+      },
+      {
+        "month": 9,
+        "temp": 27.5,
+        "rain": 266,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 24.6,
+        "rain": 130,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 21.4,
+        "rain": 43,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 18.2,
+        "rain": 23,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "C",
+        "F"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "모기 기피제",
+      "선크림",
+      "우비(오토바이·우기 대비)",
+      "물티슈"
+    ],
+    "currency": {
+      "code": "VND",
+      "name": "동",
+      "unit": 1000,
+      "krw": 55,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 1,
+      "coffee": "약 3만동",
+      "meal": "약 5만동(쌀국수)"
+    },
+    "entry": {
+      "visaFreeDays": 45,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "45일보다 오래 머물려면 전자비자(e-visa) 필요"
+      ]
+    },
+    "culture": [
+      "오토바이가 많아 길을 건널 때는 일정한 속도로 천천히 걷는다",
+      "사원에서는 어깨와 무릎을 가리는 옷을 입는다",
+      "식당에서 팁은 보통 주지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Xin chào",
+        "pron": "씬 짜오"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Cảm ơn",
+        "pron": "깜 언"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Bao nhiêu tiền?",
+        "pron": "바오 니에우 띠엔"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연",
+      "전통"
+    ]
+  },
+  {
+    "id": "608",
+    "iso2": "ph",
+    "iso3": "PHL",
+    "name": "필리핀",
+    "pin": [
+      120.98,
+      14.6
+    ],
+    "risk": {
+      "level": 2,
+      "label": "여행자제",
+      "updated": "미확인",
+      "note": "잠보앙가 반도, 술루·바실란·타위타위 군도는 여행금지(4단계, 2027-01-31까지)"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 4,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "마닐라",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.5,
+        "rain": 17,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 27.0,
+        "rain": 8,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 28.3,
+        "rain": 9,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 29.6,
+        "rain": 19,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 29.9,
+        "rain": 147,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 29.0,
+        "rain": 253,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 28.1,
+        "rain": 421,
+        "rainy": true
+      },
+      {
+        "month": 8,
+        "temp": 27.7,
+        "rain": 432,
+        "rainy": true
+      },
+      {
+        "month": 9,
+        "temp": 27.8,
+        "rain": 355,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 27.8,
+        "rain": 234,
+        "rainy": true
+      },
+      {
+        "month": 11,
+        "temp": 27.6,
+        "rain": 121,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 26.8,
+        "rain": 65,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "선크림",
+      "모기 기피제",
+      "방수팩",
+      "얇은 겉옷(실내 냉방)"
+    ],
+    "currency": {
+      "code": "PHP",
+      "name": "페소",
+      "unit": 1,
+      "krw": 24,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 150페소",
+      "meal": "약 250페소"
+    },
+    "entry": {
+      "visaFreeDays": 30,
+      "eta": null,
+      "passport": "체류 기간보다 6개월 이상 남아 있을 것",
+      "notes": [
+        "입국 전 eTravel 온라인 등록 필요 (무료)",
+        "돌아가는 항공권을 확인할 수 있음"
+      ]
+    },
+    "culture": [
+      "윗사람에게 말할 때 'po'를 붙여 존중을 표현한다",
+      "공공장소 흡연 규제가 엄격한 지역이 많다",
+      "손가락으로 사람을 가리키지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Kumusta po",
+        "pron": "꾸무스따 뽀"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Salamat po",
+        "pron": "살라맛 뽀"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Magkano po?",
+        "pron": "막까노 뽀"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연"
+    ]
+  },
+  {
+    "id": "158",
+    "iso2": "tw",
+    "iso3": "TWN",
+    "name": "대만",
+    "pin": [
+      121.56,
+      25.04
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 2.5,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "타이베이",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 16.1,
+        "rain": 96,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 16.5,
+        "rain": 165,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 18.5,
+        "rain": 180,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 21.9,
+        "rain": 183,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 25.2,
+        "rain": 258,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 27.7,
+        "rain": 321,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 29.6,
+        "rain": 247,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 29.2,
+        "rain": 323,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.4,
+        "rain": 361,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 24.5,
+        "rain": 148,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 21.5,
+        "rain": 83,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 17.9,
+        "rain": 74,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 110
+    },
+    "items": [
+      "우산",
+      "교통카드(이지카드)"
+    ],
+    "currency": {
+      "code": "TWD",
+      "name": "대만달러",
+      "unit": 1,
+      "krw": 45,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 3,
+      "coffee": "약 60대만달러",
+      "meal": "약 150대만달러"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "입국신고서는 온라인으로 미리 작성할 수 있음"
+      ]
+    },
+    "culture": [
+      "지하철(MRT) 안에서는 물이나 음식을 먹으면 벌금을 낸다",
+      "팁 문화가 없다",
+      "시계를 선물하지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "你好",
+        "pron": "니하오"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "謝謝",
+        "pron": "씨에씨에"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "多少錢?",
+        "pron": "뚜어샤오 치엔"
+      }
+    ],
+    "moods": [
+      "전통",
+      "자연"
+    ]
+  },
+  {
+    "id": "156",
+    "iso2": "cn",
+    "iso3": "CHN",
+    "name": "중국",
+    "pin": [
+      116.4,
+      39.9
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 2,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "베이징",
+    "climate": [
+      {
+        "month": 1,
+        "temp": -3.1,
+        "rain": 2,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 0.3,
+        "rain": 5,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 6.7,
+        "rain": 9,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 14.8,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 20.8,
+        "rain": 36,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 24.9,
+        "rain": 70,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 26.7,
+        "rain": 176,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 25.5,
+        "rain": 138,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 20.8,
+        "rain": 49,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 13.7,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 5.0,
+        "rain": 9,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": -0.9,
+        "rain": 2,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "C",
+        "I"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "알리페이·위챗페이 설정",
+      "VPN(필요시)",
+      "휴지(공중화장실용)"
+    ],
+    "currency": {
+      "code": "CNY",
+      "name": "위안",
+      "unit": 1,
+      "krw": 190,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 30위안",
+      "meal": "약 40위안"
+    },
+    "entry": {
+      "visaFreeDays": 30,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "2026년 12월 31일까지 무비자 (연장 여부 미발표)",
+        "카드보다 모바일 결제(알리페이·위챗페이)를 주로 쓴다",
+        "구글, 카카오톡 등 일부 앱 접속이 제한된다"
+      ]
+    },
+    "culture": [
+      "팁 문화가 없다",
+      "정치 관련 이야기는 피한다",
+      "숫자 4를 꺼리고 8을 좋아한다",
+      "시계를 선물하지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "你好",
+        "pron": "니하오"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "谢谢",
+        "pron": "씨에씨에"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "多少钱?",
+        "pron": "뚜어샤오 치엔"
+      }
+    ],
+    "moods": [
+      "전통",
+      "미래도시",
+      "건축양식"
+    ]
+  },
+  {
+    "id": "840",
+    "iso2": "us",
+    "iso3": "USA",
+    "name": "미국",
+    "pin": [
+      -118.24,
+      34.05
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 11,
+      "transitNote": null
+    },
+    "timeDiff": -17,
+    "dstTimeDiff": -16,
+    "climateCity": "로스앤젤레스",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 14.4,
+        "rain": 80,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 14.9,
+        "rain": 96,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 16.0,
+        "rain": 62,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 17.4,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 18.8,
+        "rain": 6,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 20.6,
+        "rain": 2,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 22.9,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 23.6,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 23.0,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 20.6,
+        "rain": 17,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 17.2,
+        "rain": 27,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 14.4,
+        "rain": 60,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 120
+    },
+    "items": [
+      "팁용 소액 현금",
+      "선크림"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "달러",
+      "unit": 1,
+      "krw": 1400,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 5,
+      "coffee": "약 5달러",
+      "meal": "약 20달러(팁 별도)"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": "ESTA (출발 72시간 전까지 신청 권장, 유료)",
+      "passport": "전자여권, 체류 기간 이상 남아 있을 것",
+      "notes": [
+        "시차는 로스앤젤레스 기준 (동부는 3시간 더 빠름)",
+        "하와이는 본토와 기후가 다르다"
+      ]
+    },
+    "culture": [
+      "식당에서는 음식값의 15~20%를 팁으로 낸다",
+      "대부분의 주에서 길거리 음주가 금지되어 있다",
+      "술을 살 때 만 21세 이상 신분증을 확인한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hello",
+        "pron": "헬로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Thank you",
+        "pron": "땡큐"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "미래도시",
+      "자연"
+    ]
+  },
+  {
+    "id": null,
+    "iso2": "sg",
+    "iso3": "SGP",
+    "name": "싱가포르",
+    "pin": [
+      103.82,
+      1.35
+    ],
+    "bubble": {
+      "radius": 8,
+      "offset": [
+        14,
+        8
+      ]
+    },
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 6.5,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "싱가포르",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.5,
+        "rain": 221,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 27.1,
+        "rain": 105,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 27.6,
+        "rain": 151,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 28.0,
+        "rain": 159,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 28.4,
+        "rain": 164,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 28.3,
+        "rain": 135,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 27.9,
+        "rain": 146,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 27.9,
+        "rain": 146,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.6,
+        "rain": 124,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 27.6,
+        "rain": 156,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 26.9,
+        "rain": 257,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 26.4,
+        "rain": 288,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "G"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "우산",
+      "얇은 겉옷(실내 냉방)"
+    ],
+    "currency": {
+      "code": "SGD",
+      "name": "싱가포르달러",
+      "unit": 1,
+      "krw": 1050,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 6싱가포르달러",
+      "meal": "약 8싱가포르달러(호커센터)"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "도착 3일 전부터 SG Arrival Card 온라인 작성 (무료)"
+      ]
+    },
+    "culture": [
+      "껌을 팔지 않고 가지고 들어오는 것도 제한된다",
+      "무단횡단, 쓰레기 버리기는 벌금이 크다",
+      "지하철 안에서 먹고 마시면 벌금을 낸다",
+      "두리안은 대중교통에 가지고 탈 수 없다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hello",
+        "pron": "헬로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Thank you",
+        "pron": "땡큐"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much?",
+        "pron": "하우 머치"
+      }
+    ],
+    "moods": [
+      "미래도시",
+      "휴양"
+    ]
+  },
+  {
+    "id": "458",
+    "iso2": "my",
+    "iso3": "MYS",
+    "name": "말레이시아",
+    "pin": [
+      101.69,
+      3.14
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": "사바주 동부 해안 일부는 더 높은 단계"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 6.5,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "쿠알라룸푸르",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 27.4,
+        "rain": 170,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 27.9,
+        "rain": 166,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 28.3,
+        "rain": 261,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 28.5,
+        "rain": 285,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 28.7,
+        "rain": 205,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 28.5,
+        "rain": 127,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 28.0,
+        "rain": 128,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 28.0,
+        "rain": 157,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.8,
+        "rain": 191,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 27.7,
+        "rain": 258,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 27.4,
+        "rain": 294,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 27.3,
+        "rain": 221,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "G"
+      ],
+      "voltage": 240
+    },
+    "items": [
+      "우산",
+      "어깨를 가릴 얇은 옷(사원 방문)"
+    ],
+    "currency": {
+      "code": "MYR",
+      "name": "링깃",
+      "unit": 1,
+      "krw": 320,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 12링깃",
+      "meal": "약 15링깃"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "도착 3일 전부터 MDAC(디지털 입국카드) 온라인 작성 (무료)"
+      ]
+    },
+    "culture": [
+      "이슬람 문화라 돼지고기와 술이 없는 식당이 많다",
+      "물건을 건넬 때 왼손을 쓰지 않는다",
+      "사람이나 방향을 가리킬 때 검지 대신 엄지를 쓴다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Apa khabar",
+        "pron": "아빠 카바르"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Terima kasih",
+        "pron": "뜨리마 까시"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Berapa harganya?",
+        "pron": "브라빠 하르가냐"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연",
+      "미래도시"
+    ]
+  },
+  {
+    "id": "360",
+    "iso2": "id",
+    "iso3": "IDN",
+    "name": "인도네시아",
+    "pin": [
+      115.19,
+      -8.65
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": "파푸아 일부 지역은 더 높은 단계"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 7,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "발리(덴파사르)",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 27.0,
+        "rain": 345,
+        "rainy": true
+      },
+      {
+        "month": 2,
+        "temp": 27.0,
+        "rain": 274,
+        "rainy": true
+      },
+      {
+        "month": 3,
+        "temp": 27.0,
+        "rain": 234,
+        "rainy": true
+      },
+      {
+        "month": 4,
+        "temp": 27.2,
+        "rain": 89,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 27.0,
+        "rain": 78,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 26.2,
+        "rain": 73,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 25.6,
+        "rain": 55,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 25.6,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 26.2,
+        "rain": 47,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 26.8,
+        "rain": 63,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 27.2,
+        "rain": 179,
+        "rainy": true
+      },
+      {
+        "month": 12,
+        "temp": 27.0,
+        "rain": 276,
+        "rainy": true
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "F"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "선크림",
+      "모기 기피제",
+      "사롱(사원 방문, 현지에서 빌릴 수 있음)"
+    ],
+    "currency": {
+      "code": "IDR",
+      "name": "루피아",
+      "unit": 1000,
+      "krw": 85,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 3만루피아",
+      "meal": "약 5만루피아"
+    },
+    "entry": {
+      "visaFreeDays": null,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "도착비자(VOA) 또는 전자도착비자(e-VOA) 30일, 유료",
+        "발리 관광세 15만 루피아 (온라인 납부 가능)",
+        "All Indonesia 전자 입국 신고서 필수 (공식 사이트에서 무료)",
+        "시차는 발리 기준 (자카르타는 1시간 더 느림)"
+      ]
+    },
+    "culture": [
+      "물건을 주고받을 때 왼손을 쓰지 않는다",
+      "사람의 머리를 만지지 않는다",
+      "사원에서는 사롱을 두른다",
+      "이슬람 금식월(라마단)에는 낮에 사람 많은 곳에서 먹고 마시는 것을 삼간다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Selamat siang",
+        "pron": "슬라맛 시앙"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Terima kasih",
+        "pron": "뜨리마 까시"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Berapa harganya?",
+        "pron": "브라빠 하르가냐"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연",
+      "전통"
+    ]
+  }
+]
