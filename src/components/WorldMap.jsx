@@ -1,57 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
-import { geoNaturalEarth1, geoPath } from 'd3-geo'
-import { feature } from 'topojson-client'
+import { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { zoom, zoomIdentity } from 'd3-zoom'
 import { select } from 'd3-selection'
-import world from 'world-atlas/countries-110m.json'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
-import countries from '../data/countries.json'
 import {
-  COLORS, PIN_COLOR, PIN_SMALL, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH, HOME_ID,
-  TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS,
+  COLORS, PIN_COLORS, PIN_SMALL, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
+  TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS, FOCUS_ZOOM,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
-import { countryStatus } from '../utils/countryStatus.js'
-import { countryName } from '../utils/countryName.js'
-import { splitOverseas } from '../utils/overseas.js'
+import { WIDTH, HEIGHT, projection, shapes, pins } from '../utils/places.js'
 import { dangerText } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
-
-const WIDTH = 960
-const HEIGHT = 460
-const ANTARCTICA = '010'
-
-const features = splitOverseas(feature(world, world.objects.countries).features.filter((f) => f.id !== ANTARCTICA))
-const projection = geoNaturalEarth1().fitSize([WIDTH, HEIGHT], { type: 'FeatureCollection', features })
-const path = geoPath(projection)
-const dataById = Object.fromEntries(countries.map((c) => [c.id, c]))
-
-// 렌더할 때마다 다시 계산하지 않도록 미리 만들어 둔다
-const shapes = features.map((f, i) => {
-  const data = dataById[f.id]
-  // 크림반도처럼 한 나라 id가 두 모양에 붙을 수 있어 key에 순번을 붙인다
-  const status = f.id === HOME_ID ? 'home' : countryStatus(data)
-  return { key: `${f.id ?? 'noid'}-${i}`, d: path(f), name: data?.name ?? countryName(f), data, status }
-})
-
-// 지도에 없거나 너무 작은 나라는 버블이 곧 그 나라의 모양이다
-const bubbles = countries
-  .filter((c) => c.bubble)
-  .map((c) => ({
-    key: `bubble-${c.iso2}`,
-    name: c.name,
-    data: c,
-    status: countryStatus(c),
-    point: projection(c.pin),
-    r: c.bubble.radius ?? BUBBLE_RADIUS,
-    offset: c.bubble.offset ?? [0, 0],
-  }))
-
-// 데이터를 볼 수 있는 나라에만 핀 (버블이 있는 나라는 버블이 대신한다)
-const pins = shapes
-  .filter((s) => s.status === 'ok' && s.data.pin && !s.data.bubble)
-  .map((s) => ({ shape: s, point: projection(s.data.pin) }))
 
 // 위험 국가는 단색 대신 빗금 무늬로 칠한다 (넓은 나라가 너무 무겁게 보이지 않게)
 const fillOf = (status) => (status === 'danger' ? 'url(#danger-hatch)' : COLORS[status])
@@ -67,9 +26,22 @@ function startTransform(svgEl) {
   return zoomIdentity.translate(WIDTH / 2 - k * px, HEIGHT / 2 - k * py).scale(k)
 }
 
+// 검색으로 고른 장소로 확대·이동할 위치. 나라 모양이면 화면에 꽉 차게, 작은 나라 핀이면 FOCUS_ZOOM배
+function focusTransform(place) {
+  let k = FOCUS_ZOOM.point
+  let [cx, cy] = place.point ?? [0, 0]
+  if (place.bounds) {
+    const [[x0, y0], [x1, y1]] = place.bounds
+    k = FOCUS_ZOOM.fill / Math.max((x1 - x0) / WIDTH, (y1 - y0) / HEIGHT)
+    ;[cx, cy] = [(x0 + x1) / 2, (y0 + y1) / 2]
+  }
+  k = Math.min(Math.max(k, 1), MAX_ZOOM)
+  return zoomIdentity.translate(WIDTH / 2 - k * cx, HEIGHT / 2 - k * cy).scale(k)
+}
+
 const PIN_PATH = 'M0,0 C-3,-5 -6,-8 -6,-12 A6,6 0 1,1 6,-12 C6,-8 3,-5 0,0Z'
 
-export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false }) {
+export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false }) {
   const toast = useToast()
   const [hover, setHover] = useState(null)
   const [transform, setTransform] = useState(zoomIdentity)
@@ -104,6 +76,14 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
     style: { cursor: 'pointer' },
   })
 
+  // 나라 검색에서 고르면: 그 나라로 확대·이동한 뒤 지도에서 누른 것과 똑같이 동작한다
+  useImperativeHandle(ref, () => ({
+    focus(place) {
+      zoomRef.current.transform(select(svgRef.current), focusTransform(place))
+      handleClick(place)
+    },
+  }))
+
   function handleClick({ name, data, status }) {
     if (status === 'ok') return onSelect?.(data)
     let body = `${name} · 곧 추가될 예정이에요~`
@@ -122,7 +102,6 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
       >
         <defs>
           {/* 확대 배율만큼 줄여서 빗금 간격·굵기가 화면 기준으로 그대로 보이게 한다 */}
-          {/* ponytail: 버블(줌 그룹 밖)도 같은 무늬를 써서 확대하면 버블 빗금만 촘촘해진다. 위험 국가 버블이 생기면 무늬를 따로 둔다 */}
           <pattern
             id="danger-hatch"
             patternUnits="userSpaceOnUse"
@@ -145,39 +124,22 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
           )}
         </g>
 
-        {/* 핀과 버블은 줌 그룹 밖에 그려서 확대해도 크기가 일정하다 */}
-        {pins.map(({ shape, point }) => {
+        {/* 핀은 줌 그룹 밖에 그려서 확대해도 크기가 일정하다. 색으로 상태를 구분한다 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시) */}
+        {pins.map(({ place, point, offset }) => {
           const pinScale = transform.k < PIN_SMALL.untilZoom ? PIN_SMALL.scale : 1
           const [x, y] = transform.apply(point)
+          const [px, py] = [x + offset[0], y + offset[1]]
+          const moved = offset[0] !== 0 || offset[1] !== 0
           return (
-            <g key={`pin-${shape.key}`} transform={`translate(${x},${y}) scale(${pinScale})`} {...hoverProps(shape)}>
-              <path d={PIN_PATH} fill={PIN_COLOR} stroke="#fff" strokeWidth={1} />
-              <circle cy={-12} r={2.2} fill="#fff" />
-              {isTouch && <circle cy={-10} r={TOUCH_HIT_RADIUS} fill="transparent" />}
-            </g>
-          )
-        })}
-        {bubbles.map((b) => {
-          const [x, y] = transform.apply(b.point)
-          const [cx, cy] = [x + b.offset[0], y + b.offset[1]]
-          const hovered = hover?.shape === b
-          return (
-            <g key={b.key}>
-              {(b.offset[0] !== 0 || b.offset[1] !== 0) && <line x1={x} y1={y} x2={cx} y2={cy} stroke={COLORS.hoverBorder} strokeWidth={0.8} />}
-              <circle
-                cx={cx}
-                cy={cy}
-                r={b.r}
-                fill={fillOf(b.status)}
-                stroke={COLORS.hoverBorder}
-                strokeWidth={hovered ? 2 : 1}
-                style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))', cursor: 'pointer' }}
-                onPointerMove={hoverAt(b)}
-                onClick={() => handleClick(b)}
-              />
-              {isTouch && b.r < TOUCH_HIT_RADIUS && (
-                <circle cx={cx} cy={cy} r={TOUCH_HIT_RADIUS} fill="transparent" onClick={() => handleClick(b)} />
-              )}
+            <g key={`pin-${place.key}`}>
+              {/* 이웃 핀과 겹쳐서 옮긴 핀은 원래 위치까지 선을 긋는다 */}
+              {moved && <line x1={x} y1={y} x2={px} y2={py} stroke={COLORS.hoverBorder} strokeWidth={0.8} />}
+              {moved && <circle cx={x} cy={y} r={1.5} fill={COLORS.hoverBorder} />}
+              <g transform={`translate(${px},${py}) scale(${pinScale})`} {...hoverProps(place)}>
+                <path d={PIN_PATH} fill={PIN_COLORS[place.status]} stroke="#fff" strokeWidth={1} />
+                <circle cy={-12} r={2.2} fill="#fff" />
+                {isTouch && <circle cy={-10} r={TOUCH_HIT_RADIUS} fill="transparent" />}
+              </g>
             </g>
           )
         })}

@@ -30,9 +30,10 @@ export const HOME_ID = '410' // 출발지: 대한민국 (지도 숫자 ID)
 
 export const DANGER_HATCH = { gap: 5, width: 1 } // 빗금 간격·굵기 (화면 px, 확대해도 그대로)
 
-export const PIN_COLOR = '#e4572e'
+// 핀 색: 상태별 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시하므로 색으로 구분한다)
+export const PIN_COLORS = { ok: '#e4572e', none: '#9e9e9e', danger: '#555555', home: '#f0c35a' }
 export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서는 핀을 작게 (유럽처럼 핀이 몰린 곳이 겹치지 않게)
-export const BUBBLE_RADIUS = 8 // bubble.radius가 없을 때 기본 크기 (지도 좌표 px)
+export const FOCUS_ZOOM = { fill: 0.6, point: 4 } // 검색으로 고르면: 나라 모양은 화면의 60%를 채우게, 작은 나라 핀은 4배
 export const MAX_ZOOM = 8
 export const ZOOM_STEP = 1.5 // +/− 버튼 한 번에 확대·축소하는 배율
 

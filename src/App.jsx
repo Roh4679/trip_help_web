@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Dialog, DialogHeader } from '@astryxdesign/core/Dialog'
 import { Button } from '@astryxdesign/core/Button'
 import { Drawer } from '@astryxdesign/core/Drawer'
@@ -7,6 +7,7 @@ import CountryDetail from './components/CountryDetail.jsx'
 import RecommendPanel from './components/RecommendPanel.jsx'
 import RecommendResult from './components/RecommendResult.jsx'
 import MapLegend from './components/MapLegend.jsx'
+import CountrySearch from './components/CountrySearch.jsx'
 import countries from './data/countries.json'
 import { recommend } from './utils/recommend.js'
 import { useMedia } from './utils/useMedia.js'
@@ -23,6 +24,7 @@ export default function App() {
   const [results, setResults] = useState(null)
   const [isPanelOpen, setPanelOpen] = useState(false)
   const isMobile = useMedia(MOBILE_QUERY)
+  const mapRef = useRef(null)
 
   // 창은 하나만 쓰고 내용만 바꾼다 (Dialog 두 개를 동시에 닫고 열면 페이지가 멈췄다).
   // 추천 목록에서 연 나라를 닫으면 목록으로 돌아간다
@@ -36,6 +38,7 @@ export default function App() {
     // 지도는 항상 화면 전체를 쓴다
     <div style={{ position: 'fixed', inset: 0 }}>
       <WorldMap
+        ref={mapRef}
         onSelect={setSelected}
         isZoomEnabled={!selected && !results}
         // 추천 패널이 열리면 확대 버튼을 패널 왼쪽으로 옮겨 가려지지 않게 한다
@@ -43,8 +46,10 @@ export default function App() {
         // 휴대폰 폭에서는 아래쪽을 범례·안내 문구에 내주고 확대 버튼을 오른쪽 위로
         controlsAtTop={isMobile}
       />
-      <div style={{ position: 'absolute', top: GAP, left: GAP }}>
+      {/* 왼쪽 위: 추천 버튼 + 나라 검색. 휴대폰 폭에서는 확대 버튼이 오른쪽 위에 오므로 검색창을 아랫줄로 */}
+      <div style={{ position: 'absolute', top: GAP, left: GAP, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'flex-start', gap: 8 }}>
         <Button label="여행지 추천" variant="primary" elevation="med" onClick={() => setPanelOpen(true)} />
+        <CountrySearch onPick={(place) => mapRef.current.focus(place)} width={isMobile ? 220 : 260} />
       </div>
 
       {/* 왼쪽 아래: 범례 + 안내 문구. 확대 버튼(오른쪽 아래)과 겹치지 않게 폭을 줄이고, 좁은 화면에서는 줄바꿈된다 */}
