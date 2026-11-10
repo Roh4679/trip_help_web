@@ -25,7 +25,7 @@ export function dateText(updated) {
   return updated === '미확인' ? '날짜 미확인' : `${updated} 기준`
 }
 
-// 위험 국가(검정)의 메모지·토스트 문구
+// 위험 국가(빗금)의 메모지·토스트 문구
 export function dangerText({ level, special }) {
   return `${special ? '특별여행주의보' : `여행경보 ${level}단계`} · 정보를 제공하지 않아요`
 }

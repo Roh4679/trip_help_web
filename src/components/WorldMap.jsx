@@ -7,7 +7,7 @@ import world from 'world-atlas/countries-110m.json'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import countries from '../data/countries.json'
-import { COLORS, PIN_COLOR, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP } from '../config.js'
+import { COLORS, PIN_COLOR, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH } from '../config.js'
 import { countryStatus } from '../utils/countryStatus.js'
 import { countryName } from '../utils/countryName.js'
 import { splitOverseas } from '../utils/overseas.js'
@@ -47,6 +47,9 @@ const bubbles = countries
 const pins = shapes
   .filter((s) => s.status === 'ok' && s.data.pin && !s.data.bubble)
   .map((s) => ({ shape: s, point: projection(s.data.pin) }))
+
+// 위험 국가는 단색 대신 빗금 무늬로 칠한다 (넓은 나라가 너무 무겁게 보이지 않게)
+const fillOf = (status) => (status === 'danger' ? 'url(#danger-hatch)' : COLORS[status])
 
 const PIN_PATH = 'M0,0 C-3,-5 -6,-8 -6,-12 A6,6 0 1,1 6,-12 C6,-8 3,-5 0,0Z'
 
@@ -97,10 +100,24 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
         style={{ width: '100%', height: '100%', display: 'block', background: COLORS.ocean }}
         onMouseLeave={() => setHover(null)}
       >
+        <defs>
+          {/* 확대 배율만큼 줄여서 빗금 간격·굵기가 화면 기준으로 그대로 보이게 한다 */}
+          {/* ponytail: 버블(줌 그룹 밖)도 같은 무늬를 써서 확대하면 버블 빗금만 촘촘해진다. 위험 국가 버블이 생기면 무늬를 따로 둔다 */}
+          <pattern
+            id="danger-hatch"
+            patternUnits="userSpaceOnUse"
+            width={DANGER_HATCH.gap}
+            height={DANGER_HATCH.gap}
+            patternTransform={`scale(${1 / transform.k}) rotate(45)`}
+          >
+            <rect width={DANGER_HATCH.gap} height={DANGER_HATCH.gap} fill={COLORS.danger} />
+            <line x1={0} y1={0} x2={0} y2={DANGER_HATCH.gap} stroke={COLORS.dangerHatch} strokeWidth={DANGER_HATCH.width} />
+          </pattern>
+        </defs>
         {/* 확대해도 선 두께는 그대로 (non-scaling-stroke) */}
         <g transform={transform.toString()}>
           {shapes.map((s) => (
-            <path key={s.key} d={s.d} fill={COLORS[s.status]} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
+            <path key={s.key} d={s.d} fill={fillOf(s.status)} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
           ))}
           {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 */}
           {hover?.shape.d && (
@@ -129,7 +146,7 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
                 cx={cx}
                 cy={cy}
                 r={b.r}
-                fill={COLORS[b.status]}
+                fill={fillOf(b.status)}
                 stroke={COLORS.hoverBorder}
                 strokeWidth={hovered ? 2 : 1}
                 style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))', cursor: 'pointer' }}
