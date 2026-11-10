@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Heading } from '@astryxdesign/core/Heading'
+import { MetadataList, MetadataListItem } from '@astryxdesign/core/MetadataList'
 import ClimateBar from './ClimateBar.jsx'
 import ClothingSection from './ClothingSection.jsx'
 import { adapterText, voltageText } from '../utils/plug.js'
@@ -82,14 +83,16 @@ export default function CountryDetail({ country: c }) {
       </Section>
 
       <Section title="통화 · 환율 · 물가">
-        <p>{currency.name} · {currency.code}</p>
-        <p>
-          {currency.unit.toLocaleString()}{currency.name} = 약 {currency.krw.toLocaleString()}원
-          <DateNote updated={currency.updated} />
-        </p>
-        <p>
-          물가: 한국보다 {PRICE_LEVELS[price.level]} · 커피 {price.coffee} · 한 끼 {price.meal}
-        </p>
+        <MetadataList>
+          <MetadataListItem label="통화">{currency.name} · {currency.code}</MetadataListItem>
+          <MetadataListItem label="환율">
+            {currency.unit.toLocaleString()}{currency.name} = 약 {currency.krw.toLocaleString()}원
+            <DateNote updated={currency.updated} />
+          </MetadataListItem>
+          <MetadataListItem label="물가">한국보다 {PRICE_LEVELS[price.level]}</MetadataListItem>
+          <MetadataListItem label="커피 한 잔">{price.coffee}</MetadataListItem>
+          <MetadataListItem label="한 끼 식사">{price.meal}</MetadataListItem>
+        </MetadataList>
       </Section>
 
       <Section title="필요한 서류 및 심사">
