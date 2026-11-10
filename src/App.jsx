@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { Dialog, DialogHeader } from '@astryxdesign/core/Dialog'
 import { Button } from '@astryxdesign/core/Button'
-import { Drawer, DrawerHeader } from '@astryxdesign/core/Drawer'
-import { Layout, LayoutContent } from '@astryxdesign/core/Layout'
+import { Drawer } from '@astryxdesign/core/Drawer'
 import WorldMap from './components/WorldMap.jsx'
 import CountryDetail from './components/CountryDetail.jsx'
 import RecommendPanel from './components/RecommendPanel.jsx'
@@ -71,14 +70,7 @@ export default function App() {
         width={DRAWER_WIDTH}
         experimental={{ isFullWidthOnMobile: true }}
       >
-        <Layout
-          header={<DrawerHeader title="여행지 추천" onOpenChange={setPanelOpen} />}
-          content={
-            <LayoutContent>
-              <RecommendPanel onSubmit={(conditions) => setResults(recommend(countries, conditions))} />
-            </LayoutContent>
-          }
-        />
+        <RecommendPanel onSubmit={(conditions) => setResults(recommend(countries, conditions))} onClose={setPanelOpen} />
       </Drawer>
 
       <Dialog isOpen={!!selected || !!results} onOpenChange={close} width={selected ? 640 : 520} maxHeight="90dvh">

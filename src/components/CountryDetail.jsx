@@ -4,6 +4,7 @@ import ClimateBar from './ClimateBar.jsx'
 import ClothingSection from './ClothingSection.jsx'
 import { adapterText, voltageText } from '../utils/plug.js'
 import DateNote from './DateNote.jsx'
+import { flightText, timeDiffText, riskText } from '../utils/format.js'
 
 const PRICE_LEVELS = ['', '아주 쌈', '조금 쌈', '비슷함', '조금 비쌈', '아주 비쌈']
 const listStyle = { listStyle: 'disc', paddingLeft: 20, margin: 0 }
@@ -17,6 +18,42 @@ function Section({ title, children }) {
   )
 }
 
+function SummaryItem({ label, children }) {
+  return (
+    <div>
+      <div style={{ fontSize: 12, color: '#666' }}>{label}</div>
+      <div style={{ fontWeight: 600 }}>{children}</div>
+    </div>
+  )
+}
+
+// 스크롤하지 않아도 보이게 맨 위에 핵심 정보만 모은다
+function Summary({ country: c }) {
+  const { entry } = c
+  const visa = entry.visaFreeDays ? `무비자 ${entry.visaFreeDays}일` : '비자 필요'
+  const eta = entry.eta && `${entry.eta.split(' ')[0]} 필요` // 예: "ESTA (출발 …)" → "ESTA 필요"
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+        gap: 12,
+        padding: 14,
+        background: '#f4f6f8',
+        borderRadius: 8,
+      }}
+    >
+      <SummaryItem label="여행경보">
+        {riskText(c.risk).replace('여행경보 ', '')}
+        <DateNote updated={c.risk.updated} />
+      </SummaryItem>
+      <SummaryItem label="비행시간">{flightText(c.flight)}</SummaryItem>
+      <SummaryItem label="시차">{timeDiffText(c.timeDiff, c.dstTimeDiff)}</SummaryItem>
+      <SummaryItem label="입국">{eta ? `${visa} · ${eta}` : visa}</SummaryItem>
+    </div>
+  )
+}
+
 // 나라 상세 내용. 껍데기(Dialog 등)와 분리해 두어 나중에 사이드 패널로 옮기기 쉽게 한다
 export default function CountryDetail({ country: c }) {
   const [month, setMonth] = useState(new Date().getMonth() + 1)
@@ -24,6 +61,8 @@ export default function CountryDetail({ country: c }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, lineHeight: 1.6 }}>
+      <Summary country={c} />
+
       <Section title="시기별 기후">
         <ClimateBar climate={c.climate} city={c.climateCity} selectedMonth={month} onSelectMonth={setMonth} />
       </Section>

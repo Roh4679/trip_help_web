@@ -14,7 +14,7 @@ export default function ClimateBar({ climate, city, selectedMonth, onSelectMonth
   return (
     <div>
       <Text type="supporting">{city} 기준 · 달을 누르면 옷차림이 바뀌어요</Text>
-      <div style={{ position: 'relative', marginTop: 6 }}>
+      <div className="climate-months" style={{ position: 'relative', marginTop: 6 }}>
         {/* 얇은 막대는 뒤에 한 줄로 깔고, 그 위에 달마다 (우산 + 막대 + 글자) 전체를 누를 수 있는 버튼을 올린다 */}
         <div
           style={{
@@ -49,7 +49,7 @@ export default function ClimateBar({ climate, city, selectedMonth, onSelectMonth
                       boxShadow: selected ? '0 0 0 2px #222' : 'none',
                     }}
                   />
-                  <span style={{ fontSize: 12, marginTop: 4, fontWeight: selected ? 700 : 400 }}>{m.month}월</span>
+                  <span className="climate-month" style={{ fontSize: 12, marginTop: 4, fontWeight: selected ? 700 : 400 }}>{m.month}</span>
                 </button>
               </Tooltip>
             )

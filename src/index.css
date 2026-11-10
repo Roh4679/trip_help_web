@@ -1,3 +1,10 @@
 @import '@astryxdesign/core/reset.css';
 @import '@astryxdesign/core/astryx.css';
 @import '@astryxdesign/theme-neutral/theme.css';
+
+/* 기후 막대: 폭이 좁으면 '1월' 대신 '1'만 보인다 (읽어주는 이름은 버튼의 aria-label '1월') */
+.climate-months { container-type: inline-size; }
+.climate-month::after { content: '월'; }
+@container (max-width: 400px) {
+  .climate-month::after { content: none; }
+}
