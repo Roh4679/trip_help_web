@@ -35,3 +35,9 @@ export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서
 export const BUBBLE_RADIUS = 8 // bubble.radius가 없을 때 기본 크기 (지도 좌표 px)
 export const MAX_ZOOM = 8
 export const ZOOM_STEP = 1.5 // +/− 버튼 한 번에 확대·축소하는 배율
+
+// 모바일
+export const MOBILE_QUERY = '(max-width: 639px)' // 상세 창을 화면 전체로 띄우는 폭
+export const TOUCH_QUERY = '(pointer: coarse)' // 손가락 터치 화면: 메모지 끄고, 누르는 영역을 넓힌다
+export const PORTRAIT_CENTER = [110, 25] // 세로 화면에서 처음 보여줄 곳 [경도, 위도] (아시아)
+export const TOUCH_HIT_RADIUS = 18 // 핀·버블을 누를 수 있는 영역 반지름 (px)

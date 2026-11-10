@@ -9,6 +9,8 @@ import RecommendResult from './components/RecommendResult.jsx'
 import MapLegend from './components/MapLegend.jsx'
 import countries from './data/countries.json'
 import { recommend } from './utils/recommend.js'
+import { useMedia } from './utils/useMedia.js'
+import { MOBILE_QUERY } from './config.js'
 
 // Dialog 안쪽은 넘치면 잘리게(overflow: hidden) 되어 있어서, 스크롤 영역은 직접 만든다. 제목줄은 그 밖에 있어 고정된다
 const DRAWER_WIDTH = 360
@@ -20,6 +22,7 @@ export default function App() {
   const [selected, setSelected] = useState(null)
   const [results, setResults] = useState(null)
   const [isPanelOpen, setPanelOpen] = useState(false)
+  const isMobile = useMedia(MOBILE_QUERY)
 
   // 창은 하나만 쓰고 내용만 바꾼다 (Dialog 두 개를 동시에 닫고 열면 페이지가 멈췄다).
   // 추천 목록에서 연 나라를 닫으면 목록으로 돌아간다
@@ -37,6 +40,8 @@ export default function App() {
         isZoomEnabled={!selected && !results}
         // 추천 패널이 열리면 확대 버튼을 패널 왼쪽으로 옮겨 가려지지 않게 한다
         controlsRight={isPanelOpen ? DRAWER_WIDTH + GAP : GAP}
+        // 휴대폰 폭에서는 아래쪽을 범례·안내 문구에 내주고 확대 버튼을 오른쪽 위로
+        controlsAtTop={isMobile}
       />
       <div style={{ position: 'absolute', top: GAP, left: GAP }}>
         <Button label="여행지 추천" variant="primary" elevation="med" onClick={() => setPanelOpen(true)} />
@@ -48,7 +53,7 @@ export default function App() {
           position: 'absolute',
           left: GAP,
           bottom: GAP,
-          maxWidth: 'calc(100% - 240px)',
+          maxWidth: isMobile ? `calc(100% - ${GAP * 2}px)` : 'calc(100% - 240px)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
@@ -73,7 +78,14 @@ export default function App() {
         <RecommendPanel onSubmit={(conditions) => setResults(recommend(countries, conditions))} onClose={setPanelOpen} />
       </Drawer>
 
-      <Dialog isOpen={!!selected || !!results} onOpenChange={close} width={selected ? 640 : 520} maxHeight="90dvh">
+      {/* 휴대폰에서는 창을 화면 전체로 */}
+      <Dialog
+        isOpen={!!selected || !!results}
+        onOpenChange={close}
+        variant={isMobile ? 'fullscreen' : 'standard'}
+        width={selected ? 640 : 520}
+        maxHeight="90dvh"
+      >
         {selected ? (
           <DialogHeader
             title={selected.name}

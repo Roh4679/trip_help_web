@@ -7,7 +7,11 @@ import world from 'world-atlas/countries-110m.json'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import countries from '../data/countries.json'
-import { COLORS, PIN_COLOR, PIN_SMALL, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH, HOME_ID } from '../config.js'
+import {
+  COLORS, PIN_COLOR, PIN_SMALL, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH, HOME_ID,
+  TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS,
+} from '../config.js'
+import { useMedia } from '../utils/useMedia.js'
 import { countryStatus } from '../utils/countryStatus.js'
 import { countryName } from '../utils/countryName.js'
 import { splitOverseas } from '../utils/overseas.js'
@@ -52,15 +56,27 @@ const pins = shapes
 // 위험 국가는 단색 대신 빗금 무늬로 칠한다 (넓은 나라가 너무 무겁게 보이지 않게)
 const fillOf = (status) => (status === 'danger' ? 'url(#danger-hatch)' : COLORS[status])
 
+// 처음(과 '원래대로') 보여줄 위치. 세로 화면이면 지도가 가운데 가는 띠로만 보이므로,
+// 화면 높이를 채우도록 확대하고 아시아(PORTRAIT_CENTER)를 가운데 둔다
+function startTransform(svgEl) {
+  const { width, height } = svgEl.getBoundingClientRect()
+  if (height <= width) return zoomIdentity
+  const visibleHeight = (height * WIDTH) / width // 화면에 보이는 높이 (지도 좌표)
+  const k = Math.min(visibleHeight / HEIGHT, MAX_ZOOM)
+  const [px, py] = projection(PORTRAIT_CENTER)
+  return zoomIdentity.translate(WIDTH / 2 - k * px, HEIGHT / 2 - k * py).scale(k)
+}
+
 const PIN_PATH = 'M0,0 C-3,-5 -6,-8 -6,-12 A6,6 0 1,1 6,-12 C6,-8 3,-5 0,0Z'
 
-export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight = 12 }) {
+export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false }) {
   const toast = useToast()
   const [hover, setHover] = useState(null)
   const [transform, setTransform] = useState(zoomIdentity)
   const svgRef = useRef(null)
   const zoomRef = useRef(null)
   const enabledRef = useRef(isZoomEnabled)
+  const isTouch = useMedia(TOUCH_QUERY)
   enabledRef.current = isZoomEnabled
 
   useEffect(() => {
@@ -72,14 +88,18 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
       .filter((e) => enabledRef.current && (!e.ctrlKey || e.type === 'wheel') && !e.button)
       .on('zoom', (e) => setTransform(e.transform))
     svg.call(zoomRef.current).on('dblclick.zoom', null) // 두 번 클릭 확대 끔
+    zoomRef.current.transform(svg, startTransform(svgRef.current))
     return () => svg.on('.zoom', null)
   }, [])
 
   const zoomBy = (k) => zoomRef.current.scaleBy(select(svgRef.current), k)
-  const resetZoom = () => zoomRef.current.transform(select(svgRef.current), zoomIdentity)
+  const resetZoom = () => zoomRef.current.transform(select(svgRef.current), startTransform(svgRef.current))
 
+  // 메모지는 마우스에서만 띄운다 (터치는 누르면 바로 상세 창이 열리므로)
+  const buttonSize = isTouch ? 'md' : 'sm'
+  const hoverAt = (s) => (e) => e.pointerType === 'mouse' && setHover({ shape: s, x: e.clientX, y: e.clientY })
   const hoverProps = (s) => ({
-    onMouseMove: (e) => setHover({ shape: s, x: e.clientX, y: e.clientY }),
+    onPointerMove: hoverAt(s),
     onClick: () => handleClick(s),
     style: { cursor: 'pointer' },
   })
@@ -133,6 +153,7 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
             <g key={`pin-${shape.key}`} transform={`translate(${x},${y}) scale(${pinScale})`} {...hoverProps(shape)}>
               <path d={PIN_PATH} fill={PIN_COLOR} stroke="#fff" strokeWidth={1} />
               <circle cy={-12} r={2.2} fill="#fff" />
+              {isTouch && <circle cy={-10} r={TOUCH_HIT_RADIUS} fill="transparent" />}
             </g>
           )
         })}
@@ -151,17 +172,20 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
                 stroke={COLORS.hoverBorder}
                 strokeWidth={hovered ? 2 : 1}
                 style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))', cursor: 'pointer' }}
-                onMouseMove={(e) => setHover({ shape: b, x: e.clientX, y: e.clientY })}
+                onPointerMove={hoverAt(b)}
                 onClick={() => handleClick(b)}
               />
+              {isTouch && b.r < TOUCH_HIT_RADIUS && (
+                <circle cx={cx} cy={cy} r={TOUCH_HIT_RADIUS} fill="transparent" onClick={() => handleClick(b)} />
+              )}
             </g>
           )
         })}
       </svg>
-      <div style={{ position: 'absolute', right: controlsRight, bottom: 12, display: 'flex', gap: 6, transition: 'right 0.2s' }}>
-        <Button label="지도 확대" size="sm" elevation="low" onClick={() => zoomBy(ZOOM_STEP)}>+</Button>
-        <Button label="지도 축소" size="sm" elevation="low" onClick={() => zoomBy(1 / ZOOM_STEP)}>−</Button>
-        <Button label="지도 원래대로" size="sm" elevation="low" onClick={resetZoom}>원래대로</Button>
+      <div style={{ position: 'absolute', right: controlsRight, [controlsAtTop ? 'top' : 'bottom']: 12, display: 'flex', gap: 6, transition: 'right 0.2s' }}>
+        <Button label="지도 확대" size={buttonSize} elevation="low" onClick={() => zoomBy(ZOOM_STEP)}>+</Button>
+        <Button label="지도 축소" size={buttonSize} elevation="low" onClick={() => zoomBy(1 / ZOOM_STEP)}>−</Button>
+        <Button label="지도 원래대로" size={buttonSize} elevation="low" onClick={resetZoom}>원래대로</Button>
       </div>
       {hover && (
         <CountryTooltip name={hover.shape.name} data={hover.shape.data} status={hover.shape.status} x={hover.x} y={hover.y} />
