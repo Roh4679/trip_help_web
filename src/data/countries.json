@@ -1234,8 +1234,7 @@
       "eta": "ESTA (출발 72시간 전까지 신청 권장, 유료)",
       "passport": "전자여권, 체류 기간 이상 남아 있을 것",
       "notes": [
-        "시차는 로스앤젤레스 기준 (동부는 3시간 더 빠름)",
-        "하와이는 본토와 기후가 다르다"
+        "시차는 로스앤젤레스 기준 (동부는 3시간 더 빠름)"
       ]
     },
     "culture": [
@@ -1742,5 +1741,1586 @@
       "자연",
       "전통"
     ]
+  },
+  {
+    "id": "036",
+    "iso2": "au",
+    "iso3": "AUS",
+    "name": "호주",
+    "pin": [
+      151.21,
+      -33.87
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 10,
+      "transitNote": null
+    },
+    "timeDiff": 1,
+    "dstTimeDiff": 2,
+    "climateCity": "시드니",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 23.5,
+        "rain": 91,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 23.4,
+        "rain": 131,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 22.1,
+        "rain": 117,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 19.5,
+        "rain": 114,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 16.6,
+        "rain": 100,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 14.2,
+        "rain": 142,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 13.4,
+        "rain": 80,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 14.5,
+        "rain": 80,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 17.0,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 19.0,
+        "rain": 70,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 20.7,
+        "rain": 84,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 22.4,
+        "rain": 77,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "I"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "선크림(자외선이 강함)",
+      "모자",
+      "얇은 겉옷(일교차)"
+    ],
+    "currency": {
+      "code": "AUD",
+      "name": "호주달러",
+      "unit": 1,
+      "krw": 900,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 5호주달러",
+      "meal": "약 25호주달러"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": "ETA (호주 전자여행허가, AustralianETA 앱으로 신청, 유료)",
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "음식·동식물 반입 신고가 엄격하다 (신고 안 하면 벌금)",
+        "남반구라 한국과 계절이 반대다",
+        "시차는 시드니 기준"
+      ]
+    },
+    "culture": [
+      "팁은 필수가 아니다",
+      "자외선이 매우 강해 한낮 야외 활동에 주의한다",
+      "줄을 서고 순서를 지키는 것을 중요하게 여긴다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hello",
+        "pron": "헬로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Thank you",
+        "pron": "땡큐"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "자연",
+      "휴양"
+    ]
+  },
+  {
+    "id": "380",
+    "iso2": "it",
+    "iso3": "ITA",
+    "name": "이탈리아",
+    "pin": [
+      12.5,
+      41.9
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 13,
+      "transitNote": null
+    },
+    "timeDiff": -8,
+    "dstTimeDiff": -7,
+    "climateCity": "로마",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 7.5,
+        "rain": 67,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 8.3,
+        "rain": 73,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 10.9,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 13.5,
+        "rain": 81,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 17.7,
+        "rain": 53,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 21.8,
+        "rain": 34,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 24.6,
+        "rain": 19,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 24.7,
+        "rain": 37,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 21.0,
+        "rain": 73,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 16.6,
+        "rain": 113,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 11.9,
+        "rain": 115,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 8.6,
+        "rain": 81,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "F",
+        "L"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "소매치기 방지 가방",
+      "어깨와 무릎을 가릴 옷(성당 방문)",
+      "편한 운동화"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "유로",
+      "unit": 1,
+      "krw": 1600,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 1.5유로(에스프레소)",
+      "meal": "약 20유로"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "출국 예정일 기준 3개월 이상 남아 있고, 발급 10년 이내일 것",
+      "notes": [
+        "솅겐 지역 전체에서 180일 중 90일까지 무비자 체류",
+        "ETIAS(유럽 여행정보 인증) 시행 예정, 날짜 미정, 현재는 필요 없음",
+        "유럽 출입국 시스템(EES)으로 입국 시 지문·얼굴 등록"
+      ]
+    },
+    "culture": [
+      "성당에서는 어깨와 무릎을 가리는 옷을 입는다",
+      "식당 계산서에 자릿세(coperto)가 붙기도 한다",
+      "카푸치노는 주로 아침에 마신다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Buongiorno",
+        "pron": "본조르노"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Grazie",
+        "pron": "그라치에"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Quanto costa?",
+        "pron": "콴토 코스타"
+      }
+    ],
+    "moods": [
+      "로맨스",
+      "건축양식",
+      "전통"
+    ]
+  },
+  {
+    "id": "724",
+    "iso2": "es",
+    "iso3": "ESP",
+    "name": "스페인",
+    "pin": [
+      -3.7,
+      40.42
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 14,
+      "transitNote": null
+    },
+    "timeDiff": -8,
+    "dstTimeDiff": -7,
+    "climateCity": "마드리드",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 6.3,
+        "rain": 33,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 7.9,
+        "rain": 35,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 11.2,
+        "rain": 24,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 12.9,
+        "rain": 39,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 16.9,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 22.2,
+        "rain": 20,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 25.6,
+        "rain": 11,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 25.1,
+        "rain": 9,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 20.9,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 15.1,
+        "rain": 60,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 9.9,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 7.0,
+        "rain": 47,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "F"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "소매치기 방지 가방",
+      "선크림",
+      "편한 운동화"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "유로",
+      "unit": 1,
+      "krw": 1600,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 3,
+      "coffee": "약 2유로",
+      "meal": "약 15유로"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "출국 예정일 기준 3개월 이상 남아 있고, 발급 10년 이내일 것",
+      "notes": [
+        "솅겐 지역 전체에서 180일 중 90일까지 무비자 체류",
+        "ETIAS(유럽 여행정보 인증) 시행 예정, 날짜 미정, 현재는 필요 없음",
+        "유럽 출입국 시스템(EES)으로 입국 시 지문·얼굴 등록"
+      ]
+    },
+    "culture": [
+      "점심은 오후 2시, 저녁은 밤 9시쯤 늦게 먹는다",
+      "오후에 문을 닫는 가게(시에스타)가 있다",
+      "관광지에서 소매치기를 조심한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hola",
+        "pron": "올라"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Gracias",
+        "pron": "그라시아스"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "¿Cuánto cuesta?",
+        "pron": "쿠안토 쿠에스타"
+      }
+    ],
+    "moods": [
+      "건축양식",
+      "로맨스",
+      "휴양"
+    ]
+  },
+  {
+    "id": "826",
+    "iso2": "gb",
+    "iso3": "GBR",
+    "name": "영국",
+    "pin": [
+      -0.13,
+      51.51
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 14,
+      "transitNote": null
+    },
+    "timeDiff": -9,
+    "dstTimeDiff": -8,
+    "climateCity": "런던",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 5.8,
+        "rain": 55,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 6.2,
+        "rain": 41,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 8.0,
+        "rain": 42,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 10.5,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 13.9,
+        "rain": 49,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 17.0,
+        "rain": 45,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 19.1,
+        "rain": 45,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 18.7,
+        "rain": 50,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 15.8,
+        "rain": 49,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 12.3,
+        "rain": 69,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 8.6,
+        "rain": 59,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 6.2,
+        "rain": 55,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "G"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "우산",
+      "얇은 겉옷(날씨가 자주 바뀜)",
+      "교통카드(오이스터) 또는 컨택리스 카드"
+    ],
+    "currency": {
+      "code": "GBP",
+      "name": "파운드",
+      "unit": 1,
+      "krw": 1850,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 5,
+      "coffee": "약 3.5파운드",
+      "meal": "약 20파운드"
+    },
+    "entry": {
+      "visaFreeDays": 180,
+      "eta": "ETA (영국 전자여행허가, 유료)",
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "솅겐 지역이 아니라 유럽 다른 나라와 체류 일수를 따로 센다"
+      ]
+    },
+    "culture": [
+      "줄 서기를 매우 중요하게 여긴다",
+      "에스컬레이터에서는 오른쪽에 선다",
+      "식당 계산서에 봉사료(10~12.5%)가 들어 있는지 확인한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hello",
+        "pron": "헬로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Thank you",
+        "pron": "땡큐"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "전통",
+      "건축양식"
+    ]
+  },
+  {
+    "id": "276",
+    "iso2": "de",
+    "iso3": "DEU",
+    "name": "독일",
+    "pin": [
+      13.4,
+      52.52
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 13.5,
+      "transitNote": null
+    },
+    "timeDiff": -8,
+    "dstTimeDiff": -7,
+    "climateCity": "베를린",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 0.6,
+        "rain": 43,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 1.4,
+        "rain": 37,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 4.8,
+        "rain": 38,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 9.6,
+        "rain": 31,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 14.4,
+        "rain": 53,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 17.7,
+        "rain": 62,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 19.8,
+        "rain": 55,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 19.3,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 15.0,
+        "rain": 45,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 10.1,
+        "rain": 37,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 5.2,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 1.9,
+        "rain": 55,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "F"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "현금(카드를 안 받는 가게가 있음)",
+      "장바구니",
+      "따뜻한 겉옷"
+    ],
+    "currency": {
+      "code": "EUR",
+      "name": "유로",
+      "unit": 1,
+      "krw": 1600,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 3.5유로",
+      "meal": "약 15유로"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "출국 예정일 기준 3개월 이상 남아 있고, 발급 10년 이내일 것",
+      "notes": [
+        "솅겐 지역 전체에서 180일 중 90일까지 무비자 체류",
+        "ETIAS(유럽 여행정보 인증) 시행 예정, 날짜 미정, 현재는 필요 없음",
+        "유럽 출입국 시스템(EES)으로 입국 시 지문·얼굴 등록"
+      ]
+    },
+    "culture": [
+      "일요일에는 대부분의 상점이 문을 닫는다",
+      "빈 병·캔은 보증금(판트)을 돌려받을 수 있다",
+      "자전거 도로로 걷지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hallo",
+        "pron": "할로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Danke",
+        "pron": "당케"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Wie viel kostet das?",
+        "pron": "비 필 코스테트 다스"
+      }
+    ],
+    "moods": [
+      "건축양식",
+      "전통"
+    ]
+  },
+  {
+    "id": "756",
+    "iso2": "ch",
+    "iso3": "CHE",
+    "name": "스위스",
+    "pin": [
+      8.54,
+      47.37
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 13.5,
+      "transitNote": null
+    },
+    "timeDiff": -8,
+    "dstTimeDiff": -7,
+    "climateCity": "취리히",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 0.3,
+        "rain": 62,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 1.4,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 5.3,
+        "rain": 69,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 9.0,
+        "rain": 83,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 13.3,
+        "rain": 119,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 16.8,
+        "rain": 132,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 18.6,
+        "rain": 130,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 18.0,
+        "rain": 136,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 14.1,
+        "rain": 100,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 9.8,
+        "rain": 80,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 4.6,
+        "rain": 76,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 1.3,
+        "rain": 76,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "J"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "따뜻한 겉옷(산 위는 여름에도 추움)",
+      "선크림",
+      "스위스 트래블 패스(기차 이용 시)"
+    ],
+    "currency": {
+      "code": "CHF",
+      "name": "스위스프랑",
+      "unit": 1,
+      "krw": 1650,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 5,
+      "coffee": "약 5스위스프랑",
+      "meal": "약 30스위스프랑"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "출국 예정일 기준 3개월 이상 남아 있고, 발급 10년 이내일 것",
+      "notes": [
+        "솅겐 지역 전체에서 180일 중 90일까지 무비자 체류",
+        "ETIAS(유럽 여행정보 인증) 시행 예정, 날짜 미정, 현재는 필요 없음",
+        "유럽 출입국 시스템(EES)으로 입국 시 지문·얼굴 등록"
+      ]
+    },
+    "culture": [
+      "일요일과 밤에는 소음을 내지 않는다",
+      "시간 약속을 매우 중요하게 여긴다",
+      "분리수거 규칙이 엄격하다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Grüezi",
+        "pron": "그뤼에치"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Merci",
+        "pron": "메르시"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Wie viel kostet das?",
+        "pron": "비 필 코스테트 다스"
+      }
+    ],
+    "moods": [
+      "자연",
+      "로맨스"
+    ]
+  },
+  {
+    "id": "792",
+    "iso2": "tr",
+    "iso3": "TUR",
+    "name": "튀르키예",
+    "pin": [
+      28.98,
+      41.01
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "미확인",
+      "note": "시리아 국경 지역은 더 높은 단계"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 11.5,
+      "transitNote": null
+    },
+    "timeDiff": -6,
+    "dstTimeDiff": null,
+    "climateCity": "이스탄불",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 6.6,
+        "rain": 105,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 7.0,
+        "rain": 77,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 8.6,
+        "rain": 71,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 12.4,
+        "rain": 46,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 17.2,
+        "rain": 35,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 21.9,
+        "rain": 34,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 24.3,
+        "rain": 33,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 24.5,
+        "rain": 43,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 20.9,
+        "rain": 59,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 16.6,
+        "rain": 88,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 12.3,
+        "rain": 96,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 8.8,
+        "rain": 122,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "F"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "스카프(모스크 방문)",
+      "편한 운동화",
+      "선크림"
+    ],
+    "currency": {
+      "code": "TRY",
+      "name": "리라",
+      "unit": 1,
+      "krw": 35,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 100리라",
+      "meal": "약 350리라"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": []
+    },
+    "culture": [
+      "모스크에 들어갈 때 신발을 벗고, 여성은 머리를 가린다",
+      "라마단 기간에는 낮에 사람 많은 곳에서 먹고 마시는 것을 삼간다",
+      "차(차이)를 권하면 받는 것이 예의다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Merhaba",
+        "pron": "메르하바"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Teşekkür ederim",
+        "pron": "테셰퀴르 에데림"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Ne kadar?",
+        "pron": "네 카다르"
+      }
+    ],
+    "moods": [
+      "전통",
+      "건축양식"
+    ]
+  },
+  {
+    "id": "496",
+    "iso2": "mn",
+    "iso3": "MNG",
+    "name": "몽골",
+    "pin": [
+      106.92,
+      47.92
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 3.5,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "울란바토르",
+    "climate": [
+      {
+        "month": 1,
+        "temp": -21.6,
+        "rain": 2,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": -16.6,
+        "rain": 2,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": -7.4,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 1.2,
+        "rain": 9,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 8.3,
+        "rain": 17,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 14.9,
+        "rain": 49,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 17.3,
+        "rain": 61,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 15.3,
+        "rain": 52,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 8.4,
+        "rain": 25,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 0.3,
+        "rain": 7,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": -10.4,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": -18.7,
+        "rain": 3,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "E"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "따뜻한 겉옷(여름에도 밤은 추움)",
+      "보조배터리(초원에서는 충전이 어려움)",
+      "물티슈",
+      "선크림"
+    ],
+    "currency": {
+      "code": "MNT",
+      "name": "투그릭",
+      "unit": 1000,
+      "krw": 400,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 8천투그릭",
+      "meal": "약 2만투그릭"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "한국인 무비자 입국은 기간을 정한 한시 조치라 기간 확인 필요"
+      ]
+    },
+    "culture": [
+      "게르에 들어갈 때 문지방을 밟지 않는다",
+      "게르 안에서는 시계 방향으로 움직인다",
+      "음식이나 물건은 오른손으로 받는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Сайн байна уу",
+        "pron": "사인 바이노"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Баярлалаа",
+        "pron": "바야를라"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Хэд вэ?",
+        "pron": "헤드 웨"
+      }
+    ],
+    "moods": [
+      "자연"
+    ]
+  },
+  {
+    "id": "124",
+    "iso2": "ca",
+    "iso3": "CAN",
+    "name": "캐나다",
+    "pin": [
+      -123.12,
+      49.28
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 10,
+      "transitNote": null
+    },
+    "timeDiff": -17,
+    "dstTimeDiff": -16,
+    "climateCity": "밴쿠버",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 4.1,
+        "rain": 168,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 4.9,
+        "rain": 105,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 6.9,
+        "rain": 114,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 9.4,
+        "rain": 84,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 12.9,
+        "rain": 68,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 15.7,
+        "rain": 55,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 18.0,
+        "rain": 40,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 18.1,
+        "rain": 39,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 15.1,
+        "rain": 54,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 10.6,
+        "rain": 113,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 6.4,
+        "rain": 181,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 3.6,
+        "rain": 154,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 120
+    },
+    "items": [
+      "우산 또는 방수 자켓",
+      "팁용 소액 현금",
+      "따뜻한 겉옷"
+    ],
+    "currency": {
+      "code": "CAD",
+      "name": "캐나다달러",
+      "unit": 1,
+      "krw": 1000,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 4캐나다달러",
+      "meal": "약 25캐나다달러(팁 별도)"
+    },
+    "entry": {
+      "visaFreeDays": 180,
+      "eta": "eTA (캐나다 전자여행허가, 비행기로 입국할 때 필요, 유료)",
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "시차는 밴쿠버 기준 (토론토는 3시간 더 빠름)"
+      ]
+    },
+    "culture": [
+      "식당에서는 음식값의 15~20%를 팁으로 낸다",
+      "공공장소 음주가 금지된 곳이 많다",
+      "영어와 프랑스어를 함께 쓴다 (퀘벡은 프랑스어)"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hello",
+        "pron": "헬로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Thank you",
+        "pron": "땡큐"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "자연"
+    ]
+  },
+  {
+    "id": "US-HI",
+    "iso2": "us-hi",
+    "iso3": null,
+    "name": "하와이",
+    "pin": [
+      -157.86,
+      21.31
+    ],
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": "미국 기준"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 8,
+      "transitNote": null
+    },
+    "timeDiff": -19,
+    "dstTimeDiff": null,
+    "climateCity": "호놀룰루",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 23.1,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 23.0,
+        "rain": 50,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 23.6,
+        "rain": 52,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 24.3,
+        "rain": 17,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 25.2,
+        "rain": 15,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 26.4,
+        "rain": 7,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 27.0,
+        "rain": 13,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 27.4,
+        "rain": 14,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.3,
+        "rain": 18,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 26.6,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 25.3,
+        "rain": 56,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 23.9,
+        "rain": 72,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 120
+    },
+    "items": [
+      "산호초에 안전한 선크림",
+      "래시가드",
+      "팁용 소액 현금"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "달러",
+      "unit": 1,
+      "krw": 1400,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 5,
+      "coffee": "약 5달러",
+      "meal": "약 25달러(팁 별도)"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": "ESTA (출발 72시간 전까지 신청 권장, 유료)",
+      "passport": "전자여권, 체류 기간 이상 남아 있을 것",
+      "notes": [
+        "미국 영토라 입국 조건은 미국 본토와 같다",
+        "서머타임이 없다"
+      ]
+    },
+    "culture": [
+      "산호초를 해치는 성분이 든 선크림은 판매가 금지되어 있다",
+      "바다거북 등 야생동물을 만지지 않는다",
+      "식당에서는 음식값의 15~20%를 팁으로 낸다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Aloha",
+        "pron": "알로하"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Mahalo",
+        "pron": "마할로"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연"
+    ]
+  },
+  {
+    "id": "804",
+    "iso2": "ua",
+    "iso3": "UKR",
+    "name": "우크라이나",
+    "risk": {
+      "level": 4,
+      "label": "여행금지",
+      "updated": "미확인",
+      "note": "크림반도 포함"
+    }
   }
 ]

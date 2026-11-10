@@ -90,7 +90,8 @@ export default function App() {
         ) : (
           <DialogHeader title="추천 여행지" subtitle={results && `${results.length}곳`} onOpenChange={close} />
         )}
-        <div style={scrollBody}>
+        {/* 목록 ↔ 상세가 바뀔 때마다 스크롤 영역을 새로 만들어 맨 위에서 시작한다 (목록을 내린 채 카드를 누르면 상세가 중간부터 보였다) */}
+        <div key={selected ? selected.iso2 : 'results'} style={scrollBody}>
           {selected ? (
             <CountryDetail key={selected.iso2} country={selected} />
           ) : (

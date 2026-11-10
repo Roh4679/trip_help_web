@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { geoNaturalEarth1, geoPath, geoCentroid } from 'd3-geo'
+import { geoNaturalEarth1, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
 import { zoom, zoomIdentity } from 'd3-zoom'
 import { select } from 'd3-selection'
@@ -10,27 +10,12 @@ import countries from '../data/countries.json'
 import { COLORS, PIN_COLOR, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP } from '../config.js'
 import { countryStatus } from '../utils/countryStatus.js'
 import { countryName } from '../utils/countryName.js'
+import { splitOverseas } from '../utils/overseas.js'
 import CountryTooltip from './CountryTooltip.jsx'
 
 const WIDTH = 960
 const HEIGHT = 460
 const ANTARCTICA = '010'
-
-// 본국과 기후·입국 정보가 다른 해외 영토를 따로 떼어낸다 (지도 데이터에서는 본국 모양에 붙어 있음)
-const OVERSEAS = [{ from: '250', id: '254', name: 'French Guiana', isPart: ([lon]) => lon < -30 }]
-
-function splitOverseas(features) {
-  return features.flatMap((f) => {
-    const rule = OVERSEAS.find((r) => r.from === f.id)
-    if (!rule) return [f]
-    const polygons = f.geometry.coordinates
-    const isPart = (c) => rule.isPart(geoCentroid({ type: 'Polygon', coordinates: c }))
-    return [
-      { ...f, geometry: { type: 'MultiPolygon', coordinates: polygons.filter((c) => !isPart(c)) } },
-      { type: 'Feature', id: rule.id, properties: { name: rule.name }, geometry: { type: 'MultiPolygon', coordinates: polygons.filter(isPart) } },
-    ]
-  })
-}
 
 const features = splitOverseas(feature(world, world.objects.countries).features.filter((f) => f.id !== ANTARCTICA))
 const projection = geoNaturalEarth1().fitSize([WIDTH, HEIGHT], { type: 'FeatureCollection', features })
@@ -40,7 +25,8 @@ const dataById = Object.fromEntries(countries.map((c) => [c.id, c]))
 // 렌더할 때마다 다시 계산하지 않도록 미리 만들어 둔다
 const shapes = features.map((f, i) => {
   const data = dataById[f.id]
-  return { key: f.id ?? `noid-${i}`, d: path(f), name: countryName(f), data, status: countryStatus(data) }
+  // 크림반도처럼 한 나라 id가 두 모양에 붙을 수 있어 key에 순번을 붙인다
+  return { key: `${f.id ?? 'noid'}-${i}`, d: path(f), name: data?.name ?? countryName(f), data, status: countryStatus(data) }
 })
 
 // 지도에 없거나 너무 작은 나라는 버블이 곧 그 나라의 모양이다
