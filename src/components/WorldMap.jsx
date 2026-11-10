@@ -7,7 +7,7 @@ import world from 'world-atlas/countries-110m.json'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import countries from '../data/countries.json'
-import { COLORS, PIN_COLOR, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH } from '../config.js'
+import { COLORS, PIN_COLOR, PIN_SMALL, BUBBLE_RADIUS, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH, HOME_ID } from '../config.js'
 import { countryStatus } from '../utils/countryStatus.js'
 import { countryName } from '../utils/countryName.js'
 import { splitOverseas } from '../utils/overseas.js'
@@ -27,7 +27,8 @@ const dataById = Object.fromEntries(countries.map((c) => [c.id, c]))
 const shapes = features.map((f, i) => {
   const data = dataById[f.id]
   // 크림반도처럼 한 나라 id가 두 모양에 붙을 수 있어 key에 순번을 붙인다
-  return { key: `${f.id ?? 'noid'}-${i}`, d: path(f), name: data?.name ?? countryName(f), data, status: countryStatus(data) }
+  const status = f.id === HOME_ID ? 'home' : countryStatus(data)
+  return { key: `${f.id ?? 'noid'}-${i}`, d: path(f), name: data?.name ?? countryName(f), data, status }
 })
 
 // 지도에 없거나 너무 작은 나라는 버블이 곧 그 나라의 모양이다
@@ -85,10 +86,9 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
 
   function handleClick({ name, data, status }) {
     if (status === 'ok') return onSelect?.(data)
-    const body =
-      status === 'danger'
-        ? `${name} · ${dangerText(data.risk)}`
-        : `${name} · 곧 추가될 예정이에요~`
+    let body = `${name} · 곧 추가될 예정이에요~`
+    if (status === 'danger') body = `${name} · ${dangerText(data.risk)}`
+    if (status === 'home') body = `${name} · 출발지예요`
     toast({ body, uniqueID: 'map-click' })
   }
 
@@ -127,9 +127,10 @@ export default function WorldMap({ onSelect, isZoomEnabled = true, controlsRight
 
         {/* 핀과 버블은 줌 그룹 밖에 그려서 확대해도 크기가 일정하다 */}
         {pins.map(({ shape, point }) => {
+          const pinScale = transform.k < PIN_SMALL.untilZoom ? PIN_SMALL.scale : 1
           const [x, y] = transform.apply(point)
           return (
-            <g key={`pin-${shape.key}`} transform={`translate(${x},${y})`} {...hoverProps(shape)}>
+            <g key={`pin-${shape.key}`} transform={`translate(${x},${y}) scale(${pinScale})`} {...hoverProps(shape)}>
               <path d={PIN_PATH} fill={PIN_COLOR} stroke="#fff" strokeWidth={1} />
               <circle cy={-12} r={2.2} fill="#fff" />
             </g>

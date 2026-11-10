@@ -7,6 +7,7 @@ import WorldMap from './components/WorldMap.jsx'
 import CountryDetail from './components/CountryDetail.jsx'
 import RecommendPanel from './components/RecommendPanel.jsx'
 import RecommendResult from './components/RecommendResult.jsx'
+import MapLegend from './components/MapLegend.jsx'
 import countries from './data/countries.json'
 import { recommend } from './utils/recommend.js'
 
@@ -42,23 +43,24 @@ export default function App() {
         <Button label="여행지 추천" variant="primary" elevation="med" onClick={() => setPanelOpen(true)} />
       </div>
 
-      {/* 확대 버튼(오른쪽 아래)과 겹치지 않게 폭을 줄이고, 좁은 화면에서는 줄바꿈된다 */}
-      <p
+      {/* 왼쪽 아래: 범례 + 안내 문구. 확대 버튼(오른쪽 아래)과 겹치지 않게 폭을 줄이고, 좁은 화면에서는 줄바꿈된다 */}
+      <div
         style={{
           position: 'absolute',
           left: GAP,
           bottom: GAP,
           maxWidth: 'calc(100% - 240px)',
-          margin: 0,
-          padding: '2px 6px',
-          fontSize: 11,
-          color: '#555',
-          background: 'rgba(255,255,255,0.7)',
-          borderRadius: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: 6,
         }}
       >
-        정보는 참고용이에요. 출국 전 외교부 해외안전여행(0404.go.kr) 등 공식 사이트에서 꼭 확인하세요.
-      </p>
+        <MapLegend />
+        <p style={{ margin: 0, padding: '2px 6px', fontSize: 12, lineHeight: 1.5, color: '#444', background: 'rgba(255,255,255,0.8)', borderRadius: 4 }}>
+          정보는 참고용이에요. 출국 전 외교부 해외안전여행(0404.go.kr) 등 공식 사이트에서 꼭 확인하세요.
+        </p>
+      </div>
 
       {/* 지도 위에 겹쳐 뜨는 사이드 창. 배경막 없이 띄워서 지도는 계속 움직일 수 있다. 화면이 좁으면(640px 미만) 전체 너비 */}
       <Drawer

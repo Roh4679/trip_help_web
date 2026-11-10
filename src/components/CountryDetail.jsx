@@ -3,7 +3,7 @@ import { Heading } from '@astryxdesign/core/Heading'
 import ClimateBar from './ClimateBar.jsx'
 import ClothingSection from './ClothingSection.jsx'
 import { adapterText, voltageText } from '../utils/plug.js'
-import { dateText } from '../utils/format.js'
+import DateNote from './DateNote.jsx'
 
 const PRICE_LEVELS = ['', '아주 쌈', '조금 쌈', '비슷함', '조금 비쌈', '아주 비쌈']
 const listStyle = { listStyle: 'disc', paddingLeft: 20, margin: 0 }
@@ -45,7 +45,8 @@ export default function CountryDetail({ country: c }) {
       <Section title="통화 · 환율 · 물가">
         <p>{currency.name} · {currency.code}</p>
         <p>
-          {currency.unit.toLocaleString()}{currency.name} = 약 {currency.krw.toLocaleString()}원 ({dateText(currency.updated)})
+          {currency.unit.toLocaleString()}{currency.name} = 약 {currency.krw.toLocaleString()}원
+          <DateNote updated={currency.updated} />
         </p>
         <p>
           물가: 한국보다 {PRICE_LEVELS[price.level]} · 커피 {price.coffee} · 한 끼 {price.meal}

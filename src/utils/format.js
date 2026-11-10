@@ -20,17 +20,13 @@ export function timeDiffText(timeDiff, dstTimeDiff) {
   return `${base} (서머타임 시 ${diffText(dstTimeDiff).replace('한국보다 ', '')})`
 }
 
-// 확인 전인 값은 updated에 '미확인'이 들어 있다
-export function dateText(updated) {
-  return updated === '미확인' ? '날짜 미확인' : `${updated} 기준`
-}
-
 // 위험 국가(빗금)의 메모지·토스트 문구
-export function dangerText({ level, special }) {
+export function dangerText({ level, special, message }) {
+  if (message) return message // 예: 북한 "방문하려면 통일부 승인 필요"
   return `${special ? '특별여행주의보' : `여행경보 ${level}단계`} · 정보를 제공하지 않아요`
 }
 
-export function riskText({ level, label, updated }) {
-  const date = dateText(updated)
-  return level ? `여행경보 ${level}단계 ${label} · ${date}` : `여행경보 없음 · ${date}`
+// 기준 날짜는 DateNote 컴포넌트가 따로 붙인다
+export function riskText({ level, label }) {
+  return level ? `여행경보 ${level}단계 ${label}` : '여행경보 없음'
 }

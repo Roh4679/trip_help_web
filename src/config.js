@@ -8,6 +8,7 @@ export const COLORS = {
   danger: '#5a5a5a', // 위험 국가 바탕 (짙은 회색)
   dangerHatch: '#9a9a9a', // 위험 국가 사선 빗금
   none: '#c8c8c8',
+  home: '#f0c35a', // 출발지(한국)
   border: '#fff',
   hoverBorder: '#333',
 }
@@ -25,9 +26,12 @@ export const TEMP_COLORS = [
 // fullTypes가 있으면 굵은 접지형까지 그대로 꽂힘, thinTypes만 있으면 얇은 플러그만 꽂힘
 export const KOREA_PLUG = { fullTypes: ['E', 'F'], thinTypes: ['C'], minVoltage: 220, maxVoltage: 240 }
 
+export const HOME_ID = '410' // 출발지: 대한민국 (지도 숫자 ID)
+
 export const DANGER_HATCH = { gap: 5, width: 1 } // 빗금 간격·굵기 (화면 px, 확대해도 그대로)
 
 export const PIN_COLOR = '#e4572e'
+export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서는 핀을 작게 (유럽처럼 핀이 몰린 곳이 겹치지 않게)
 export const BUBBLE_RADIUS = 8 // bubble.radius가 없을 때 기본 크기 (지도 좌표 px)
 export const MAX_ZOOM = 8
 export const ZOOM_STEP = 1.5 // +/− 버튼 한 번에 확대·축소하는 배율

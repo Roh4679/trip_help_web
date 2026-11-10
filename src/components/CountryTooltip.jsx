@@ -1,4 +1,5 @@
 import { flightText, timeDiffText, riskText, dangerText } from '../utils/format.js'
+import DateNote from './DateNote.jsx'
 
 const WIDTH = 300
 const GAP = 14
@@ -30,9 +31,13 @@ export default function CountryTooltip({ name, data, status, x, y }) {
         {name}
       </div>
       {status === 'danger' && <div>{dangerText(data.risk)}</div>}
+      {status === 'home' && <div>출발지예요</div>}
       {status === 'ok' && (
         <>
-          <div>{riskText(data.risk)}</div>
+          <div>
+            {riskText(data.risk)}
+            <DateNote updated={data.risk.updated} />
+          </div>
           <div>{flightText(data.flight)}</div>
           <div>{timeDiffText(data.timeDiff, data.dstTimeDiff)}</div>
         </>
