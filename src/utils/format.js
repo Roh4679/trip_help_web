@@ -5,7 +5,7 @@ function hoursText(hours) {
 }
 
 export function flightText({ direct, hours, transitNote }) {
-  if (direct) return `직항 약 ${hoursText(hours)}`
+  if (direct) return `직항 약 ${hoursText(hours)}${transitNote ? ` (${transitNote})` : ''}`
   return `직항 없음 · 최단 약 ${hoursText(hours)}${transitNote ? ` (${transitNote})` : ''}`
 }
 

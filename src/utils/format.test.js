@@ -3,6 +3,7 @@ import assert from 'node:assert'
 import { flightText, timeDiffText, riskText, dangerText } from './format.js'
 
 assert.equal(flightText({ direct: true, hours: 2.5 }), '직항 약 2시간 30분')
+assert.equal(flightText({ direct: true, hours: 12, transitNote: '여름 시간표 기준' }), '직항 약 12시간 (여름 시간표 기준)')
 assert.equal(flightText({ direct: false, hours: 14, transitNote: '1회 경유' }), '직항 없음 · 최단 약 14시간 (1회 경유)')
 assert.equal(timeDiffText(0, null), '한국과 시차 없음')
 assert.equal(timeDiffText(-2, null), '한국보다 2시간 느림')
