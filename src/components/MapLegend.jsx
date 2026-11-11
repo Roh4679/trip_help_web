@@ -8,8 +8,8 @@ const ITEMS = [
   { label: '없음', background: RISK_COLORS[0] },
   { label: '1단계', background: RISK_COLORS[1] },
   { label: '2단계', background: RISK_COLORS[2] },
-  // 3단계·특별여행주의보(빨강)와 4단계·방문 제한(진한 빨강)을 반씩
-  { label: '정보 제공 안 함', background: `${hatch(RISK_COLORS[3])} left / 50% 100% no-repeat, ${hatch(RISK_COLORS[4])} right / 50% 100% no-repeat` },
+  { label: '3단계·특별', background: hatch(RISK_COLORS[3]) }, // 정보는 보여 주되 경고, 추천에서 뺀다
+  { label: '4단계(정보 제공 안 함)', background: hatch(RISK_COLORS[4]) },
   { label: '준비 중', background: COLORS.none },
   { label: '출발지', background: COLORS.home },
 ]

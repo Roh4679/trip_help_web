@@ -1,4 +1,4 @@
-import { RISK_LEVEL_BLOCK, BLOCK_SPECIAL_WARNING } from '../config.js'
+import { RISK_LEVEL_BLOCK, BLOCK_SPECIAL_WARNING, RISK_LEVEL_WARN } from '../config.js'
 
 // 'danger' > 'none' > 'ok'
 export function countryStatus(data) {
@@ -10,10 +10,11 @@ export function countryStatus(data) {
 }
 
 // 지도·핀 색 단계: 0·1·2, 3(특별여행주의보·3단계, 빗금), 4(4단계·방문 제한, 빗금), 'none'(데이터 없음)
+// 3·4는 데이터가 없어도 경고 색으로 칠한다 (예: 러시아)
 export function riskTone(data) {
   const risk = data?.risk
   if (risk?.blocked || risk?.level >= 4) return 4
-  if (countryStatus(data) === 'danger') return 3
+  if (countryStatus(data) === 'danger' || risk?.level >= RISK_LEVEL_WARN || risk?.special) return 3
   if (!data?.climate) return 'none'
   return Math.min(2, Math.floor(risk?.level ?? 0))
 }

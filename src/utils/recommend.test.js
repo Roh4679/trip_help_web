@@ -18,4 +18,5 @@ assert.equal(recommend(countries, { maxHours: 20, seasons: ['겨울'], avoidRain
 assert.deepEqual(names({ maxHours: 1 }), [])
 // 위험 국가 제외
 assert.deepEqual(recommend([{ ...countries[0], risk: { level: 3 } }], { maxHours: 20, seasons: [], avoidRain: false, moods: [] }), [])
+assert.deepEqual(recommend([{ ...countries[0], risk: { level: 2.5, special: true } }], { maxHours: 20, seasons: [], avoidRain: false, moods: [] }), [])
 console.log('ok')

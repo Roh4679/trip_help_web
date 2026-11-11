@@ -9,7 +9,7 @@ import {
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
 import { WIDTH, HEIGHT, projection, shapes, pins } from '../utils/places.js'
-import { dangerText } from '../utils/format.js'
+import { dangerText, riskText } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 
 // 여행경보 단계별 색. 정보를 제공하지 않는 나라(3·4)는 빗금 무늬 (넓은 나라가 너무 무겁게 보이지 않게)
@@ -85,9 +85,10 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
     },
   }))
 
-  function handleClick({ name, data, status }) {
+  function handleClick({ name, data, status, tone }) {
     if (status === 'ok') return onSelect?.(data)
-    let body = `${name} · 곧 추가될 예정이에요~`
+    // 데이터는 없지만 경고 색인 나라(러시아 등)는 단계도 같이 알려 준다
+    let body = `${name} · ${tone === 3 ? `${riskText(data.risk)} · ` : ''}곧 추가될 예정이에요~`
     if (status === 'danger') body = `${name} · ${dangerText(data.risk)}`
     if (status === 'home') body = `${name} · 출발지예요`
     toast({ body, uniqueID: 'map-click' })

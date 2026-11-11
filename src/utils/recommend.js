@@ -1,12 +1,12 @@
-import { countryStatus } from './countryStatus.js'
+import { countryStatus, riskTone } from './countryStatus.js'
 import { isRainy } from './climate.js'
 import { seasonMonths } from './season.js'
 
-// 비행시간·시기·날씨는 모두 만족(AND), 분위기는 하나라도 맞으면(OR). 위험·데이터 없는 나라는 제외
+// 비행시간·시기·날씨는 모두 만족(AND), 분위기는 하나라도 맞으면(OR). 데이터 없는 나라와 3단계·특별여행주의보 이상(빗금)은 제외
 export function recommend(countries, { maxHours, seasons, avoidRain, moods }) {
   const months = seasonMonths(seasons)
   return countries
-    .filter((c) => countryStatus(c) === 'ok')
+    .filter((c) => countryStatus(c) === 'ok' && riskTone(c) < 3)
     .filter((c) => c.flight.hours <= maxHours)
     .map((c) => {
       const climate = c.climate.filter((m) => months.includes(m.month))

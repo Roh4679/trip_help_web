@@ -13,7 +13,7 @@ export function flightText({ direct, hours, transitNote }) {
 
 function diffText(diff) {
   if (diff === 0) return '한국과 시차 없음'
-  return `한국보다 ${Math.abs(diff)}시간 ${diff < 0 ? '느림' : '빠름'}`
+  return `한국보다 ${hoursText(Math.abs(diff))} ${diff < 0 ? '느림' : '빠름'}` // 3.5 → 3시간 30분 (인도), 3.25 → 3시간 15분 (네팔)
 }
 
 export function timeDiffText(timeDiff, dstTimeDiff) {
@@ -39,6 +39,7 @@ export function riskText({ level, label, mixed, range }) {
     }
     return `지역별 상이 (${a}~${b}단계)`
   }
+  if (level % 1) return label // 2.5 = 특별여행주의보
   return level ? `여행경보 ${level}단계 ${label}` : '여행경보 없음'
 }
 

@@ -5032,5 +5032,1800 @@
       "휴양",
       "자연"
     ]
+  },
+  {
+    "id": "484",
+    "iso2": "mx",
+    "iso3": "MEX",
+    "name": "멕시코",
+    "pin": [
+      -86.85,
+      21.16
+    ],
+    "risk": {
+      "level": 2,
+      "label": "여행자제",
+      "mixed": true,
+      "range": [
+        2,
+        3
+      ],
+      "updated": "2026-11-11",
+      "note": "3단계: 치아파스주, 시날로아주 / 특별여행주의보: 과나후아토주 / 칸쿤(킨타나로오주)은 2단계",
+      "safetyId": "58"
+    },
+    "flight": {
+      "direct": false,
+      "hours": 17,
+      "transitNote": "1회 경유 (멕시코시티까지는 직항 약 14시간)"
+    },
+    "timeDiff": -14,
+    "dstTimeDiff": null,
+    "climateCity": "칸쿤",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 24.2,
+        "rain": 104,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 24.6,
+        "rain": 48,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 25.9,
+        "rain": 40,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 27.4,
+        "rain": 33,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 28.6,
+        "rain": 93,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 29,
+        "rain": 156,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 29.2,
+        "rain": 74,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 29.3,
+        "rain": 100,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 28.7,
+        "rain": 178,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 27.6,
+        "rain": 252,
+        "rainy": true
+      },
+      {
+        "month": 11,
+        "temp": 26.2,
+        "rain": 121,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 24.8,
+        "rain": 96,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 127
+    },
+    "items": [
+      "선크림(산호초에 안전한 것)",
+      "모기 기피제",
+      "팁용 소액 현금",
+      "수영복"
+    ],
+    "currency": {
+      "code": "MXN",
+      "name": "멕시코페소",
+      "unit": 1,
+      "krw": 72,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 3,
+      "coffee": "약 60페소",
+      "meal": "약 250페소"
+    },
+    "entry": {
+      "visaFreeDays": 180,
+      "eta": null,
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "입국 심사에서 체류 일수를 정해 준다 (최대 180일)",
+        "시차·기후는 칸쿤 기준"
+      ]
+    },
+    "culture": [
+      "식당에서는 음식값의 10~15%를 팁으로 낸다",
+      "수돗물은 마시지 않는다",
+      "인사할 때 볼을 맞대는 경우가 많다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hola",
+        "pron": "올라"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Gracias",
+        "pron": "그라시아스"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "¿Cuánto cuesta?",
+        "pron": "쿠안토 쿠에스타"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연",
+      "전통"
+    ]
+  },
+  {
+    "id": "604",
+    "iso2": "pe",
+    "iso3": "PER",
+    "name": "페루",
+    "pin": [
+      -71.97,
+      -13.53
+    ],
+    "risk": {
+      "level": 2,
+      "label": "여행자제",
+      "mixed": true,
+      "range": [
+        2,
+        3
+      ],
+      "updated": "2026-11-11",
+      "note": "3단계: 아야쿠초주(라 마르, 우안타), 우앙카벨리카주(츄르캄파, 타야카하), 쿠스코주(라 콘벤시온), 후닌주(사티포, 우안카요, 콘셉시온)",
+      "safetyId": "243"
+    },
+    "flight": {
+      "direct": false,
+      "hours": 20,
+      "transitNote": "1회 경유"
+    },
+    "timeDiff": -14,
+    "dstTimeDiff": null,
+    "climateCity": "쿠스코",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 13.4,
+        "rain": 160,
+        "rainy": true
+      },
+      {
+        "month": 2,
+        "temp": 13.3,
+        "rain": 134,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 13.2,
+        "rain": 108,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 12.7,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 11.3,
+        "rain": 8,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 10.2,
+        "rain": 3,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 9.8,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 10.9,
+        "rain": 8,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 12.4,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 13.4,
+        "rain": 47,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 13.9,
+        "rain": 77,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 13.6,
+        "rain": 114,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "C"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "고산병약",
+      "따뜻한 겉옷(일교차가 큼)",
+      "선크림",
+      "편한 등산화"
+    ],
+    "currency": {
+      "code": "PEN",
+      "name": "솔",
+      "unit": 1,
+      "krw": 393,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 8솔",
+      "meal": "약 25솔"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "쿠스코는 해발 약 3,400m라 고산병에 주의",
+        "마추픽추는 입장권을 미리 예약해야 한다",
+        "시차·기후는 쿠스코 기준"
+      ]
+    },
+    "culture": [
+      "원주민을 사진 찍을 때는 먼저 허락을 받는다",
+      "수돗물은 마시지 않는다",
+      "식당에서는 음식값의 10% 정도를 팁으로 낸다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hola",
+        "pron": "올라"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Gracias",
+        "pron": "그라시아스"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "¿Cuánto cuesta?",
+        "pron": "쿠안토 쿠에스타"
+      }
+    ],
+    "moods": [
+      "자연",
+      "전통",
+      "건축양식"
+    ]
+  },
+  {
+    "id": "076",
+    "iso2": "br",
+    "iso3": "BRA",
+    "name": "브라질",
+    "pin": [
+      -43.2,
+      -22.91
+    ],
+    "risk": {
+      "level": 2,
+      "label": "여행자제",
+      "updated": "2026-11-11",
+      "note": "전 지역 2단계",
+      "safetyId": "104"
+    },
+    "flight": {
+      "direct": false,
+      "hours": 24,
+      "transitNote": "1회 경유"
+    },
+    "timeDiff": -12,
+    "dstTimeDiff": null,
+    "climateCity": "리우데자네이루",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.5,
+        "rain": 137,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 26.9,
+        "rain": 130,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 26.3,
+        "rain": 135,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 24.9,
+        "rain": 94,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 23.3,
+        "rain": 69,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 22.3,
+        "rain": 42,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 21.8,
+        "rain": 42,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 22.4,
+        "rain": 44,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 22.6,
+        "rain": 54,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 23.6,
+        "rain": 86,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 24.5,
+        "rain": 98,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 25.6,
+        "rain": 133,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "N"
+      ],
+      "voltage": 127
+    },
+    "items": [
+      "선크림",
+      "소매치기 방지 가방",
+      "모기 기피제",
+      "수영복"
+    ],
+    "currency": {
+      "code": "BRL",
+      "name": "헤알",
+      "unit": 1,
+      "krw": 241,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 3,
+      "coffee": "약 8헤알",
+      "meal": "약 50헤알"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "지역마다 전압이 다르다 (리우 127V, 브라질리아 220V)",
+        "시차·기후는 리우데자네이루 기준"
+      ]
+    },
+    "culture": [
+      "손가락으로 만드는 OK 표시는 무례한 뜻이다",
+      "휴대폰·귀중품을 길에서 꺼내 놓지 않는다",
+      "식당 계산서에 봉사료 10%가 들어 있는 경우가 많다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Olá",
+        "pron": "올라"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Obrigado / Obrigada",
+        "pron": "오브리가두 / 오브리가다"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Quanto custa?",
+        "pron": "콴투 쿠스타"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연"
+    ]
+  },
+  {
+    "id": "784",
+    "iso2": "ae",
+    "iso3": "ARE",
+    "name": "아랍에미리트",
+    "pin": [
+      55.27,
+      25.2
+    ],
+    "risk": {
+      "level": 3,
+      "label": "출국권고",
+      "updated": "2026-11-11",
+      "note": "전 지역 3단계",
+      "safetyId": "135"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 9.5,
+      "transitNote": null
+    },
+    "timeDiff": -5,
+    "dstTimeDiff": null,
+    "climateCity": "두바이",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 19.7,
+        "rain": 19,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 20.9,
+        "rain": 24,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 23.6,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 27.6,
+        "rain": 7,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 31.6,
+        "rain": 1,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 33.6,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 35.5,
+        "rain": 1,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 35.5,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 33.2,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 29.9,
+        "rain": 1,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 25.3,
+        "rain": 3,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 21.4,
+        "rain": 15,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "G"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "선크림",
+      "선글라스",
+      "어깨·무릎을 가릴 옷(사원 방문)",
+      "얇은 겉옷(실내 냉방)"
+    ],
+    "currency": {
+      "code": "AED",
+      "name": "디르함",
+      "unit": 1,
+      "krw": 365,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 20디르함",
+      "meal": "약 50디르함"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "라마단 기간에는 낮에 공공장소에서 먹고 마시지 않는다",
+        "시차·기후는 두바이 기준"
+      ]
+    },
+    "culture": [
+      "공공장소에서 애정 표현을 하지 않는다",
+      "사람, 특히 여성을 허락 없이 찍지 않는다",
+      "금요일 낮에는 예배 시간이라 문을 닫는 곳이 있다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "السلام عليكم",
+        "pron": "앗살라무 알라이쿰"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "شكراً",
+        "pron": "슈크란"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "بكم هذا؟",
+        "pron": "비캄 하다"
+      }
+    ],
+    "moods": [
+      "미래도시",
+      "휴양"
+    ]
+  },
+  {
+    "id": "818",
+    "iso2": "eg",
+    "iso3": "EGY",
+    "name": "이집트",
+    "pin": [
+      31.24,
+      30.04
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
+      "updated": "2026-11-11",
+      "note": "1단계: 카이로 등 나일강 유역 도시, 다합·샴엘셰이크 / 2단계: 서부사막, 시나이반도 남부 일부(성캐더린·타바) / 3단계: 중·북부 시나이반도, 리비아 국경 30km 이내",
+      "safetyId": "178"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 13,
+      "transitNote": null
+    },
+    "timeDiff": -7,
+    "dstTimeDiff": -6,
+    "climateCity": "카이로",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 14,
+        "rain": 5,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 15.2,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 17.6,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 21.3,
+        "rain": 1,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 24.8,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 27.2,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 28,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 28,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 26.2,
+        "rain": 0,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 23.6,
+        "rain": 1,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 19.1,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 15.4,
+        "rain": 6,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "F"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "선크림",
+      "모자·선글라스",
+      "팁용 소액 현금",
+      "물티슈"
+    ],
+    "currency": {
+      "code": "EGP",
+      "name": "이집트파운드",
+      "unit": 1,
+      "krw": 25,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 1,
+      "coffee": "약 50파운드",
+      "meal": "약 200파운드"
+    },
+    "entry": {
+      "visaFreeDays": null,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "도착비자 30일(유료, 미국 달러 현금) 또는 전자비자",
+        "샴엘셰이크 등 남시나이 지역만 머물면 다른 규정이 있을 수 있다"
+      ]
+    },
+    "culture": [
+      "작은 도움에도 팁(박시시)을 기대하는 경우가 많다",
+      "물건을 주고받을 때 오른손을 쓴다",
+      "유적지 안 일부 구역은 사진 촬영이 금지·유료다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "السلام عليكم",
+        "pron": "앗살라무 알라이쿰"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "شكراً",
+        "pron": "슈크란"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "بكام ده؟",
+        "pron": "비캄 다"
+      }
+    ],
+    "moods": [
+      "전통",
+      "건축양식"
+    ]
+  },
+  {
+    "id": "504",
+    "iso2": "ma",
+    "iso3": "MAR",
+    "name": "모로코",
+    "pin": [
+      -7.99,
+      31.63
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
+      "updated": "2026-11-11",
+      "note": "2단계: 서사하라 모래방어벽 서쪽 / 3단계: 서사하라 모래방어벽 동쪽",
+      "safetyId": "60"
+    },
+    "flight": {
+      "direct": false,
+      "hours": 17,
+      "transitNote": "1회 경유"
+    },
+    "timeDiff": -8,
+    "dstTimeDiff": null,
+    "climateCity": "마라케시",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 12.3,
+        "rain": 32,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 14.2,
+        "rain": 38,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 16.9,
+        "rain": 38,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 18.6,
+        "rain": 39,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 22.1,
+        "rain": 24,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 25.5,
+        "rain": 5,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 29.3,
+        "rain": 1,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 29.3,
+        "rain": 3,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 25.8,
+        "rain": 7,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 21.8,
+        "rain": 22,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 16.5,
+        "rain": 41,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 13.3,
+        "rain": 31,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "E"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "선크림",
+      "따뜻한 겉옷(사막의 밤은 추움)",
+      "어깨·무릎을 가릴 옷",
+      "현금(카드를 안 받는 곳이 많음)"
+    ],
+    "currency": {
+      "code": "MAD",
+      "name": "모로코디르함",
+      "unit": 1,
+      "krw": 137,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 15디르함",
+      "meal": "약 80디르함"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "라마단 기간에는 시간대가 1시간 바뀐다",
+        "시차·기후는 마라케시 기준"
+      ]
+    },
+    "culture": [
+      "시장(수크)에서는 값을 흥정한다",
+      "대부분의 모스크는 무슬림이 아니면 들어갈 수 없다 (카사블랑카 하산 2세 모스크는 예외)",
+      "사람을 찍을 때는 먼저 허락을 받는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "السلام عليكم",
+        "pron": "살람"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "شكراً",
+        "pron": "슈크란"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "بشحال؟",
+        "pron": "브샬"
+      }
+    ],
+    "moods": [
+      "전통",
+      "건축양식",
+      "자연"
+    ]
+  },
+  {
+    "id": "710",
+    "iso2": "za",
+    "iso3": "ZAF",
+    "name": "남아프리카공화국",
+    "pin": [
+      18.42,
+      -33.92
+    ],
+    "risk": {
+      "level": 2,
+      "label": "여행자제",
+      "updated": "2026-11-11",
+      "note": "전 지역 2단계",
+      "safetyId": "20"
+    },
+    "flight": {
+      "direct": false,
+      "hours": 20,
+      "transitNote": "1회 경유"
+    },
+    "timeDiff": -7,
+    "dstTimeDiff": null,
+    "climateCity": "케이프타운",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 21.4,
+        "rain": 15,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 21.6,
+        "rain": 17,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 20.5,
+        "rain": 20,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 18.2,
+        "rain": 41,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 15.9,
+        "rain": 69,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 13.9,
+        "rain": 93,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 13.3,
+        "rain": 82,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 13.8,
+        "rain": 77,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 15,
+        "rain": 40,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 16.9,
+        "rain": 30,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 18.6,
+        "rain": 14,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 20.3,
+        "rain": 17,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "D",
+        "M",
+        "N"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "바람막이(바람이 강함)",
+      "선크림",
+      "소매치기 방지 가방"
+    ],
+    "currency": {
+      "code": "ZAR",
+      "name": "랜드",
+      "unit": 1,
+      "krw": 82,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 2,
+      "coffee": "약 35랜드",
+      "meal": "약 200랜드"
+    },
+    "entry": {
+      "visaFreeDays": 30,
+      "eta": null,
+      "passport": "출국 예정일 기준 30일 이상 남아 있고, 빈 사증 면이 2면 이상일 것",
+      "notes": [
+        "미성년 자녀와 함께 가면 영문 가족관계증명서를 요구할 수 있다",
+        "시차·기후는 케이프타운 기준"
+      ]
+    },
+    "culture": [
+      "해가 진 뒤에는 걸어서 다니지 않고 차를 탄다",
+      "식당에서는 음식값의 10~15%를 팁으로 낸다",
+      "가뭄이 잦아 물을 아껴 쓴다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Hallo",
+        "pron": "할로"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Dankie",
+        "pron": "당키"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Hoeveel kos dit?",
+        "pron": "후펠 코스 딧"
+      }
+    ],
+    "moods": [
+      "자연",
+      "휴양"
+    ]
+  },
+  {
+    "id": "356",
+    "iso2": "in",
+    "iso3": "IND",
+    "name": "인도",
+    "pin": [
+      77.21,
+      28.61
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
+      "updated": "2026-11-11",
+      "note": "3단계: 카슈미르, 카르길시",
+      "safetyId": "285"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 8.5,
+      "transitNote": null
+    },
+    "timeDiff": -3.5,
+    "dstTimeDiff": null,
+    "climateCity": "뉴델리",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 14,
+        "rain": 19,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 17.3,
+        "rain": 20,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 22.9,
+        "rain": 15,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 29.1,
+        "rain": 7,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 33.5,
+        "rain": 18,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 33.9,
+        "rain": 74,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 31,
+        "rain": 210,
+        "rainy": true
+      },
+      {
+        "month": 8,
+        "temp": 30,
+        "rain": 233,
+        "rainy": true
+      },
+      {
+        "month": 9,
+        "temp": 29.4,
+        "rain": 124,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 26,
+        "rain": 16,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 20.4,
+        "rain": 4,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 15.8,
+        "rain": 8,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "D",
+        "M"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "물티슈·손 소독제",
+      "지사제",
+      "모기 기피제",
+      "어깨·무릎을 가릴 옷(사원 방문)"
+    ],
+    "currency": {
+      "code": "INR",
+      "name": "루피",
+      "unit": 100,
+      "krw": 1428,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 1,
+      "coffee": "약 150루피",
+      "meal": "약 300루피"
+    },
+    "entry": {
+      "visaFreeDays": null,
+      "eta": "e-Visa (인도 전자비자, 출발 4일 전까지 온라인 신청, 유료)",
+      "passport": "입국일 기준 6개월 이상 남아 있고, 빈 사증 면이 2면 이상일 것",
+      "notes": [
+        "시차·기후는 뉴델리 기준"
+      ]
+    },
+    "culture": [
+      "음식은 오른손으로 먹고 건넨다",
+      "사원에 들어갈 때는 신발을 벗는다",
+      "소는 신성하게 여기므로 길을 비켜 준다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "नमस्ते",
+        "pron": "나마스테"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "धन्यवाद",
+        "pron": "단야바드"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "कितने का है?",
+        "pron": "킷네 까 해"
+      }
+    ],
+    "moods": [
+      "전통",
+      "건축양식"
+    ]
+  },
+  {
+    "id": null,
+    "iso2": "mv",
+    "iso3": "MDV",
+    "name": "몰디브",
+    "pin": [
+      73.51,
+      4.18
+    ],
+    "marker": {
+      "offset": [
+        0,
+        0
+      ]
+    },
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "2026-11-11",
+      "note": "전 지역 1단계",
+      "safetyId": "309"
+    },
+    "flight": {
+      "direct": false,
+      "hours": 10.5,
+      "transitNote": "1회 경유"
+    },
+    "timeDiff": -4,
+    "dstTimeDiff": null,
+    "climateCity": "말레",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.9,
+        "rain": 114,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 27.3,
+        "rain": 38,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 28,
+        "rain": 74,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 28.5,
+        "rain": 123,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 28.3,
+        "rain": 219,
+        "rainy": true
+      },
+      {
+        "month": 6,
+        "temp": 28,
+        "rain": 167,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 27.7,
+        "rain": 149,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 27.6,
+        "rain": 175,
+        "rainy": true
+      },
+      {
+        "month": 9,
+        "temp": 27.4,
+        "rain": 201,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 27.3,
+        "rain": 220,
+        "rainy": true
+      },
+      {
+        "month": 11,
+        "temp": 27,
+        "rain": 231,
+        "rainy": true
+      },
+      {
+        "month": 12,
+        "temp": 26.9,
+        "rain": 216,
+        "rainy": true
+      }
+    ],
+    "plug": {
+      "types": [
+        "D",
+        "G"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "산호초에 안전한 선크림",
+      "래시가드",
+      "아쿠아슈즈",
+      "미국 달러 소액권"
+    ],
+    "currency": {
+      "code": "MVR",
+      "name": "루피야",
+      "unit": 1,
+      "krw": 87,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 5,
+      "coffee": "약 5달러(리조트는 더 비쌈)",
+      "meal": "약 30달러"
+    },
+    "entry": {
+      "visaFreeDays": 30,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "입국 96시간 전부터 IMUGA 전자 입국 신고서 작성",
+        "리조트에서는 미국 달러를 주로 쓴다",
+        "시차·기후는 말레 기준"
+      ]
+    },
+    "culture": [
+      "이슬람 국가라 술은 리조트 안에서만 마실 수 있다 (반입 금지)",
+      "현지 주민이 사는 섬에서는 비키니를 입지 않는다",
+      "산호를 밟거나 가져가지 않는다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Assalaamu alaikum",
+        "pron": "앗살라무 알라이쿰"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Shukuriyaa",
+        "pron": "슈쿠리야"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "Kihaa vareh?",
+        "pron": "키하 바레"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "로맨스",
+      "자연"
+    ]
+  },
+  {
+    "id": "144",
+    "iso2": "lk",
+    "iso3": "LKA",
+    "name": "스리랑카",
+    "pin": [
+      79.86,
+      6.93
+    ],
+    "risk": {
+      "level": 1,
+      "label": "여행유의",
+      "updated": "2026-11-11",
+      "note": "전 지역 1단계",
+      "safetyId": "124"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 9,
+      "transitNote": null
+    },
+    "timeDiff": -3.5,
+    "dstTimeDiff": null,
+    "climateCity": "콜롬보",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.9,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 27.3,
+        "rain": 73,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 28,
+        "rain": 128,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 28.3,
+        "rain": 246,
+        "rainy": true
+      },
+      {
+        "month": 5,
+        "temp": 28.3,
+        "rain": 392,
+        "rainy": true
+      },
+      {
+        "month": 6,
+        "temp": 27.7,
+        "rain": 185,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 27.4,
+        "rain": 127,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 27.4,
+        "rain": 107,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.3,
+        "rain": 237,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 26.9,
+        "rain": 364,
+        "rainy": true
+      },
+      {
+        "month": 11,
+        "temp": 26.6,
+        "rain": 325,
+        "rainy": true
+      },
+      {
+        "month": 12,
+        "temp": 26.6,
+        "rain": 148,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "D",
+        "G",
+        "M"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "모기 기피제",
+      "우산",
+      "어깨·무릎을 가릴 옷(사원 방문)",
+      "선크림"
+    ],
+    "currency": {
+      "code": "LKR",
+      "name": "스리랑카루피",
+      "unit": 100,
+      "krw": 405,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 1,
+      "coffee": "약 800루피",
+      "meal": "약 1,500루피"
+    },
+    "entry": {
+      "visaFreeDays": 30,
+      "eta": "ETA (스리랑카 전자여행허가, 온라인 신청)",
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "시차·기후는 콜롬보 기준 (지역마다 우기가 다르다)"
+      ]
+    },
+    "culture": [
+      "불상을 등지고 사진을 찍지 않는다",
+      "사원에서는 신발과 모자를 벗는다",
+      "고개를 좌우로 흔드는 것은 '예'라는 뜻일 수 있다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "ආයුබෝවන්",
+        "pron": "아유보완"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "ස්තුතියි",
+        "pron": "스투티이"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "කීයද?",
+        "pron": "키야다"
+      }
+    ],
+    "moods": [
+      "자연",
+      "전통",
+      "휴양"
+    ]
+  },
+  {
+    "id": "524",
+    "iso2": "np",
+    "iso3": "NPL",
+    "name": "네팔",
+    "pin": [
+      85.32,
+      27.72
+    ],
+    "risk": {
+      "level": 2.5,
+      "label": "특별여행주의보",
+      "special": true,
+      "mixed": true,
+      "range": [
+        1,
+        2.5
+      ],
+      "updated": "2026-11-11",
+      "note": "특별여행주의보: 바그마티주(카트만두), 간다키주(포카라), 룸비니주, 코시주 / 그 밖은 1단계",
+      "safetyId": "22"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 7.5,
+      "transitNote": null
+    },
+    "timeDiff": -3.25,
+    "dstTimeDiff": null,
+    "climateCity": "카트만두",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 10.1,
+        "rain": 14,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 12.3,
+        "rain": 19,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 16.2,
+        "rain": 34,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 19.4,
+        "rain": 61,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 22,
+        "rain": 124,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 23.6,
+        "rain": 236,
+        "rainy": true
+      },
+      {
+        "month": 7,
+        "temp": 23.9,
+        "rain": 363,
+        "rainy": true
+      },
+      {
+        "month": 8,
+        "temp": 23.8,
+        "rain": 331,
+        "rainy": true
+      },
+      {
+        "month": 9,
+        "temp": 22.8,
+        "rain": 200,
+        "rainy": true
+      },
+      {
+        "month": 10,
+        "temp": 19.9,
+        "rain": 51,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 15.4,
+        "rain": 8,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 11.6,
+        "rain": 13,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "C",
+        "D",
+        "M"
+      ],
+      "voltage": 230
+    },
+    "items": [
+      "따뜻한 겉옷(일교차가 큼)",
+      "고산병약(트레킹)",
+      "물티슈·손 소독제",
+      "보조배터리(정전이 잦음)"
+    ],
+    "currency": {
+      "code": "NPR",
+      "name": "네팔루피",
+      "unit": 100,
+      "krw": 893,
+      "updated": "2026-11-11T00:02:32.000Z"
+    },
+    "price": {
+      "level": 1,
+      "coffee": "약 250루피",
+      "meal": "약 500루피"
+    },
+    "entry": {
+      "visaFreeDays": null,
+      "eta": null,
+      "passport": "입국일 기준 6개월 이상 남아 있을 것",
+      "notes": [
+        "도착비자 15·30·90일(유료) 또는 온라인 사전 신청",
+        "트레킹은 입산 허가가 필요할 수 있다",
+        "시차·기후는 카트만두 기준"
+      ]
+    },
+    "culture": [
+      "사원과 탑은 시계 방향으로 돈다",
+      "음식은 오른손으로 먹고 건넨다",
+      "소는 신성하게 여긴다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "नमस्ते",
+        "pron": "나마스테"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "धन्यवाद",
+        "pron": "단냐바드"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "कति हो?",
+        "pron": "까띠 호"
+      }
+    ],
+    "moods": [
+      "자연",
+      "전통"
+    ]
   }
 ]

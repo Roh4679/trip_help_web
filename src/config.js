@@ -1,6 +1,7 @@
 // 기준값은 여기서만 바꾼다 (PLANNING.md 10장)
-export const RISK_LEVEL_BLOCK = 3 // 여행경보 이 단계 이상이면 위험 국가(빗금)
-export const BLOCK_SPECIAL_WARNING = true // 특별여행주의보(risk.special)가 국가 대부분에 걸린 나라도 위험 국가(빗금)
+export const RISK_LEVEL_BLOCK = 4 // 여행경보 이 단계 이상이면 정보를 제공하지 않는다 (토스트만)
+export const BLOCK_SPECIAL_WARNING = false // true면 특별여행주의보(risk.special) 나라도 정보를 제공하지 않는다
+export const RISK_LEVEL_WARN = 3 // 이 단계 이상(또는 특별여행주의보)은 정보는 보여 주되 빨강 빗금으로 경고하고 추천에서 뺀다
 
 export const COLORS = {
   ocean: '#dbe9f4',
