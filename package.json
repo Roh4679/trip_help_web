@@ -8,6 +8,7 @@
     "prebuild": "node scripts/update-rates.mjs",
     "build": "vite build",
     "rates": "node scripts/update-rates.mjs --force",
+    "check-risk": "node scripts/check-risk.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs"
