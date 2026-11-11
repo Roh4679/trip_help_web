@@ -6,6 +6,7 @@ import ClothingSection from './ClothingSection.jsx'
 import { adapterText, voltageText } from '../utils/plug.js'
 import DateNote from './DateNote.jsx'
 import RiskLink from './RiskLink.jsx'
+import RiskWarning from './RiskWarning.jsx'
 import { flightText, timeDiffText, riskText } from '../utils/format.js'
 import { rateView } from '../utils/rates.js'
 import { useRates } from '../utils/useRates.js'
@@ -66,6 +67,7 @@ export default function CountryDetail({ country: c }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, lineHeight: 1.6 }}>
+      <RiskWarning country={c} />
       <Summary country={c} />
 
       <Section title="여행경보">

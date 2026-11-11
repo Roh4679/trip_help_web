@@ -1,5 +1,6 @@
 import { flightText, timeDiffText, dangerText } from '../utils/format.js'
 import RiskLink from './RiskLink.jsx'
+import RiskWarning from './RiskWarning.jsx'
 import DateNote from './DateNote.jsx'
 
 const WIDTH = 300
@@ -36,6 +37,7 @@ export default function CountryTooltip({ name, data, status, x, y }) {
       {status === 'home' && <div>출발지예요</div>}
       {status === 'ok' && (
         <>
+          <RiskWarning country={data} compact />
           <div>
             <RiskLink risk={data.risk} />
             <DateNote updated={data.risk.updated} />

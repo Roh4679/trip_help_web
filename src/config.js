@@ -1,7 +1,8 @@
 // 기준값은 여기서만 바꾼다 (PLANNING.md 10장)
 export const RISK_LEVEL_BLOCK = 4 // 여행경보 이 단계 이상이면 정보를 제공하지 않는다 (토스트만)
 export const BLOCK_SPECIAL_WARNING = false // true면 특별여행주의보(risk.special) 나라도 정보를 제공하지 않는다
-export const RISK_LEVEL_WARN = 3 // 이 단계 이상(또는 특별여행주의보)은 정보는 보여 주되 빨강 빗금으로 경고하고 추천에서 뺀다
+export const RISK_LEVEL_WARN = 3 // 이 단계 이상(또는 특별여행주의보)은 정보는 보여 주되 빨강 빗금 + 빨간 경고 띠로 경고하고 추천에서 뺀다
+export const WARNING_COLORS = { background: '#fdecea', border: '#e0a29b', text: '#b3261e' } // 상세 창 맨 위·메모지의 빨간 경고
 
 export const COLORS = {
   ocean: '#dbe9f4',
@@ -12,7 +13,7 @@ export const COLORS = {
 }
 
 // 여행경보 단계별 나라 색 (초록 → 빨강). 지역마다 다르면 risk.level(주요 관광지 기준)으로 고른다
-// 3 = 특별여행주의보·3단계, 4 = 4단계·방문 제한(북한): 정보를 제공하지 않는 나라라 빗금. 큰 나라가 무겁지 않게 빨강은 톤을 낮춘다
+// 3 = 특별여행주의보·3단계(정보는 보여 주되 경고), 4 = 4단계·방문 제한(북한, 정보 제공 안 함): 둘 다 빗금. 큰 나라가 무겁지 않게 빨강은 톤을 낮춘다
 export const RISK_COLORS = {
   0: '#7fc48c', // 없음: 초록
   1: '#c6e28f', // 1단계: 연두

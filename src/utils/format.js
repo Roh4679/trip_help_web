@@ -43,6 +43,12 @@ export function riskText({ level, label, mixed, range }) {
   return level ? `여행경보 ${level}단계 ${label}` : '여행경보 없음'
 }
 
+// 3단계·특별여행주의보 경고 문구. 지역별 상이면 주요 관광지(risk.level) 기준
+export function warningText({ level, label, mixed }) {
+  const text = level % 1 ? label : `여행경보 ${level}단계(${label})`
+  return `⚠ ${text}${mixed ? ' · 주요 관광지 기준' : ''}`
+}
+
 // 해외안전여행 나라별 페이지. 나라가 아닌 곳(괌 등)은 데이터의 safetyId가 속한 나라(미국) 번호
 export function safetyUrl(risk) {
   return risk?.safetyId ? SAFETY_COUNTRY_URL.replace('{id}', risk.safetyId) : SAFETY_SITE
