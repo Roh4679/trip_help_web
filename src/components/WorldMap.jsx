@@ -36,8 +36,10 @@ function focusTransform(place) {
     k = FOCUS_ZOOM.fill / Math.max((x1 - x0) / WIDTH, (y1 - y0) / HEIGHT)
     ;[cx, cy] = [(x0 + x1) / 2, (y0 + y1) / 2]
   }
-  k = Math.min(Math.max(k, 1), MAX_ZOOM)
-  return zoomIdentity.translate(WIDTH / 2 - k * cx, HEIGHT / 2 - k * cy).scale(k)
+  k = Math.min(Math.max(k, 1), MAX_ZOOM) // 지도보다 큰 나라(러시아 등)도 더 줄이지 않는다
+  // 드래그할 때(translateExtent)처럼 지도 밖 빈 곳이 보이지 않게 이동 범위를 막는다. k=1이면 처음 위치 그대로
+  const clamp = (v, size) => Math.min(0, Math.max(size - k * size, v))
+  return zoomIdentity.translate(clamp(WIDTH / 2 - k * cx, WIDTH), clamp(HEIGHT / 2 - k * cy, HEIGHT)).scale(k)
 }
 
 const PIN_PATH = 'M0,0 C-3,-5 -6,-8 -6,-12 A6,6 0 1,1 6,-12 C6,-8 3,-5 0,0Z'
