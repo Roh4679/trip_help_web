@@ -11,7 +11,7 @@
 조건(비행시간 · 여행 시기 · 날씨 · 분위기)을 고르면 **여행지를 추천**해 준다.
 
 - 기준 사용자: 한국에서 출발하는 여행자 (출발 공항: 인천)
-- 모든 데이터는 **외부 API를 호출하지 않고 JSON 파일**로 관리한다.
+- 모든 데이터는 **외부 API를 호출하지 않고 JSON 파일**로 관리한다. (환율만 예외: 10장 참고)
 
 ---
 
@@ -24,7 +24,7 @@
 | 지도 | `d3-geo` + `topojson-client`로 SVG 직접 그리기, 확대/이동은 `d3-zoom` | react-simple-maps는 React 19와 충돌할 수 있어 쓰지 않는다 |
 | 지도 데이터 | world-atlas TopoJSON (`countries-110m.json`) | 단순한 형태만 필요하므로 110m(저해상도) 사용. 작은 나라는 핀으로 보완 |
 | 스타일 | Astryx 테마 + 필요 시 CSS Modules | |
-| 데이터 | `src/data/*.json` | 런타임 API 호출 없음 |
+| 데이터 | `src/data/*.json` | 런타임 API 호출 없음 (환율만 예외) |
 | 배포 | Vercel (사이트에서 GitHub 저장소 연결) | 정적 사이트. `main`에 push하면 Vercel이 자동으로 빌드·배포 |
 
 ### 2.1 Astryx 설정 방법 (공식 README 기준)
@@ -484,6 +484,10 @@ src/
 
 - 이 문서를 기준으로 구현한다. 문서와 다르게 만들어야 하면 먼저 물어본다.
 - **런타임에 외부 API를 호출하지 않는다.** 모든 데이터는 `src/data/*.json`에서 읽는다. (국기 이미지 URL은 예외로 허용, 원하면 로컬 저장)
+  - **예외: 환율.** 키 없이 쓰는 open.er-api.com(`config.js`의 `RATES_URL`, 원화 기준, 하루 한 번 갱신)을 쓴다.
+    - 빌드: Vercel 빌드 때 `prebuild`(`scripts/update-rates.mjs`)가 API를 한 번 불러 `countries.json`의 `krw`와 `updated`(ISO 시각)를 덮어쓴다. 실패해도 빌드는 멈추지 않고 기존 JSON을 쓴다. 로컬에서는 `npm run rates`로만 갱신한다.
+    - 브라우저: 페이지를 열 때 가져오고 localStorage에 1시간 저장한다(`RATES_CACHE_MS`). 성공하면 "기준 시각", 실패하면 저장된 값 또는 JSON 값과 "마지막 갱신: 시각"을 보여 준다.
+    - 이용 조건: 화면에 출처 링크(Rates By Exchange Rate API)를 둔다. 너무 자주 부르면 IP가 20분간 막힌다(429).
 - 기준값(위험 단계, 우기 mm, 색상)은 코드에 박지 말고 `config.js`에 둔다.
 - UI는 **Astryx 컴포넌트를 우선** 사용한다. 컴포넌트 사용법은 Astryx CLI/문서로 확인하고, 없는 것만 직접 만든다.
 - 지도는 **단순하게**: 나라 경계선만 있는 평면 SVG. 지형, 격자선, 지명, 장식 효과를 넣지 않는다.

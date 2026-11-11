@@ -42,3 +42,7 @@ export const MOBILE_QUERY = '(max-width: 639px)' // 상세 창을 화면 전체�
 export const TOUCH_QUERY = '(pointer: coarse)' // 손가락 터치 화면: 메모지 끄고, 누르는 영역을 넓힌다
 export const PORTRAIT_CENTER = [110, 25] // 세로 화면에서 처음 보여줄 곳 [경도, 위도] (아시아)
 export const TOUCH_HIT_RADIUS = 18 // 핀·버블을 누를 수 있는 영역 반지름 (px)
+
+// 환율: 키 없이 쓰는 open.er-api.com (원화 기준, 하루 한 번 갱신). 화면에 출처 표시 필요
+export const RATES_URL = 'https://open.er-api.com/v6/latest/KRW'
+export const RATES_CACHE_MS = 60 * 60 * 1000 // 브라우저에 저장한 값을 다시 쓰는 시간 (1시간)

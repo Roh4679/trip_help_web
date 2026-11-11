@@ -6,6 +6,8 @@ import ClothingSection from './ClothingSection.jsx'
 import { adapterText, voltageText } from '../utils/plug.js'
 import DateNote from './DateNote.jsx'
 import { flightText, timeDiffText, riskText } from '../utils/format.js'
+import { rateView } from '../utils/rates.js'
+import { useRates } from '../utils/useRates.js'
 
 const PRICE_LEVELS = ['', '아주 쌈', '조금 쌈', '비슷함', '조금 비쌈', '아주 비쌈']
 const listStyle = { listStyle: 'disc', paddingLeft: 20, margin: 0 }
@@ -59,6 +61,7 @@ function Summary({ country: c }) {
 export default function CountryDetail({ country: c }) {
   const [month, setMonth] = useState(new Date().getMonth() + 1)
   const { plug, currency, price, entry } = c
+  const rate = rateView(currency, useRates())
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, lineHeight: 1.6 }}>
@@ -86,8 +89,8 @@ export default function CountryDetail({ country: c }) {
         <MetadataList>
           <MetadataListItem label="통화">{currency.name} · {currency.code}</MetadataListItem>
           <MetadataListItem label="환율">
-            {currency.unit.toLocaleString()}{currency.name} = 약 {currency.krw.toLocaleString()}원
-            <DateNote updated={currency.updated} />
+            {currency.unit.toLocaleString()}{currency.name} = 약 {rate.krw.toLocaleString()}원
+            {rate.note && <span style={{ color: '#666', fontSize: 13 }}> ({rate.note})</span>}
           </MetadataListItem>
           <MetadataListItem label="물가">한국보다 {PRICE_LEVELS[price.level]}</MetadataListItem>
           <MetadataListItem label="커피 한 잔">{price.coffee}</MetadataListItem>

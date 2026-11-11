@@ -79,7 +79,7 @@
       },
       {
         "month": 10,
-        "temp": 18.0,
+        "temp": 18,
         "rain": 235,
         "rainy": false
       },
@@ -111,8 +111,8 @@
       "code": "JPY",
       "name": "엔",
       "unit": 100,
-      "krw": 850,
-      "updated": "미확인"
+      "krw": 847,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 3,
@@ -181,7 +181,7 @@
     "climate": [
       {
         "month": 1,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 13,
         "rainy": false
       },
@@ -205,7 +205,7 @@
       },
       {
         "month": 5,
-        "temp": 30.0,
+        "temp": 30,
         "rain": 248,
         "rainy": true
       },
@@ -217,7 +217,7 @@
       },
       {
         "month": 7,
-        "temp": 29.0,
+        "temp": 29,
         "rain": 197,
         "rainy": true
       },
@@ -235,7 +235,7 @@
       },
       {
         "month": 10,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 241,
         "rainy": true
       },
@@ -271,8 +271,8 @@
       "code": "THB",
       "name": "바트",
       "unit": 1,
-      "krw": 43,
-      "updated": "미확인"
+      "krw": 40,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -343,7 +343,7 @@
     "climate": [
       {
         "month": 1,
-        "temp": 5.0,
+        "temp": 5,
         "rain": 51,
         "rainy": false
       },
@@ -430,8 +430,8 @@
       "code": "EUR",
       "name": "유로",
       "unit": 1,
-      "krw": 1600,
-      "updated": "미확인"
+      "krw": 1502,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -508,7 +508,7 @@
       },
       {
         "month": 2,
-        "temp": 17.0,
+        "temp": 17,
         "rain": 26,
         "rainy": false
       },
@@ -591,8 +591,8 @@
       "code": "VND",
       "name": "동",
       "unit": 1000,
-      "krw": 55,
-      "updated": "미확인"
+      "krw": 52,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 1,
@@ -667,7 +667,7 @@
       },
       {
         "month": 2,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 8,
         "rainy": false
       },
@@ -691,7 +691,7 @@
       },
       {
         "month": 6,
-        "temp": 29.0,
+        "temp": 29,
         "rain": 253,
         "rainy": true
       },
@@ -749,8 +749,8 @@
       "code": "PHP",
       "name": "페소",
       "unit": 1,
-      "krw": 24,
-      "updated": "미확인"
+      "krw": 21,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -905,8 +905,8 @@
       "code": "TWD",
       "name": "대만달러",
       "unit": 1,
-      "krw": 45,
-      "updated": "미확인"
+      "krw": 41,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 3,
@@ -1034,7 +1034,7 @@
       },
       {
         "month": 11,
-        "temp": 5.0,
+        "temp": 5,
         "rain": 9,
         "rainy": false
       },
@@ -1062,8 +1062,8 @@
       "code": "CNY",
       "name": "위안",
       "unit": 1,
-      "krw": 190,
-      "updated": "미확인"
+      "krw": 201,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -1147,7 +1147,7 @@
       },
       {
         "month": 3,
-        "temp": 16.0,
+        "temp": 16,
         "rain": 62,
         "rainy": false
       },
@@ -1183,7 +1183,7 @@
       },
       {
         "month": 9,
-        "temp": 23.0,
+        "temp": 23,
         "rain": 4,
         "rainy": false
       },
@@ -1221,8 +1221,8 @@
       "code": "USD",
       "name": "달러",
       "unit": 1,
-      "krw": 1400,
-      "updated": "미확인"
+      "krw": 1342,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 5,
@@ -1308,7 +1308,7 @@
       },
       {
         "month": 4,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 159,
         "rainy": false
       },
@@ -1375,8 +1375,8 @@
       "code": "SGD",
       "name": "싱가포르달러",
       "unit": 1,
-      "krw": 1050,
-      "updated": "미확인"
+      "krw": 1048,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -1487,13 +1487,13 @@
       },
       {
         "month": 7,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 128,
         "rainy": false
       },
       {
         "month": 8,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 157,
         "rainy": false
       },
@@ -1536,8 +1536,8 @@
       "code": "MYR",
       "name": "링깃",
       "unit": 1,
-      "krw": 320,
-      "updated": "미확인"
+      "krw": 331,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -1606,19 +1606,19 @@
     "climate": [
       {
         "month": 1,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 345,
         "rainy": true
       },
       {
         "month": 2,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 274,
         "rainy": true
       },
       {
         "month": 3,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 234,
         "rainy": true
       },
@@ -1630,7 +1630,7 @@
       },
       {
         "month": 5,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 78,
         "rainy": false
       },
@@ -1672,7 +1672,7 @@
       },
       {
         "month": 12,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 276,
         "rainy": true
       }
@@ -1693,8 +1693,8 @@
       "code": "IDR",
       "name": "루피아",
       "unit": 1000,
-      "krw": 85,
-      "updated": "미확인"
+      "krw": 74,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -1815,13 +1815,13 @@
       },
       {
         "month": 9,
-        "temp": 17.0,
+        "temp": 17,
         "rain": 58,
         "rainy": false
       },
       {
         "month": 10,
-        "temp": 19.0,
+        "temp": 19,
         "rain": 70,
         "rainy": false
       },
@@ -1853,8 +1853,8 @@
       "code": "AUD",
       "name": "호주달러",
       "unit": 1,
-      "krw": 900,
-      "updated": "미확인"
+      "krw": 923,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -1972,7 +1972,7 @@
       },
       {
         "month": 9,
-        "temp": 21.0,
+        "temp": 21,
         "rain": 73,
         "rainy": false
       },
@@ -2012,8 +2012,8 @@
       "code": "EUR",
       "name": "유로",
       "unit": 1,
-      "krw": 1600,
-      "updated": "미확인"
+      "krw": 1502,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -2150,7 +2150,7 @@
       },
       {
         "month": 12,
-        "temp": 7.0,
+        "temp": 7,
         "rain": 47,
         "rainy": false
       }
@@ -2171,8 +2171,8 @@
       "code": "EUR",
       "name": "유로",
       "unit": 1,
-      "krw": 1600,
-      "updated": "미확인"
+      "krw": 1502,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 3,
@@ -2255,7 +2255,7 @@
       },
       {
         "month": 3,
-        "temp": 8.0,
+        "temp": 8,
         "rain": 42,
         "rainy": false
       },
@@ -2273,7 +2273,7 @@
       },
       {
         "month": 6,
-        "temp": 17.0,
+        "temp": 17,
         "rain": 45,
         "rainy": false
       },
@@ -2329,8 +2329,8 @@
       "code": "GBP",
       "name": "파운드",
       "unit": 1,
-      "krw": 1850,
-      "updated": "미확인"
+      "krw": 1795,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 5,
@@ -2446,7 +2446,7 @@
       },
       {
         "month": 9,
-        "temp": 15.0,
+        "temp": 15,
         "rain": 45,
         "rainy": false
       },
@@ -2485,8 +2485,8 @@
       "code": "EUR",
       "name": "유로",
       "unit": 1,
-      "krw": 1600,
-      "updated": "미확인"
+      "krw": 1502,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -2574,7 +2574,7 @@
       },
       {
         "month": 4,
-        "temp": 9.0,
+        "temp": 9,
         "rain": 83,
         "rainy": false
       },
@@ -2598,7 +2598,7 @@
       },
       {
         "month": 8,
-        "temp": 18.0,
+        "temp": 18,
         "rain": 136,
         "rainy": false
       },
@@ -2643,8 +2643,8 @@
       "code": "CHF",
       "name": "스위스프랑",
       "unit": 1,
-      "krw": 1650,
-      "updated": "미확인"
+      "krw": 1631,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 5,
@@ -2720,7 +2720,7 @@
       },
       {
         "month": 2,
-        "temp": 7.0,
+        "temp": 7,
         "rain": 77,
         "rainy": false
       },
@@ -2801,8 +2801,8 @@
       "code": "TRY",
       "name": "리라",
       "unit": 1,
-      "krw": 35,
-      "updated": "미확인"
+      "krw": 27,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -2956,8 +2956,8 @@
       "code": "MNT",
       "name": "투그릭",
       "unit": 1000,
-      "krw": 400,
-      "updated": "미확인"
+      "krw": 371,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 2,
@@ -3060,7 +3060,7 @@
       },
       {
         "month": 7,
-        "temp": 18.0,
+        "temp": 18,
         "rain": 40,
         "rainy": false
       },
@@ -3111,8 +3111,8 @@
       "code": "CAD",
       "name": "캐나다달러",
       "unit": 1,
-      "krw": 1000,
-      "updated": "미확인"
+      "krw": 947,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -3185,7 +3185,7 @@
       },
       {
         "month": 2,
-        "temp": 23.0,
+        "temp": 23,
         "rain": 50,
         "rainy": false
       },
@@ -3215,7 +3215,7 @@
       },
       {
         "month": 7,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 13,
         "rainy": false
       },
@@ -3266,8 +3266,8 @@
       "code": "USD",
       "name": "달러",
       "unit": 1,
-      "krw": 1400,
-      "updated": "미확인"
+      "krw": 1342,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 5,
@@ -3462,8 +3462,8 @@
       "code": "CZK",
       "name": "코루나",
       "unit": 1,
-      "krw": 60,
-      "updated": "미확인"
+      "krw": 62,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 3,
@@ -3546,7 +3546,7 @@
       },
       {
         "month": 3,
-        "temp": 19.0,
+        "temp": 19,
         "rain": 87,
         "rainy": false
       },
@@ -3620,8 +3620,8 @@
       "code": "NZD",
       "name": "뉴질랜드달러",
       "unit": 1,
-      "krw": 820,
-      "updated": "미확인"
+      "krw": 753,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -3714,7 +3714,7 @@
       },
       {
         "month": 5,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 230,
         "rainy": true
       },
@@ -3732,7 +3732,7 @@
       },
       {
         "month": 8,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 311,
         "rainy": true
       },
@@ -3781,8 +3781,8 @@
       "code": "LAK",
       "name": "킵",
       "unit": 10000,
-      "krw": 640,
-      "updated": "미확인"
+      "krw": 600,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 1,
@@ -3882,7 +3882,7 @@
       },
       {
         "month": 6,
-        "temp": 29.0,
+        "temp": 29,
         "rain": 226,
         "rainy": true
       },
@@ -3941,8 +3941,8 @@
       "code": "KHR",
       "name": "리엘",
       "unit": 1000,
-      "krw": 350,
-      "updated": "미확인"
+      "krw": 328,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 1,
@@ -4036,7 +4036,7 @@
       },
       {
         "month": 5,
-        "temp": 19.0,
+        "temp": 19,
         "rain": 56,
         "rainy": false
       },
@@ -4099,8 +4099,8 @@
       "code": "EUR",
       "name": "유로",
       "unit": 1,
-      "krw": 1600,
-      "updated": "미확인"
+      "krw": 1502,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 3,
@@ -4183,7 +4183,7 @@
       },
       {
         "month": 3,
-        "temp": 7.0,
+        "temp": 7,
         "rain": 46,
         "rainy": false
       },
@@ -4237,7 +4237,7 @@
       },
       {
         "month": 12,
-        "temp": 2.0,
+        "temp": 2,
         "rain": 43,
         "rainy": false
       }
@@ -4258,8 +4258,8 @@
       "code": "EUR",
       "name": "유로",
       "unit": 1,
-      "krw": 1600,
-      "updated": "미확인"
+      "krw": 1502,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -4342,7 +4342,7 @@
       },
       {
         "month": 2,
-        "temp": 17.0,
+        "temp": 17,
         "rain": 43,
         "rainy": false
       },
@@ -4422,8 +4422,8 @@
       "code": "HKD",
       "name": "홍콩달러",
       "unit": 1,
-      "krw": 180,
-      "updated": "미확인"
+      "krw": 171,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 5,
@@ -4582,8 +4582,8 @@
       "code": "MOP",
       "name": "파타카",
       "unit": 1,
-      "krw": 175,
-      "updated": "미확인"
+      "krw": 166,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -4682,7 +4682,7 @@
       },
       {
         "month": 5,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 130,
         "rainy": false
       },
@@ -4724,7 +4724,7 @@
       },
       {
         "month": 12,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 160,
         "rainy": false
       }
@@ -4745,8 +4745,8 @@
       "code": "USD",
       "name": "달러",
       "unit": 1,
-      "krw": 1400,
-      "updated": "미확인"
+      "krw": 1342,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,
@@ -4847,7 +4847,7 @@
       },
       {
         "month": 5,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 110,
         "rainy": false
       },
@@ -4859,7 +4859,7 @@
       },
       {
         "month": 7,
-        "temp": 28.0,
+        "temp": 28,
         "rain": 240,
         "rainy": false
       },
@@ -4889,7 +4889,7 @@
       },
       {
         "month": 12,
-        "temp": 27.0,
+        "temp": 27,
         "rain": 120,
         "rainy": false
       }
@@ -4910,8 +4910,8 @@
       "code": "USD",
       "name": "달러",
       "unit": 1,
-      "krw": 1400,
-      "updated": "미확인"
+      "krw": 1342,
+      "updated": "2026-11-11T00:02:32.000Z"
     },
     "price": {
       "level": 4,

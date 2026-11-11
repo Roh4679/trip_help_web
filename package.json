@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/update-rates.mjs",
     "build": "vite build",
+    "rates": "node scripts/update-rates.mjs --force",
     "lint": "oxlint",
     "preview": "vite preview",
     "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs"

@@ -67,7 +67,8 @@ export default function App() {
       >
         <MapLegend />
         <p style={{ margin: 0, padding: '2px 6px', fontSize: 12, lineHeight: 1.5, color: '#444', background: 'rgba(255,255,255,0.8)', borderRadius: 4 }}>
-          정보는 참고용이에요. 출국 전 외교부 해외안전여행(0404.go.kr) 등 공식 사이트에서 꼭 확인하세요.
+          정보는 참고용이에요. 출국 전 외교부 해외안전여행(0404.go.kr) 등 공식 사이트에서 꼭 확인하세요.{' '}
+          <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer" style={{ color: '#888' }}>Rates By Exchange Rate API</a>
         </p>
       </div>
 
