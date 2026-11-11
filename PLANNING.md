@@ -441,7 +441,7 @@ src/
 ├── data/
 │   ├── countries.json
 │   ├── moods.json             # 분위기 태그 목록 (추천 패널 체크박스)
-│   ├── aliases.json           # 나라 검색용 다른 이름 (터키 → 튀르키예 등)
+│   ├── aliases.json           # 나라 검색용: names 다른 이름 (터키 → 튀르키예 등), cities 도시 (두바이 → 아랍에미리트 등)
 │   └── meta.json
 ├── components/
 │   ├── WorldMap.jsx           # d3-geo로 그린 단순 SVG 지도, 색칠, 줌, 핀
@@ -493,6 +493,7 @@ src/
     - 목록의 각 나라 옆에 상태(볼 수 있음 / 준비 중 / 위험)를 작게 표시한다.
     - 구현: `src/components/CountrySearch.jsx`(Astryx `Typeahead` + `createStaticSource`), 검색 목록·정렬은 `src/utils/search.js`(시험: `node src/utils/search.test.js`).
     - 영어 이름과 언어 파일의 다른 이름은 `i18n-iso-countries`에서, 그 밖의 다른 이름은 `src/data/aliases.json`(키: 지도 숫자 ID, 작은 나라는 iso2).
+    - **도시 이름으로도 찾는다**: 각 나라의 `climateCity`는 자동으로 넣고, 그 밖의 도시는 `aliases.json`의 `cities`(키는 위와 같음, 나라마다 대표 관광 도시 2~5개). 도시는 따로 한 줄씩, 제목은 도시 이름, 설명은 `→ 아랍에미리트 · 볼 수 있음`. 도시 줄 제목에 나라 이름을 넣지 않아서 "일본"을 치면 일본 도시가 다 나오지 않는다. 목록은 나라가 먼저, 도시는 뒤.
     - 목록은 볼 수 있음 → 출발지 → 준비 중 → 위험 순, 같은 상태끼리는 가나다순. 크림반도처럼 한 나라가 두 모양이면 한 줄만.
     - 확대: 나라 모양은 화면의 60%를 채우게, 작은 나라 핀은 4배 (`config.js`의 `FOCUS_ZOOM`). 휴대폰 폭에서는 검색창이 추천 버튼 아랫줄로 간다.
 

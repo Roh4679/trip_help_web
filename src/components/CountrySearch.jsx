@@ -15,7 +15,7 @@ export default function CountrySearch({ onPick, width = 240 }) {
     <Typeahead
       label="나라 검색"
       isLabelHidden
-      placeholder="나라 검색 (예: 태국, japan)"
+      placeholder="나라·도시 검색 (예: 태국, 두바이)"
       width={width}
       searchSource={source}
       debounceMs={0}
@@ -24,13 +24,13 @@ export default function CountrySearch({ onPick, width = 240 }) {
         setValue(null) // 고른 뒤에는 검색창을 비운다
         if (item) onPick(item.auxiliaryData.place)
       }}
-      emptySearchText="찾는 나라가 없어요"
+      emptySearchText="찾는 나라·도시가 없어요"
       renderItem={(item) => {
-        const { place } = item.auxiliaryData
+        const { place, country } = item.auxiliaryData
         return (
           <TypeaheadItem
             item={item}
-            description={STATUS_LABEL[place.status]}
+            description={country ? `→ ${country} · ${STATUS_LABEL[place.status]}` : STATUS_LABEL[place.status]}
             icon={place.data?.iso2 && <img src={`https://flagcdn.com/w40/${place.data.iso2}.png`} alt="" width={20} />}
           />
         )
