@@ -1,6 +1,14 @@
 // 실행: node src/utils/format.test.js
 import assert from 'node:assert'
-import { flightText, timeDiffText, riskText, dangerText } from './format.js'
+import { flightText, timeDiffText, riskText, dangerText, safetyUrl } from './format.js'
+
+assert.equal(riskText({ level: 2, label: '여행자제' }), '여행경보 2단계 여행자제')
+assert.equal(riskText({ level: 0, label: '없음' }), '여행경보 없음')
+assert.equal(riskText({ level: 2, mixed: true, range: [1, 4] }), '지역별 상이 (1~4단계)')
+assert.equal(riskText({ level: 0, mixed: true, range: [0, 3] }), '지역별 상이 (없음~3단계)')
+assert.equal(riskText({ level: 1, mixed: true, range: [1, 2.5] }), '지역별 상이 (1단계~특별여행주의보)')
+assert.equal(safetyUrl({ safetyId: '252' }), 'https://www.0404.go.kr/ntnSafetyInfo/252/detail')
+assert.equal(safetyUrl({}), 'https://www.0404.go.kr/')
 
 assert.equal(flightText({ direct: true, hours: 2.5 }), '직항 약 2시간 30분')
 assert.equal(flightText({ direct: true, hours: 12, transitNote: '여름 시간표 기준' }), '직항 약 12시간 (여름 시간표 기준)')

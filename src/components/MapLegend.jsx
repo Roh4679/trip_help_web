@@ -1,12 +1,16 @@
-import { COLORS, DANGER_HATCH } from '../config.js'
+import { COLORS, RISK_COLORS, DANGER_HATCH } from '../config.js'
 
 // 지도 빗금과 같은 모양을 CSS로 그린다
-const hatch = `repeating-linear-gradient(45deg, ${COLORS.dangerHatch} 0 ${DANGER_HATCH.width}px, ${COLORS.danger} ${DANGER_HATCH.width}px ${DANGER_HATCH.gap}px)`
+const hatch = ({ base, hatch: line }) =>
+  `repeating-linear-gradient(45deg, ${line} 0 ${DANGER_HATCH.width}px, ${base} ${DANGER_HATCH.width}px ${DANGER_HATCH.gap}px)`
 
 const ITEMS = [
-  { label: '볼 수 있어요', background: COLORS.ok },
-  { label: '준비 중이에요', background: COLORS.none },
-  { label: '여행 위험·방문 제한', background: hatch },
+  { label: '없음', background: RISK_COLORS[0] },
+  { label: '1단계', background: RISK_COLORS[1] },
+  { label: '2단계', background: RISK_COLORS[2] },
+  // 3단계·특별여행주의보(빨강)와 4단계·방문 제한(진한 빨강)을 반씩
+  { label: '정보 제공 안 함', background: `${hatch(RISK_COLORS[3])} left / 50% 100% no-repeat, ${hatch(RISK_COLORS[4])} right / 50% 100% no-repeat` },
+  { label: '준비 중', background: COLORS.none },
   { label: '출발지', background: COLORS.home },
 ]
 

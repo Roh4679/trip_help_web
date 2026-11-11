@@ -4,13 +4,20 @@ export const BLOCK_SPECIAL_WARNING = true // 특별여행주의보(risk.special)
 
 export const COLORS = {
   ocean: '#dbe9f4',
-  ok: '#9fd3a8',
-  danger: '#5a5a5a', // 위험 국가 바탕 (짙은 회색)
-  dangerHatch: '#9a9a9a', // 위험 국가 사선 빗금
-  none: '#c8c8c8',
-  home: '#f0c35a', // 출발지(한국)
+  none: '#c8c8c8', // 데이터 없음 (준비 중)
+  home: '#5b8fd9', // 출발지(한국). 위험도 색(초록~빨강)과 겹치지 않게 파랑
   border: '#fff',
   hoverBorder: '#333',
+}
+
+// 여행경보 단계별 나라 색 (초록 → 빨강). 지역마다 다르면 risk.level(주요 관광지 기준)으로 고른다
+// 3 = 특별여행주의보·3단계, 4 = 4단계·방문 제한(북한): 정보를 제공하지 않는 나라라 빗금. 큰 나라가 무겁지 않게 빨강은 톤을 낮춘다
+export const RISK_COLORS = {
+  0: '#7fc48c', // 없음: 초록
+  1: '#c6e28f', // 1단계: 연두
+  2: '#f4b86a', // 2단계: 주황
+  3: { base: '#dc978e', hatch: '#f3d0cb' }, // 빨강 + 빗금
+  4: { base: '#b0645d', hatch: '#d39a94' }, // 진한 빨강 + 빗금
 }
 
 export const RAINY_MM = 150 // 월 강수량이 이 값 이상이면 우기
@@ -30,8 +37,12 @@ export const HOME_ID = '410' // 출발지: 대한민국 (지도 숫자 ID)
 
 export const DANGER_HATCH = { gap: 5, width: 1 } // 빗금 간격·굵기 (화면 px, 확대해도 그대로)
 
-// 핀 색: 상태별 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시하므로 색으로 구분한다)
-export const PIN_COLORS = { ok: '#e4572e', none: '#9e9e9e', danger: '#555555', home: '#f0c35a' }
+// 외교부 해외안전여행: 나라별 페이지 (risk.safetyId가 없으면 첫 화면)
+export const SAFETY_SITE = 'https://www.0404.go.kr/'
+export const SAFETY_COUNTRY_URL = 'https://www.0404.go.kr/ntnSafetyInfo/{id}/detail'
+
+// 핀 색: 나라 색과 같은 기준, 같은 색 땅 위에서도 보이게 조금 진하게 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시)
+export const PIN_COLORS = { 0: '#3e9a52', 1: '#86b23f', 2: '#e0892a', 3: '#c4574b', 4: '#8e3b35', none: '#9e9e9e', home: '#2f6fc0' }
 export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서는 핀을 작게 (유럽처럼 핀이 몰린 곳이 겹치지 않게)
 export const FOCUS_ZOOM = { fill: 0.6, point: 4 } // 검색으로 고르면: 나라 모양은 화면의 60%를 채우게, 작은 나라 핀은 4배
 export const MAX_ZOOM = 8

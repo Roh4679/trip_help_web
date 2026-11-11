@@ -3,7 +3,7 @@ import { feature } from 'topojson-client'
 import world from 'world-atlas/countries-110m.json'
 import countries from '../data/countries.json'
 import { HOME_ID } from '../config.js'
-import { countryStatus } from './countryStatus.js'
+import { countryStatus, riskTone } from './countryStatus.js'
 import { countryName } from './countryName.js'
 import { splitOverseas } from './overseas.js'
 
@@ -31,6 +31,7 @@ export const shapes = features.map((f, i) => {
     name: data?.name ?? countryName(f),
     data,
     status,
+    tone: status === 'home' ? 'home' : riskTone(data), // 색 단계 (config RISK_COLORS·PIN_COLORS)
   }
 })
 
@@ -45,6 +46,7 @@ export const smallPlaces = countries
     name: c.name,
     data: c,
     status: countryStatus(c),
+    tone: riskTone(c),
   }))
 
 // 핀: 볼 수 있는 나라 + 작은 나라 (작은 나라는 상태와 상관없이 핀을 꽂고 색으로 구분한다)

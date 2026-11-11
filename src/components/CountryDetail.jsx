@@ -5,6 +5,7 @@ import ClimateBar from './ClimateBar.jsx'
 import ClothingSection from './ClothingSection.jsx'
 import { adapterText, voltageText } from '../utils/plug.js'
 import DateNote from './DateNote.jsx'
+import RiskLink from './RiskLink.jsx'
 import { flightText, timeDiffText, riskText } from '../utils/format.js'
 import { rateView } from '../utils/rates.js'
 import { useRates } from '../utils/useRates.js'
@@ -47,7 +48,7 @@ function Summary({ country: c }) {
       }}
     >
       <SummaryItem label="여행경보">
-        {riskText(c.risk).replace('여행경보 ', '')}
+        <RiskLink risk={c.risk} short />
         <DateNote updated={c.risk.updated} />
       </SummaryItem>
       <SummaryItem label="비행시간">{flightText(c.flight)}</SummaryItem>
@@ -66,6 +67,15 @@ export default function CountryDetail({ country: c }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, lineHeight: 1.6 }}>
       <Summary country={c} />
+
+      <Section title="여행경보">
+        <p>
+          <RiskLink risk={c.risk} />
+          <DateNote updated={c.risk.updated} />
+        </p>
+        {c.risk.mixed && <p style={{ color: '#666', fontSize: 13 }}>지도 색은 주요 관광지 기준: {riskText({ ...c.risk, mixed: false })}</p>}
+        {c.risk.note && <p style={{ fontSize: 14 }}>{c.risk.note}</p>}
+      </Section>
 
       <Section title="시기별 기후">
         <ClimateBar climate={c.climate} city={c.climateCity} selectedMonth={month} onSelectMonth={setMonth} />

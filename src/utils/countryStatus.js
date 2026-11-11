@@ -8,3 +8,12 @@ export function countryStatus(data) {
   if (!data?.climate) return 'none'
   return 'ok'
 }
+
+// 지도·핀 색 단계: 0·1·2, 3(특별여행주의보·3단계, 빗금), 4(4단계·방문 제한, 빗금), 'none'(데이터 없음)
+export function riskTone(data) {
+  const risk = data?.risk
+  if (risk?.blocked || risk?.level >= 4) return 4
+  if (countryStatus(data) === 'danger') return 3
+  if (!data?.climate) return 'none'
+  return Math.min(2, Math.floor(risk?.level ?? 0))
+}

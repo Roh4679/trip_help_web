@@ -4,7 +4,7 @@ import { select } from 'd3-selection'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import {
-  COLORS, PIN_COLORS, PIN_SMALL, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
+  COLORS, RISK_COLORS, PIN_COLORS, PIN_SMALL, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
   TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS, FOCUS_ZOOM,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
@@ -12,8 +12,9 @@ import { WIDTH, HEIGHT, projection, shapes, pins } from '../utils/places.js'
 import { dangerText } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 
-// 위험 국가는 단색 대신 빗금 무늬로 칠한다 (넓은 나라가 너무 무겁게 보이지 않게)
-const fillOf = (status) => (status === 'danger' ? 'url(#danger-hatch)' : COLORS[status])
+// 여행경보 단계별 색. 정보를 제공하지 않는 나라(3·4)는 빗금 무늬 (넓은 나라가 너무 무겁게 보이지 않게)
+const HATCHED = [3, 4]
+const fillOf = (tone) => (HATCHED.includes(tone) ? `url(#hatch-${tone})` : (COLORS[tone] ?? RISK_COLORS[tone]))
 
 // 처음(과 '원래대로') 보여줄 위치. 세로 화면이면 지도가 가운데 가는 띠로만 보이므로,
 // 화면 높이를 채우도록 확대하고 아시아(PORTRAIT_CENTER)를 가운데 둔다
@@ -102,21 +103,24 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
       >
         <defs>
           {/* 확대 배율만큼 줄여서 빗금 간격·굵기가 화면 기준으로 그대로 보이게 한다 */}
-          <pattern
-            id="danger-hatch"
-            patternUnits="userSpaceOnUse"
-            width={DANGER_HATCH.gap}
-            height={DANGER_HATCH.gap}
-            patternTransform={`scale(${1 / transform.k}) rotate(45)`}
-          >
-            <rect width={DANGER_HATCH.gap} height={DANGER_HATCH.gap} fill={COLORS.danger} />
-            <line x1={0} y1={0} x2={0} y2={DANGER_HATCH.gap} stroke={COLORS.dangerHatch} strokeWidth={DANGER_HATCH.width} />
-          </pattern>
+          {HATCHED.map((tone) => (
+            <pattern
+              key={tone}
+              id={`hatch-${tone}`}
+              patternUnits="userSpaceOnUse"
+              width={DANGER_HATCH.gap}
+              height={DANGER_HATCH.gap}
+              patternTransform={`scale(${1 / transform.k}) rotate(45)`}
+            >
+              <rect width={DANGER_HATCH.gap} height={DANGER_HATCH.gap} fill={RISK_COLORS[tone].base} />
+              <line x1={0} y1={0} x2={0} y2={DANGER_HATCH.gap} stroke={RISK_COLORS[tone].hatch} strokeWidth={DANGER_HATCH.width} />
+            </pattern>
+          ))}
         </defs>
         {/* 확대해도 선 두께는 그대로 (non-scaling-stroke) */}
         <g transform={transform.toString()}>
           {shapes.map((s) => (
-            <path key={s.key} d={s.d} fill={fillOf(s.status)} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
+            <path key={s.key} d={s.d} fill={fillOf(s.tone)} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
           ))}
           {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 */}
           {hover?.shape.d && (
@@ -136,7 +140,7 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
               {moved && <line x1={x} y1={y} x2={px} y2={py} stroke={COLORS.hoverBorder} strokeWidth={0.8} />}
               {moved && <circle cx={x} cy={y} r={1.5} fill={COLORS.hoverBorder} />}
               <g transform={`translate(${px},${py}) scale(${pinScale})`} {...hoverProps(place)}>
-                <path d={PIN_PATH} fill={PIN_COLORS[place.status]} stroke="#fff" strokeWidth={1} />
+                <path d={PIN_PATH} fill={PIN_COLORS[place.tone]} stroke="#fff" strokeWidth={1} />
                 <circle cy={-12} r={2.2} fill="#fff" />
                 {isTouch && <circle cy={-10} r={TOUCH_HIT_RADIUS} fill="transparent" />}
               </g>

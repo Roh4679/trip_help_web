@@ -11,8 +11,14 @@
     "risk": {
       "level": 0,
       "label": "없음",
+      "mixed": true,
+      "range": [
+        0,
+        3
+      ],
       "updated": "미확인",
-      "note": "후쿠시마 원전 주변 일부 지역은 별도 안내 확인"
+      "note": "후쿠시마 원전 주변 일부 지역은 별도 안내 확인",
+      "safetyId": "183"
     },
     "flight": {
       "direct": true,
@@ -167,8 +173,14 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
       "updated": "미확인",
-      "note": "남부 국경 지역(나라티왓, 얄라, 빠따니 등)과 캄보디아 국경 일부는 더 높은 단계"
+      "note": "남부 국경 지역(나라티왓, 얄라, 빠따니 등)과 캄보디아 국경 일부는 더 높은 단계",
+      "safetyId": "260"
     },
     "flight": {
       "direct": true,
@@ -330,7 +342,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "248"
     },
     "flight": {
       "direct": true,
@@ -489,7 +502,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "86"
     },
     "flight": {
       "direct": true,
@@ -647,8 +661,14 @@
     "risk": {
       "level": 2,
       "label": "여행자제",
+      "mixed": true,
+      "range": [
+        1,
+        4
+      ],
       "updated": "미확인",
-      "note": "잠보앙가 반도, 술루·바실란·타위타위 군도는 여행금지(4단계, 2027-01-31까지)"
+      "note": "잠보앙가 반도, 술루·바실란·타위타위 군도는 여행금지(4단계, 2027-01-31까지)",
+      "safetyId": "252"
     },
     "flight": {
       "direct": true,
@@ -806,7 +826,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "372"
     },
     "flight": {
       "direct": true,
@@ -961,7 +982,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "189"
     },
     "flight": {
       "direct": true,
@@ -1122,7 +1144,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "69"
     },
     "flight": {
       "direct": true,
@@ -1277,7 +1300,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "134"
     },
     "flight": {
       "direct": true,
@@ -1437,8 +1461,14 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
       "updated": "미확인",
-      "note": "사바주 동부 해안 일부는 더 높은 단계"
+      "note": "사바주 동부 해안 일부는 더 높은 단계",
+      "safetyId": "56"
     },
     "flight": {
       "direct": true,
@@ -1592,8 +1622,14 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        2.5
+      ],
       "updated": "미확인",
-      "note": "파푸아 일부 지역은 더 높은 단계"
+      "note": "파푸아 일부 지역은 더 높은 단계",
+      "safetyId": "181"
     },
     "flight": {
       "direct": true,
@@ -1754,7 +1790,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "255"
     },
     "flight": {
       "direct": true,
@@ -1911,7 +1948,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "179"
     },
     "flight": {
       "direct": true,
@@ -2071,7 +2109,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "128"
     },
     "flight": {
       "direct": true,
@@ -2230,7 +2269,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "159"
     },
     "flight": {
       "direct": true,
@@ -2385,7 +2425,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "34"
     },
     "flight": {
       "direct": true,
@@ -2543,7 +2584,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "127"
     },
     "flight": {
       "direct": true,
@@ -2700,8 +2742,14 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
       "updated": "미확인",
-      "note": "시리아 국경 지역은 더 높은 단계"
+      "note": "시리아 국경 지역은 더 높은 단계",
+      "safetyId": "228"
     },
     "flight": {
       "direct": true,
@@ -2855,7 +2903,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "68"
     },
     "flight": {
       "direct": true,
@@ -3011,7 +3060,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "204"
     },
     "flight": {
       "direct": true,
@@ -3166,7 +3216,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": "미국 기준"
+      "note": "미국 기준",
+      "safetyId": "69"
     },
     "flight": {
       "direct": true,
@@ -3319,7 +3370,8 @@
       "level": 4,
       "label": "여행금지",
       "updated": "미확인",
-      "note": "크림반도 포함"
+      "note": "크림반도 포함",
+      "safetyId": "169"
     }
   },
   {
@@ -3332,7 +3384,8 @@
       "label": "특별여행주의보",
       "special": true,
       "updated": "미확인",
-      "note": "대부분 지역 특별여행주의보, 우크라이나 국경 일부는 3·4단계"
+      "note": "대부분 지역 특별여행주의보, 우크라이나 국경 일부는 3·4단계",
+      "safetyId": "39"
     }
   },
   {
@@ -3362,7 +3415,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "195"
     },
     "flight": {
       "direct": true,
@@ -3521,7 +3575,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "25"
     },
     "flight": {
       "direct": true,
@@ -3677,7 +3732,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "36"
     },
     "flight": {
       "direct": true,
@@ -3838,8 +3894,14 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
+      "mixed": true,
+      "range": [
+        1,
+        3
+      ],
       "updated": "2026-07-10",
-      "note": "3단계: 태국 국경 50km 이내, 시하누크빌시, 보코산, 바벳, 포이펫 / 2단계: 시하누크빌주"
+      "note": "3단계: 태국 국경 50km 이내, 시하누크빌시, 보코산, 바벳, 포이펫 / 2단계: 시하누크빌주",
+      "safetyId": "259"
     },
     "flight": {
       "direct": true,
@@ -3999,7 +4061,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "244"
     },
     "flight": {
       "direct": true,
@@ -4158,7 +4221,8 @@
       "level": 1,
       "label": "여행유의",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "163"
     },
     "flight": {
       "direct": true,
@@ -4323,7 +4387,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "377"
     },
     "flight": {
       "direct": true,
@@ -4482,7 +4547,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": null
+      "note": null,
+      "safetyId": "378"
     },
     "flight": {
       "direct": true,
@@ -4645,7 +4711,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": "미국 기준"
+      "note": "미국 기준",
+      "safetyId": "69"
     },
     "flight": {
       "direct": true,
@@ -4810,7 +4877,8 @@
       "level": 0,
       "label": "없음",
       "updated": "미확인",
-      "note": "미국 기준"
+      "note": "미국 기준",
+      "safetyId": "69"
     },
     "flight": {
       "direct": true,
