@@ -981,8 +981,13 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
-      "updated": "미확인",
-      "note": null,
+      "mixed": true,
+      "range": [
+        1,
+        2.5
+      ],
+      "updated": "2026-11-11",
+      "note": "특별여행주의보: 티베트, 신장위구르자치구",
       "safetyId": "189"
     },
     "flight": {
@@ -1627,8 +1632,8 @@
         1,
         2.5
       ],
-      "updated": "미확인",
-      "note": "파푸아 일부 지역은 더 높은 단계",
+      "updated": "2026-11-11",
+      "note": "2단계: 서파푸아, 파푸아, 말루쿠, 아체 / 특별여행주의보: 중앙칼리만탄",
       "safetyId": "181"
     },
     "flight": {
@@ -2422,9 +2427,9 @@
       52.52
     ],
     "risk": {
-      "level": 1,
-      "label": "여행유의",
-      "updated": "미확인",
+      "level": 0,
+      "label": "없음",
+      "updated": "2026-11-11",
       "note": null,
       "safetyId": "34"
     },
@@ -2581,9 +2586,9 @@
       47.37
     ],
     "risk": {
-      "level": 0,
-      "label": "없음",
-      "updated": "미확인",
+      "level": 1,
+      "label": "여행유의",
+      "updated": "2026-11-11",
       "note": null,
       "safetyId": "127"
     },
@@ -2900,9 +2905,9 @@
       47.92
     ],
     "risk": {
-      "level": 0,
-      "label": "없음",
-      "updated": "미확인",
+      "level": 1,
+      "label": "여행유의",
+      "updated": "2026-11-11",
       "note": null,
       "safetyId": "68"
     },
@@ -3412,9 +3417,9 @@
       50.08
     ],
     "risk": {
-      "level": 1,
-      "label": "여행유의",
-      "updated": "미확인",
+      "level": 0,
+      "label": "없음",
+      "updated": "2026-11-11",
       "note": null,
       "safetyId": "195"
     },
@@ -3731,8 +3736,13 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
-      "updated": "미확인",
-      "note": null,
+      "mixed": true,
+      "range": [
+        1,
+        4
+      ],
+      "updated": "2026-11-11",
+      "note": "4단계(여행금지): 골든트라이앵글 경제특구",
       "safetyId": "36"
     },
     "flight": {
@@ -4058,9 +4068,9 @@
       38.72
     ],
     "risk": {
-      "level": 1,
-      "label": "여행유의",
-      "updated": "미확인",
+      "level": 0,
+      "label": "없음",
+      "updated": "2026-11-11",
       "note": null,
       "safetyId": "244"
     },
