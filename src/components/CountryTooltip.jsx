@@ -1,4 +1,4 @@
-import { flightText, timeDiffText, dangerText } from '../utils/format.js'
+import { flightText, timeDiffText, placeNotice } from '../utils/format.js'
 import RiskLink from './RiskLink.jsx'
 import RiskWarning from './RiskWarning.jsx'
 import DateNote from './DateNote.jsx'
@@ -33,8 +33,7 @@ export default function CountryTooltip({ name, data, status, x, y }) {
         {data?.iso2 && <img src={`https://flagcdn.com/w40/${data.iso2}.png`} alt="" width={24} />}
         {name}
       </div>
-      {status === 'danger' && <div>{dangerText(data.risk)}</div>}
-      {status === 'home' && <div>출발지예요</div>}
+      {status !== 'ok' && <div>{placeNotice({ data, status }).detail}</div>}
       {status === 'ok' && (
         <>
           <RiskWarning country={data} compact />

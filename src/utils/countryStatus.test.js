@@ -18,5 +18,7 @@ assert.equal(riskTone({ risk: { level: 2.5, special: true }, climate: [] }), 3)
 assert.equal(riskTone({ risk: { level: 3 }, climate: [] }), 3)
 assert.equal(riskTone({ risk: { level: 4 } }), 4)
 assert.equal(riskTone({ risk: { level: null, blocked: true } }), 4) // 북한
+assert.equal(countryStatus({ risk: { level: 2.5, special: true, blocked: true } }), 'danger') // 러시아: 직접 막음
+assert.equal(riskTone({ risk: { level: 2.5, special: true, blocked: true } }), 4) // 4단계와 같은 진한 빨강
 assert.equal(riskTone({ risk: { level: 1 } }), 'none') // 데이터 없음
 console.log('ok')

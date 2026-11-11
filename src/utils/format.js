@@ -43,6 +43,17 @@ export function riskText({ level, label, mixed, range }) {
   return level ? `여행경보 ${level}단계 ${label}` : '여행경보 없음'
 }
 
+// 상세 창 대신 보여 줄 안내 (토스트, 메모지). 상세 창이 열리는 나라(ok)는 null
+// detail: 이름 뒤에 붙일 문구 (↗ 포함), url: 누르면 열 해외안전여행 페이지
+export function placeNotice({ data, status }) {
+  const risk = data?.risk
+  if (status === 'home') return { detail: '출발지예요' }
+  if (status === 'danger') return { detail: `${dangerText(risk)} ↗`, url: safetyUrl(risk) }
+  if (status === 'none' && risk) return { detail: `${riskText(risk)} ↗ · 상세 정보는 곧 추가될 예정이에요`, url: safetyUrl(risk) }
+  if (status === 'none') return { detail: '곧 추가될 예정이에요~' }
+  return null
+}
+
 // 3단계·특별여행주의보 경고 문구. 지역별 상이면 주요 관광지(risk.level) 기준
 export function warningText({ level, label, mixed }) {
   const text = level % 1 ? label : `여행경보 ${level}단계(${label})`

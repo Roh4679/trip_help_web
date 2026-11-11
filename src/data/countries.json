@@ -3388,6 +3388,7 @@
       "level": 2.5,
       "label": "특별여행주의보",
       "special": true,
+      "blocked": true,
       "updated": "미확인",
       "note": "대부분 지역 특별여행주의보, 우크라이나 국경 일부는 3·4단계",
       "safetyId": "39"
