@@ -3366,7 +3366,7 @@
     },
     "flight": {
       "direct": true,
-      "hours": 12.5,
+      "hours": 13,
       "transitNote": null
     },
     "timeDiff": -8,
@@ -3790,11 +3790,12 @@
       "meal": "약 4만킵"
     },
     "entry": {
-      "visaFreeDays": 15,
+      "visaFreeDays": 30,
       "eta": null,
       "passport": "입국일 기준 6개월 이상 남아 있을 것",
       "notes": [
-        "무비자 기간보다 오래 머물려면 비자 필요"
+        "무비자 기간보다 오래 머물려면 비자 필요",
+        "왓타이·루앙프라방·팍세 공항으로 입국할 때 전자 여행 신고서(LDIF) 필수, 입국 72시간 전부터 작성"
       ]
     },
     "culture": [
@@ -3837,8 +3838,8 @@
     "risk": {
       "level": 1,
       "label": "여행유의",
-      "updated": "미확인",
-      "note": "태국 국경 지역 등 일부 지역은 더 높은 단계"
+      "updated": "2026-07-10",
+      "note": "3단계: 태국 국경 50km 이내, 시하누크빌시, 보코산, 바벳, 포이펫 / 2단계: 시하누크빌주"
     },
     "flight": {
       "direct": true,
@@ -4001,9 +4002,9 @@
       "note": null
     },
     "flight": {
-      "direct": false,
-      "hours": 15,
-      "transitNote": "1회 경유"
+      "direct": true,
+      "hours": 15.5,
+      "transitNote": null
     },
     "timeDiff": -9,
     "dstTimeDiff": -8,
@@ -4301,6 +4302,654 @@
       "건축양식",
       "로맨스",
       "전통"
+    ]
+  },
+  {
+    "id": null,
+    "iso2": "hk",
+    "iso3": "HKG",
+    "name": "홍콩",
+    "pin": [
+      114.17,
+      22.32
+    ],
+    "marker": {
+      "offset": [
+        10,
+        0
+      ]
+    },
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 3.5,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "홍콩",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 16.3,
+        "rain": 33,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 17.0,
+        "rain": 43,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 19.4,
+        "rain": 69,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 22.9,
+        "rain": 153,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 26.3,
+        "rain": 290,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 28.2,
+        "rain": 492,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 28.9,
+        "rain": 400,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 28.6,
+        "rain": 439,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.9,
+        "rain": 298,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 25.9,
+        "rain": 94,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 22.1,
+        "rain": 39,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 17.9,
+        "rain": 26,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "G"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "우산(갑작스러운 비)",
+      "얇은 겉옷(실내 냉방)",
+      "교통카드(옥토퍼스)"
+    ],
+    "currency": {
+      "code": "HKD",
+      "name": "홍콩달러",
+      "unit": 1,
+      "krw": 180,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 5,
+      "coffee": "약 40홍콩달러",
+      "meal": "약 80홍콩달러"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "체류 기간보다 1개월 이상 남아 있을 것",
+      "notes": []
+    },
+    "culture": [
+      "지하철 안에서 먹고 마시면 벌금을 낸다",
+      "에스컬레이터에서는 오른쪽에 선다",
+      "식당 계산서에 봉사료 10%가 들어 있는 경우가 많다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "你好",
+        "pron": "레이 호우"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "多謝 / 唔該",
+        "pron": "도제 / 음꼬이"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "幾多錢?",
+        "pron": "게이 도 친"
+      }
+    ],
+    "moods": [
+      "미래도시",
+      "전통"
+    ]
+  },
+  {
+    "id": null,
+    "iso2": "mo",
+    "iso3": "MAC",
+    "name": "마카오",
+    "pin": [
+      113.54,
+      22.2
+    ],
+    "marker": {
+      "offset": [
+        -10,
+        4
+      ]
+    },
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": null
+    },
+    "flight": {
+      "direct": true,
+      "hours": 3.5,
+      "transitNote": null
+    },
+    "timeDiff": -1,
+    "dstTimeDiff": null,
+    "climateCity": "마카오",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 15.1,
+        "rain": 33,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 15.9,
+        "rain": 58,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 18.5,
+        "rain": 83,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 22.2,
+        "rain": 196,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 25.7,
+        "rain": 303,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 27.9,
+        "rain": 366,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 28.6,
+        "rain": 322,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 28.4,
+        "rain": 347,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.6,
+        "rain": 227,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 25.2,
+        "rain": 74,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 21.2,
+        "rain": 40,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 16.9,
+        "rain": 30,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "D",
+        "G"
+      ],
+      "voltage": 220
+    },
+    "items": [
+      "우산",
+      "편한 운동화(언덕과 돌길)",
+      "얇은 겉옷(실내 냉방)"
+    ],
+    "currency": {
+      "code": "MOP",
+      "name": "파타카",
+      "unit": 1,
+      "krw": 175,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 35파타카",
+      "meal": "약 80파타카"
+    },
+    "entry": {
+      "visaFreeDays": 90,
+      "eta": null,
+      "passport": "체류 기간 이상 남아 있을 것",
+      "notes": [
+        "홍콩달러도 대부분 받는다",
+        "카지노는 만 21세 이상만 들어갈 수 있다"
+      ]
+    },
+    "culture": [
+      "카지노 안에서는 사진을 찍지 않는다",
+      "포르투갈식 거리 이름과 음식이 남아 있다",
+      "식당 계산서에 봉사료가 들어 있는지 확인한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "你好",
+        "pron": "레이 호우"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "多謝 / 唔該",
+        "pron": "도제 / 음꼬이"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "幾多錢?",
+        "pron": "게이 도 친"
+      }
+    ],
+    "moods": [
+      "건축양식",
+      "미래도시"
+    ]
+  },
+  {
+    "id": null,
+    "iso2": "gu",
+    "iso3": "GUM",
+    "name": "괌",
+    "pin": [
+      144.79,
+      13.44
+    ],
+    "marker": {
+      "offset": [
+        -8,
+        6
+      ]
+    },
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": "미국 기준"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 4.5,
+      "transitNote": null
+    },
+    "timeDiff": 1,
+    "dstTimeDiff": null,
+    "climateCity": "괌",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.6,
+        "rain": 130,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 26.6,
+        "rain": 105,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 26.9,
+        "rain": 80,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 27.6,
+        "rain": 90,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 28.0,
+        "rain": 130,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 28.1,
+        "rain": 165,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 27.7,
+        "rain": 300,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 27.5,
+        "rain": 390,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.4,
+        "rain": 360,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 27.5,
+        "rain": 320,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 27.4,
+        "rain": 220,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 27.0,
+        "rain": 160,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 110
+    },
+    "items": [
+      "산호초에 안전한 선크림",
+      "래시가드",
+      "팁용 소액 현금"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "달러",
+      "unit": 1,
+      "krw": 1400,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 5달러",
+      "meal": "약 20달러(팁 별도)"
+    },
+    "entry": {
+      "visaFreeDays": 45,
+      "eta": null,
+      "passport": "전자여권, 체류 기간 이상 남아 있을 것",
+      "notes": [
+        "ESTA가 있으면 90일, 없으면 괌·사이판 비자면제 프로그램으로 45일",
+        "미국 영토라 미국 달러를 쓴다"
+      ]
+    },
+    "culture": [
+      "식당에서는 음식값의 15~20%를 팁으로 낸다",
+      "산호를 밟거나 가져가지 않는다",
+      "원주민 차모로 문화를 존중한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Håfa adai",
+        "pron": "하파 데이"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Si Yu'os ma'åse'",
+        "pron": "시 주스 마아세"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연"
+    ]
+  },
+  {
+    "id": null,
+    "iso2": "mp",
+    "iso3": "MNP",
+    "name": "사이판",
+    "pin": [
+      145.75,
+      15.18
+    ],
+    "marker": {
+      "offset": [
+        10,
+        -2
+      ]
+    },
+    "risk": {
+      "level": 0,
+      "label": "없음",
+      "updated": "미확인",
+      "note": "미국 기준"
+    },
+    "flight": {
+      "direct": true,
+      "hours": 4.5,
+      "transitNote": null
+    },
+    "timeDiff": 1,
+    "dstTimeDiff": null,
+    "climateCity": "사이판",
+    "climate": [
+      {
+        "month": 1,
+        "temp": 26.4,
+        "rain": 80,
+        "rainy": false
+      },
+      {
+        "month": 2,
+        "temp": 26.3,
+        "rain": 60,
+        "rainy": false
+      },
+      {
+        "month": 3,
+        "temp": 26.6,
+        "rain": 55,
+        "rainy": false
+      },
+      {
+        "month": 4,
+        "temp": 27.3,
+        "rain": 70,
+        "rainy": false
+      },
+      {
+        "month": 5,
+        "temp": 28.0,
+        "rain": 110,
+        "rainy": false
+      },
+      {
+        "month": 6,
+        "temp": 28.3,
+        "rain": 140,
+        "rainy": false
+      },
+      {
+        "month": 7,
+        "temp": 28.0,
+        "rain": 240,
+        "rainy": false
+      },
+      {
+        "month": 8,
+        "temp": 27.8,
+        "rain": 330,
+        "rainy": false
+      },
+      {
+        "month": 9,
+        "temp": 27.8,
+        "rain": 300,
+        "rainy": false
+      },
+      {
+        "month": 10,
+        "temp": 27.8,
+        "rain": 270,
+        "rainy": false
+      },
+      {
+        "month": 11,
+        "temp": 27.6,
+        "rain": 180,
+        "rainy": false
+      },
+      {
+        "month": 12,
+        "temp": 27.0,
+        "rain": 120,
+        "rainy": false
+      }
+    ],
+    "plug": {
+      "types": [
+        "A",
+        "B"
+      ],
+      "voltage": 110
+    },
+    "items": [
+      "산호초에 안전한 선크림",
+      "래시가드",
+      "아쿠아슈즈"
+    ],
+    "currency": {
+      "code": "USD",
+      "name": "달러",
+      "unit": 1,
+      "krw": 1400,
+      "updated": "미확인"
+    },
+    "price": {
+      "level": 4,
+      "coffee": "약 5달러",
+      "meal": "약 20달러(팁 별도)"
+    },
+    "entry": {
+      "visaFreeDays": 45,
+      "eta": null,
+      "passport": "전자여권, 체류 기간 이상 남아 있을 것",
+      "notes": [
+        "ESTA가 있으면 90일, 없으면 괌·사이판 비자면제 프로그램으로 45일",
+        "미국 영토라 미국 달러를 쓴다"
+      ]
+    },
+    "culture": [
+      "식당에서는 음식값의 15~20%를 팁으로 낸다",
+      "산호를 밟거나 가져가지 않는다",
+      "원주민 차모로 문화를 존중한다"
+    ],
+    "greetings": [
+      {
+        "ko": "안녕하세요",
+        "local": "Håfa adai",
+        "pron": "하파 데이"
+      },
+      {
+        "ko": "감사합니다",
+        "local": "Si Yu'os ma'åse'",
+        "pron": "시 주스 마아세"
+      },
+      {
+        "ko": "얼마예요?",
+        "local": "How much is it?",
+        "pron": "하우 머치 이즈 잇"
+      }
+    ],
+    "moods": [
+      "휴양",
+      "자연"
     ]
   }
 ]
