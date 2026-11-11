@@ -32,7 +32,7 @@ function SummaryItem({ label, children }) {
 function Summary({ country: c }) {
   const { entry } = c
   const visa = entry.visaFreeDays ? `무비자 ${entry.visaFreeDays}일` : '비자 필요'
-  const eta = entry.eta && `${entry.eta.split(' ')[0]} 필요` // 예: "ESTA (출발 …)" → "ESTA 필요"
+  const eta = entry.eta && `${entry.eta.split(' (')[0]} 필요` // 예: "ESTA (출발 …)" → "ESTA 필요"
   return (
     <div
       style={{
