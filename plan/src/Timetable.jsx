@@ -18,7 +18,8 @@ const LOOK = {
 
 // 일정표: 가로는 날짜, 세로는 30분 칸. 하루 칸(data-plan-day)마다 블록을 시각에 맞춰 겹쳐 그린다
 // look(block): 위 LOOK 중 하나의 이름 또는 null
-export default function Timetable({ startDate, days, endHour, blocks, look = () => null, onDragStart, onEdit, onAddHour }) {
+// onResizeStart(e, block): 블록 아래쪽 손잡이를 눌렀을 때 (길이 바꾸기)
+export default function Timetable({ startDate, days, endHour, blocks, look = () => null, onDragStart, onResizeStart, onEdit, onAddHour }) {
   const rows = slots(endHour)
   const height = rows.length * ROW_PX
   return (
@@ -56,23 +57,18 @@ export default function Timetable({ startDate, days, endHour, blocks, look = () 
               .map((b) => {
                 const h = (b.duration / SLOT_MIN) * ROW_PX
                 return (
-                  <BlockCard
-                    key={b.id}
-                    block={b}
-                    compact={h < 40}
-                    // 잡은 위치(블록 윗변에서 커서까지)를 기억해 두어, 끌 때 블록이 커서 위로 튀지 않게
-                    onPointerDown={(e) => onDragStart(e, b, e.clientY - e.currentTarget.getBoundingClientRect().top)}
-                    onEdit={() => onEdit(b)}
-                    style={{
-                      position: 'absolute',
-                      top: topOf(b.start) + 1,
-                      left: 3,
-                      width: 'calc(100% - 6px)',
-                      height: h - 2,
-                      transition: 'top 0.12s',
-                      ...LOOK[look(b)],
-                    }}
-                  />
+                  <div key={b.id} style={{ position: 'absolute', top: topOf(b.start) + 1, left: 3, width: 'calc(100% - 6px)', height: h - 2, transition: 'top 0.12s' }}>
+                    <BlockCard
+                      block={b}
+                      compact={h < 40}
+                      // 잡은 위치(블록 윗변에서 커서까지)를 기억해 두어, 끌 때 블록이 커서 위로 튀지 않게
+                      onPointerDown={(e) => onDragStart(e, b, e.clientY - e.currentTarget.getBoundingClientRect().top)}
+                      onEdit={() => onEdit(b)}
+                      style={{ height: '100%', ...LOOK[look(b)] }}
+                    />
+                    {/* 아래쪽 끝 손잡이: 끌면 30분 단위로 길이가 바뀐다 (블록은 버튼이라 안에 넣지 않고 겹쳐 둔다) */}
+                    <div className="plan-resize" title="끌어서 길이 바꾸기" onPointerDown={(e) => onResizeStart(e, b)} />
+                  </div>
                 )
               })}
           </div>

@@ -6,8 +6,9 @@ import { NumberInput } from '@astryxdesign/core/NumberInput'
 import { useToast } from '@astryxdesign/core/Toast'
 import { DEFAULT_DAYS, DEFAULT_END_HOUR, DEFAULT_DURATION, MAX_DAYS, MAX_END_HOUR } from './config.js'
 import { todayISO } from './time.js'
-import { placeBlock, storeBlock, changeDays } from './schedule.js'
+import { placeBlock, resizeBlock, storeBlock, changeDays } from './schedule.js'
 import { useBlockDrag } from './useBlockDrag.js'
+import { useBlockResize } from './useBlockResize.js'
 import Timetable from './Timetable.jsx'
 import Storage from './Storage.jsx'
 import BlockCard from './BlockCard.jsx'
@@ -68,15 +69,27 @@ export default function PlanPage() {
     },
   })
 
-  // 끄는 동안 표 위에 있으면, 놓았을 때 모습을 미리 보여 준다 (밀릴 블록은 흐리게, 놓을 자리는 점선)
-  const preview = useMemo(
-    () => (drag?.target?.kind === 'day' ? placeBlock(blocks, drag.id, drag.target.day, drag.target.start, endHour) : null),
-    [drag, blocks, endHour],
-  )
+  // 아래쪽 끝 끌기: 늘어나면 아래 블록이 밀리고, 줄어들면 그대로
+  const { resize, start: startResize } = useBlockResize({
+    onEnd: (id, duration) => {
+      const s = schedRef.current
+      const r = resizeBlock(s.blocks, id, duration, s.endHour)
+      setSched({ blocks: r.blocks, endHour: r.endHour })
+      tellStored(r.stored, '하루 24시간을 넘어서')
+    },
+  })
+
+  // 끄는 동안, 손을 떼면 어떻게 될지 미리 보여 준다 (밀릴 블록은 흐리게, 옮기거나 늘리는 블록은 점선)
+  const preview = useMemo(() => {
+    if (resize) return resizeBlock(blocks, resize.id, resize.duration, endHour)
+    if (drag?.target?.kind === 'day') return placeBlock(blocks, drag.id, drag.target.day, drag.target.start, endHour)
+    return null
+  }, [drag, resize, blocks, endHour])
   const shown = preview ?? sched
+  const activeId = drag?.id ?? resize?.id
   const look = (b) => {
-    if (!drag) return null
-    if (b.id === drag.id) return preview ? 'moving' : 'lifted'
+    if (!activeId) return null
+    if (b.id === activeId) return preview ? 'moving' : 'lifted'
     const before = blocks.find((o) => o.id === b.id)
     return preview && before.start !== b.start ? 'pushed' : null
   }
@@ -92,7 +105,7 @@ export default function PlanPage() {
   const dragged = drag && blocks.find((b) => b.id === drag.id)
 
   return (
-    <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: '#fff', cursor: drag ? 'grabbing' : undefined }}>
+    <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: '#fff', cursor: drag ? 'grabbing' : resize ? 'ns-resize' : undefined }}>
       <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: '1px solid #e5e5e5' }}>
         <Button label="← 지도로" href="#/" variant="ghost" size="sm" />
         <Heading level={1}>일정표 짜기</Heading>
@@ -113,6 +126,7 @@ export default function PlanPage() {
           blocks={shown.blocks}
           look={look}
           onDragStart={startDrag}
+          onResizeStart={startResize}
           onEdit={openEditor}
           onAddHour={() => setSched((s) => ({ ...s, endHour: Math.min(MAX_END_HOUR, s.endHour + 1) }))}
         />
