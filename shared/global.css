@@ -1,0 +1,15 @@
+/* 지도(map)와 일정표(plan)가 같이 쓰는 전역 스타일. main.jsx에서 한 번만 불러온다 */
+
+/* 한글 글꼴 Pretendard (가변 굵기, 쓰는 글자만 내려받는 dynamic subset) */
+@import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+
+/* Astryx 테마 글꼴(Figtree)을 Pretendard로 바꾼다. 레이어 밖에 두어 테마보다 우선한다
+   토스트·창처럼 테마 밖에 뜨는 것도 같은 글꼴이 되도록 body에도 지정 */
+:root,
+[data-astryx-theme] {
+  --font-family-body: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-family-heading: var(--font-family-body);
+}
+body {
+  font-family: var(--font-family-body);
+}

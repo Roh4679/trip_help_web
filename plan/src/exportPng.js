@@ -167,7 +167,8 @@ export function drawPlan(plan, font) {
 }
 
 // 그린 그림을 파일로 내려받는다: 일정표-표 2-2026-04-08.png
-export function downloadPlanPng(plan, name = '') {
+export async function downloadPlanPng(plan, name = '') {
+  await document.fonts.ready // 글꼴(Pretendard)을 다 받은 뒤 그려야 기본 글꼴로 그려지지 않는다
   const font = getComputedStyle(document.body).fontFamily || 'sans-serif'
   drawPlan(plan, font).toBlob((blob) => {
     const a = document.createElement('a')
