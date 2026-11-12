@@ -1,5 +1,6 @@
 import { COLORS, RISK_COLORS, DANGER_HATCH, PIN_COLORS } from '../config.js'
 import { PIN_PATH } from '../utils/places.js'
+import { cardStyle } from '../../../shared/tokens.js'
 
 // 지도 빗금과 같은 모양을 CSS로 그린다
 const hatch = ({ base, hatch: line }) =>
@@ -17,7 +18,7 @@ const ITEMS = [
 
 export default function MapLegend() {
   return (
-    <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', margin: 0, padding: '4px 8px', listStyle: 'none', fontSize: 12, background: 'rgba(255,255,255,0.8)', borderRadius: 6 }}>
+    <ul style={{ ...cardStyle, display: 'flex', flexWrap: 'wrap', gap: '4px 12px', margin: 0, padding: '6px 10px', listStyle: 'none', fontSize: 12 }}>
       {ITEMS.map((it) => (
         <li key={it.label} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <span aria-hidden style={{ width: 12, height: 12, borderRadius: 2, background: it.background, border: '1px solid rgba(0,0,0,0.15)' }} />

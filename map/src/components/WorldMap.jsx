@@ -11,6 +11,7 @@ import { useMedia } from '../utils/useMedia.js'
 import { WIDTH, HEIGHT, projection, shapes, pins, PIN_PATH } from '../utils/places.js'
 import { placeNotice } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
+import { cardStyle } from '../../../shared/tokens.js'
 
 // 여행경보 단계별 색. 정보를 제공하지 않는 나라(3·4)는 빗금 무늬 (넓은 나라가 너무 무겁게 보이지 않게)
 const HATCHED = [3, 4]
@@ -44,7 +45,7 @@ function focusTransform(place) {
 
 
 // highlight: 추천 결과 나라의 iso2 Set. 있으면 결과 나라만 진하게, 나머지는 흐리게 (null이면 평소대로)
-export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false, highlight = null }) {
+export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsTop = null, highlight = null }) {
   const dimmed = (place) => highlight && !highlight.has(place.data?.iso2)
   const toast = useToast()
   const [hover, setHover] = useState(null)
@@ -152,10 +153,22 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
           )
         })}
       </svg>
-      <div style={{ position: 'absolute', right: controlsRight, [controlsAtTop ? 'top' : 'bottom']: 12, display: 'flex', gap: 6, transition: 'right 0.2s' }}>
-        <Button label="지도 확대" size={buttonSize} elevation="low" onClick={() => zoomBy(ZOOM_STEP)}>+</Button>
-        <Button label="지도 축소" size={buttonSize} elevation="low" onClick={() => zoomBy(1 / ZOOM_STEP)}>−</Button>
-        <Button label="지도 원래대로" size={buttonSize} elevation="low" onClick={resetZoom}>원래대로</Button>
+      {/* 확대 버튼: 다른 툴바·범례와 같은 흰 카드. controlsTop이 있으면 위쪽(휴대폰), 없으면 오른쪽 아래 */}
+      <div
+        style={{
+          ...cardStyle,
+          position: 'absolute',
+          right: controlsRight,
+          ...(controlsTop != null ? { top: controlsTop } : { bottom: 12 }),
+          display: 'flex',
+          gap: 2,
+          padding: 4,
+          transition: 'right 0.2s',
+        }}
+      >
+        <Button label="지도 확대" size={buttonSize} variant="ghost" onClick={() => zoomBy(ZOOM_STEP)}>+</Button>
+        <Button label="지도 축소" size={buttonSize} variant="ghost" onClick={() => zoomBy(1 / ZOOM_STEP)}>−</Button>
+        <Button label="지도 원래대로" size={buttonSize} variant="ghost" onClick={resetZoom}>원래대로</Button>
       </div>
       {hover && (
         <CountryTooltip name={hover.shape.name} data={hover.shape.data} status={hover.shape.status} x={hover.x} y={hover.y} />

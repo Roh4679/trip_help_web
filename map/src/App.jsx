@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Dialog, DialogHeader } from '@astryxdesign/core/Dialog'
 import { Button } from '@astryxdesign/core/Button'
 import { Drawer } from '@astryxdesign/core/Drawer'
@@ -12,7 +12,8 @@ import countries from './data/countries.json'
 import { recommend } from './utils/recommend.js'
 import { useMedia } from './utils/useMedia.js'
 import { MOBILE_QUERY } from './config.js'
-import { COLOR } from '../../shared/tokens.js'
+import { COLOR, cardStyle } from '../../shared/tokens.js'
+import AppBrand, { ToolbarDivider } from '../../shared/AppBrand.jsx'
 
 // Dialog 안쪽은 넘치면 잘리게(overflow: hidden) 되어 있어서, 스크롤 영역은 직접 만든다. 제목줄은 그 밖에 있어 고정된다
 const DRAWER_WIDTH = 360
@@ -26,6 +27,17 @@ export default function App({ links = [] }) {
   const [results, setResults] = useState(null)
   const [isPanelOpen, setPanelOpen] = useState(false)
   const isMobile = useMedia(MOBILE_QUERY)
+  // 툴바 아래 끝 위치 (휴대폰에서 확대 버튼을 그 아래에 두려고). 툴바가 줄바꿈되면 다시 잰다
+  const toolbarRef = useRef(null)
+  const [toolbarBottom, setToolbarBottom] = useState(0)
+  useEffect(() => {
+    const el = toolbarRef.current
+    const measure = () => setToolbarBottom(el.getBoundingClientRect().bottom)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
   const mapRef = useRef(null)
   // 추천 결과가 떠 있으면 지도에서 결과 나라만 진하게 (결과 창을 닫으면 원래대로, 결과가 0곳이면 흐리게 하지 않는다)
   const highlight = useMemo(() => (results?.length ? new Set(results.map((r) => r.country.iso2)) : null), [results])
@@ -47,15 +59,32 @@ export default function App({ links = [] }) {
         isZoomEnabled={!selected && !results}
         // 추천 패널이 열리면 확대 버튼을 패널 왼쪽으로 옮겨 가려지지 않게 한다
         controlsRight={isPanelOpen ? DRAWER_WIDTH + GAP : GAP}
-        // 휴대폰 폭에서는 아래쪽을 범례·안내 문구에 내주고 확대 버튼을 오른쪽 위로
-        controlsAtTop={isMobile}
+        // 휴대폰 폭에서는 아래쪽을 범례·안내 문구에 내주고 확대 버튼을 오른쪽 위, 툴바 아래로
+        controlsTop={isMobile ? toolbarBottom + 8 : null}
         highlight={highlight}
       />
-      {/* 왼쪽 위: 추천 버튼 + 나라 검색. 휴대폰 폭에서는 확대 버튼이 오른쪽 위에 오므로 검색창을 아랫줄로 */}
-      <div style={{ position: 'absolute', top: GAP, left: GAP, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'flex-start', gap: 8 }}>
-        <Button label="여행지 추천" variant="primary" elevation="med" onClick={() => setPanelOpen(true)} />
-        {links.map((l) => <Button key={l.href} label={l.label} href={l.href} variant="secondary" elevation="med" />)}
-        <CountrySearch onPick={(place) => mapRef.current.focus(place)} width={isMobile ? 220 : 260} />
+      {/* 왼쪽 위: 흰 툴바 하나 — 앱 이름 | 검색창 | 여행지 추천 | 일정표 짜기. 휴대폰에서는 화면 폭을 다 쓰고 줄바꿈된다 */}
+      <div
+        ref={toolbarRef}
+        style={{
+          ...cardStyle,
+          position: 'absolute',
+          top: GAP,
+          left: GAP,
+          right: isMobile ? GAP : 'auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: 8,
+          padding: 6,
+        }}
+      >
+        <AppBrand />
+        {!isMobile && <ToolbarDivider />}
+        <CountrySearch onPick={(place) => mapRef.current.focus(place)} width={isMobile ? '100%' : 260} />
+        {!isMobile && <ToolbarDivider />}
+        <Button label="여행지 추천" variant="primary" onClick={() => setPanelOpen(true)} />
+        {links.map((l) => <Button key={l.href} label={l.label} href={l.href} variant="secondary" />)}
       </div>
 
       {/* 왼쪽 아래: 범례 + 안내 문구. 확대 버튼(오른쪽 아래)과 겹치지 않게 폭을 줄이고, 좁은 화면에서는 줄바꿈된다 */}
@@ -72,7 +101,7 @@ export default function App({ links = [] }) {
         }}
       >
         <MapLegend />
-        <p style={{ margin: 0, padding: '2px 6px', fontSize: 12, lineHeight: 1.5, color: COLOR.textSub, background: 'rgba(255,255,255,0.8)', borderRadius: 4 }}>
+        <p style={{ ...cardStyle, margin: 0, padding: '6px 10px', fontSize: 12, lineHeight: 1.5, color: COLOR.textSub }}>
           정보는 참고용이에요. 출국 전 외교부 해외안전여행(0404.go.kr) 등 공식 사이트에서 꼭 확인하세요.{' '}
           <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer" style={{ color: COLOR.textMuted }}>Rates By Exchange Rate API</a>
         </p>

@@ -7,7 +7,8 @@ import { todayISO } from './time.js'
 import { loadBook, saveBook, newSheet } from './persist.js'
 import PlanSheet from './PlanSheet.jsx'
 import './plan.css'
-import { COLOR } from '../../shared/tokens.js'
+import { COLOR, cardStyle } from '../../shared/tokens.js'
+import AppBrand, { ToolbarDivider } from '../../shared/AppBrand.jsx'
 
 // 일정표 짜기 (plan) — 지도와 따로 쓰는 전체 화면. 기획은 PLANNER_plan.md
 // map 코드를 가져다 쓸 수는 있지만, map이 plan을 가져다 쓰지는 않는다 (plan을 떼어 내도 map은 그대로 동작)
@@ -43,9 +44,13 @@ export default function PlanPage() {
 
   return (
     <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: COLOR.surface }}>
-      <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: `1px solid ${COLOR.border}` }}>
-        <Button label="← 지도로" href="#/" variant="ghost" size="sm" />
-        <Heading level={1}>일정표 짜기</Heading>
+      {/* 머리말: 지도 화면 툴바와 같은 흰 카드 — 앱 이름 | 일정표 짜기 … ← 지도로 */}
+      <header style={{ ...cardStyle, display: 'flex', alignItems: 'center', gap: 8, margin: '12px 16px 0', padding: 6 }}>
+        <AppBrand />
+        <ToolbarDivider />
+        <Heading level={1} style={{ fontSize: 17, margin: '0 4px' }}>일정표 짜기</Heading>
+        <span style={{ flex: 1 }} />
+        <Button label="← 지도로" href="#/" variant="secondary" size="sm" />
       </header>
 
       {/* 표 탭 (엑셀 시트처럼): 표 1, 표 2 … + 새 일정표, 이 표 지우기 */}
