@@ -5,7 +5,6 @@ import { Drawer } from '@astryxdesign/core/Drawer'
 import WorldMap from './components/WorldMap.jsx'
 import CountryDetail from './components/CountryDetail.jsx'
 import RecommendPanel from './components/RecommendPanel.jsx'
-import RecommendResult from './components/RecommendResult.jsx'
 import MapLegend from './components/MapLegend.jsx'
 import CountrySearch from './components/CountrySearch.jsx'
 import countries from './data/countries.json'
@@ -39,15 +38,15 @@ export default function App({ links = [] }) {
     return () => ro.disconnect()
   }, [])
   const mapRef = useRef(null)
-  // 추천 결과가 떠 있으면 지도에서 결과 나라만 진하게 (결과 창을 닫으면 원래대로, 결과가 0곳이면 흐리게 하지 않는다)
+  // 추천 결과가 있으면 지도에서 결과 나라만 진하게 (조건을 바꾸거나 추천 패널을 닫으면 원래대로, 결과가 0곳이면 흐리게 하지 않는다)
   const highlight = useMemo(() => (results?.length ? new Set(results.map((r) => r.country.iso2)) : null), [results])
 
-  // 창은 하나만 쓰고 내용만 바꾼다 (Dialog 두 개를 동시에 닫고 열면 페이지가 멈췄다).
-  // 추천 목록에서 연 나라를 닫으면 목록으로 돌아간다
-  const close = (open) => {
-    if (open) return
-    if (selected) setSelected(null)
-    else setResults(null)
+  // 가운데 창은 나라 상세에만 쓴다. 추천 결과는 오른쪽 추천 패널 안에 보여 준다
+  const close = (open) => !open && setSelected(null)
+  // 추천 패널을 닫으면 결과도 지운다 (지도 강조도 원래대로)
+  const setPanel = (open) => {
+    setPanelOpen(open)
+    if (!open) setResults(null)
   }
 
   return (
@@ -56,7 +55,7 @@ export default function App({ links = [] }) {
       <WorldMap
         ref={mapRef}
         onSelect={setSelected}
-        isZoomEnabled={!selected && !results}
+        isZoomEnabled={!selected}
         // 추천 패널이 열리면 확대 버튼을 패널 왼쪽으로 옮겨 가려지지 않게 한다
         controlsRight={isPanelOpen ? DRAWER_WIDTH + GAP : GAP}
         // 휴대폰 폭에서는 아래쪽을 범례·안내 문구에 내주고 확대 버튼을 오른쪽 위, 툴바 아래로
@@ -110,40 +109,39 @@ export default function App({ links = [] }) {
       {/* 지도 위에 겹쳐 뜨는 사이드 창. 배경막 없이 띄워서 지도는 계속 움직일 수 있다. 화면이 좁으면(640px 미만) 전체 너비 */}
       <Drawer
         isOpen={isPanelOpen}
-        onOpenChange={setPanelOpen}
+        onOpenChange={setPanel}
         label="여행지 추천"
         hasScrim={false}
         width={DRAWER_WIDTH}
         experimental={{ isFullWidthOnMobile: true }}
       >
-        <RecommendPanel onSubmit={(conditions) => setResults(recommend(countries, conditions))} onClose={setPanelOpen} />
+        <RecommendPanel
+          results={results}
+          onSubmit={(conditions) => setResults(recommend(countries, conditions))}
+          onConditionsChange={() => setResults(null)} // 조건을 바꾸면 이전 결과는 지운다
+          onSelect={setSelected}
+          onClose={setPanel}
+        />
       </Drawer>
 
       {/* 휴대폰에서는 창을 화면 전체로 */}
       <Dialog
-        isOpen={!!selected || !!results}
+        isOpen={!!selected}
         onOpenChange={close}
         variant={isMobile ? 'fullscreen' : 'standard'}
-        width={selected ? 640 : 520}
+        width={640}
         maxHeight="90dvh"
       >
-        {selected ? (
+        {selected && (
           <DialogHeader
             title={selected.name}
             startContent={<img src={`https://flagcdn.com/w40/${selected.iso2}.png`} alt="" width={28} />}
-            endContent={results && <Button label="목록으로" size="sm" variant="ghost" onClick={() => setSelected(null)} />}
             onOpenChange={close}
           />
-        ) : (
-          <DialogHeader title="추천 여행지" subtitle={results && `${results.length}곳`} onOpenChange={close} />
         )}
-        {/* 목록 ↔ 상세가 바뀔 때마다 스크롤 영역을 새로 만들어 맨 위에서 시작한다 (목록을 내린 채 카드를 누르면 상세가 중간부터 보였다) */}
-        <div key={selected ? selected.iso2 : 'results'} style={scrollBody}>
-          {selected ? (
-            <CountryDetail key={selected.iso2} country={selected} />
-          ) : (
-            results && <RecommendResult results={results} onSelect={setSelected} />
-          )}
+        {/* 나라가 바뀔 때마다 스크롤 영역을 새로 만들어 맨 위에서 시작한다 */}
+        <div key={selected?.iso2} style={scrollBody}>
+          {selected && <CountryDetail key={selected.iso2} country={selected} />}
         </div>
       </Dialog>
     </div>
