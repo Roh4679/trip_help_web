@@ -64,3 +64,22 @@ export function fitView(bounds, lonC, box, maxZoom, degPx, fill = 0.85) {
   const lon = lonC + (cx - (vx - xCenter(k)) / k) / degPx
   return { lon, k, y: clampY(vy - k * cy, k) }
 }
+
+// 지도 한 장의 가로 폭(적도, 지도 좌표)이 period일 때, 화면 가로 [sx0, sx1](지도 좌표)에 걸치는 복사본 번호 목록
+// 가운데 장이 0, 왼쪽 -1, 오른쪽 +1 … (구글 지도처럼 양옆에 이어 그려 끝이 보이지 않게)
+export function copiesInView(k, period, sx0, sx1) {
+  const out = []
+  for (let n = -2; n <= 2; n++) {
+    const left = xCenter(k) + k * (W / 2 + n * period - period / 2)
+    const right = left + k * period
+    if (right > sx0 && left < sx1) out.push(n)
+  }
+  return out
+}
+
+// 화면 전체 가로(지도 밖 여백 포함)를 지도 좌표로 [sx0, sx1]
+export function screenSpanX(screenW, screenH) {
+  const s = Math.min(screenW / W, screenH / H)
+  const ox = (screenW - W * s) / 2
+  return [-ox / s, (screenW - ox) / s]
+}

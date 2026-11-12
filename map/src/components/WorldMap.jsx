@@ -11,8 +11,8 @@ import {
   TOUCH_QUERY, PORTRAIT_LAT, TOUCH_HIT_RADIUS, FOCUS_ZOOM, START_LON, FIT_RESULTS,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
-import { WIDTH, HEIGHT, DEG_PX, makeProjection, shapes, smallPlaces, pins, PIN_PATH } from '../utils/places.js'
-import { xCenter, lonOf, xFor, nearestLon, clampY, meanLon, visibleBox, fitView } from '../utils/view.js'
+import { WIDTH, HEIGHT, DEG_PX, WORLD_PX, makeProjection, shapes, smallPlaces, pins, PIN_PATH } from '../utils/places.js'
+import { xCenter, lonOf, xFor, nearestLon, clampY, meanLon, visibleBox, fitView, copiesInView, screenSpanX } from '../utils/view.js'
 import { placeNotice } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 import { cardStyle } from '../../../shared/tokens.js'
@@ -62,6 +62,15 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
   const isTouch = useMedia(TOUCH_QUERY)
   enabledRef.current = isZoomEnabled
 
+  // 화면 크기 (양옆 복사본이 화면에 걸치는지 계산하려고). 창 크기가 바뀌면 다시 잰다
+  const [size, setSize] = useState({ width: WIDTH, height: HEIGHT })
+  useEffect(() => {
+    const el = svgRef.current
+    const ro = new ResizeObserver(() => setSize({ width: el.clientWidth, height: el.clientHeight }))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
   useEffect(() => {
     const svg = select(svgRef.current)
     zoomRef.current = zoom()
@@ -89,15 +98,18 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
   }, [projection])
   const groupTransform = `translate(${xCenter(k)},${transform.y}) scale(${k})`
   const toScreen = ([px, py]) => [xCenter(k) + k * px, transform.y + k * py]
+  // 같은 지도를 양옆에 이어 그린다 (구글 지도처럼 화면 어디에도 끝이 안 보이게). 화면에 걸치는 장만 그린다
+  const copies = copiesInView(k, WORLD_PX, ...screenSpanX(size.width, size.height))
 
   const zoomBy = (factor) => zoomRef.current.scaleBy(select(svgRef.current), factor)
   const resetZoom = () => zoomRef.current.transform(select(svgRef.current), startTransform(svgRef.current))
 
   // 메모지는 마우스에서만 띄운다 (터치는 누르면 바로 상세 창이 열리므로)
   const buttonSize = isTouch ? 'md' : 'sm'
-  const hoverAt = (s) => (e) => e.pointerType === 'mouse' && setHover({ shape: s, x: e.clientX, y: e.clientY })
-  const hoverProps = (s) => ({
-    onPointerMove: hoverAt(s),
+  // copy: 마우스가 올라간 복사본 번호 (테두리를 그 장에 그리려고)
+  const hoverAt = (s, copy) => (e) => e.pointerType === 'mouse' && setHover({ shape: s, copy, x: e.clientX, y: e.clientY })
+  const hoverProps = (s, copy = 0) => ({
+    onPointerMove: hoverAt(s, copy),
     onClick: () => handleClick(s),
     style: { cursor: 'pointer' },
   })
@@ -176,34 +188,40 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
         </defs>
         {/* 확대해도 선 두께는 그대로 (non-scaling-stroke) */}
         <g transform={groupTransform}>
-          {shapes.map((s) => (
-            <path key={s.key} d={dByKey[s.key]} fill={fillOf(s.tone)} opacity={dimmed(s) ? RESULT_DIM_OPACITY : 1} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
+          {/* 복사본마다 같은 나라 모양을 한 장 폭(WORLD_PX)씩 옮겨 그린다. 마우스 올리기·클릭·빗금·추천 강조도 똑같이 */}
+          {copies.map((n) => (
+            <g key={n} transform={`translate(${n * WORLD_PX},0)`}>
+              {shapes.map((s) => (
+                <path key={s.key} d={dByKey[s.key]} fill={fillOf(s.tone)} opacity={dimmed(s) ? RESULT_DIM_OPACITY : 1} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s, n)} />
+              ))}
+            </g>
           ))}
-          {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 (지금 회전으로 다시 그린 모양) */}
+          {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 (마우스가 올라간 복사본에) */}
           {hover?.shape.feature && (
-            <path d={dByKey[hover.shape.key]} fill="none" stroke={COLORS.hoverBorder} strokeWidth={1.2} vectorEffect="non-scaling-stroke" pointerEvents="none" />
+            <path d={dByKey[hover.shape.key]} transform={`translate(${(hover.copy ?? 0) * WORLD_PX},0)`} fill="none" stroke={COLORS.hoverBorder} strokeWidth={1.2} vectorEffect="non-scaling-stroke" pointerEvents="none" />
           )}
         </g>
 
         {/* 핀은 줌 그룹 밖에 그려서 확대해도 크기가 일정하다. 색으로 상태를 구분한다 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시) */}
-        {pins.map(({ place, lonlat, offset }) => {
+        {pins.flatMap(({ place, lonlat, offset }) => copies.map((n) => {
           const pinScale = k < PIN_SMALL.untilZoom ? PIN_SMALL.scale : 1
-          const [x, y] = toScreen(projection(lonlat))
+          const [x0, y] = toScreen(projection(lonlat))
+          const x = x0 + n * k * WORLD_PX // 복사본에도 같은 핀
           const [px, py] = [x + offset[0], y + offset[1]]
           const moved = offset[0] !== 0 || offset[1] !== 0
           return (
-            <g key={`pin-${place.key}`} opacity={dimmed(place) ? RESULT_DIM_OPACITY : 1}>
+            <g key={`pin-${place.key}-${n}`} opacity={dimmed(place) ? RESULT_DIM_OPACITY : 1}>
               {/* 이웃 핀과 겹쳐서 옮긴 핀은 원래 위치까지 선을 긋는다 */}
               {moved && <line x1={x} y1={y} x2={px} y2={py} stroke={COLORS.hoverBorder} strokeWidth={0.8} />}
               {moved && <circle cx={x} cy={y} r={1.5} fill={COLORS.hoverBorder} />}
-              <g transform={`translate(${px},${py}) scale(${pinScale})`} {...hoverProps(place)}>
+              <g transform={`translate(${px},${py}) scale(${pinScale})`} {...hoverProps(place, n)}>
                 <path d={PIN_PATH} fill={PIN_COLORS[place.tone]} stroke="#fff" strokeWidth={1} />
                 <circle cy={-12} r={2.2} fill="#fff" />
                 {isTouch && <circle cy={-10} r={TOUCH_HIT_RADIUS} fill="transparent" />}
               </g>
             </g>
           )
-        })}
+        }))}
       </svg>
       {/* 확대 버튼: 다른 툴바·범례와 같은 흰 카드. controlsTop이 있으면 위쪽(휴대폰), 없으면 오른쪽 아래 */}
       <div

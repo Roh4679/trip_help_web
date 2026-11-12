@@ -22,6 +22,7 @@ export const makeProjection = (lon) => geoNaturalEarth1().scale(SCALE).translate
 
 // 적도에서 경도 1도가 지도 좌표로 몇 px인지 (가로로 끌기 → 회전 각도 환산에 쓴다)
 export const DEG_PX = base([1, 0])[0] - base([0, 0])[0]
+export const WORLD_PX = 360 * DEG_PX // 지도 한 장의 가로 폭(적도). 양옆 복사본을 이만큼 옮겨 그린다
 
 const dataById = Object.fromEntries(countries.filter((c) => c.id).map((c) => [c.id, c]))
 

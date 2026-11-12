@@ -1,6 +1,6 @@
 // 실행: node map/src/utils/view.test.js — 좌우로 끝없이 이어지는 지도의 보기 계산
 import assert from 'node:assert/strict'
-import { xCenter, lonOf, xFor, wrapLon, nearestLon, clampY, meanLon, visibleBox, fitView } from './view.js'
+import { xCenter, lonOf, xFor, wrapLon, nearestLon, clampY, meanLon, visibleBox, fitView, copiesInView, screenSpanX } from './view.js'
 import { START_LON } from '../config.js'
 
 const near = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) < eps, `${a} ≈ ${b}`)
@@ -47,4 +47,13 @@ assert.equal(wide.k, 1) // 넓으면 더 줄이지 않는다 (최소 1배)
 const p = fitView([[380, 200], [580, 260]], 100, { x0: 0, x1: 690, y0: 0, y1: 460 }, 3, DEG)
 const X = 480 - (p.lon - 100) * DEG // 결과 가운데의 새 지도 좌표
 near(xCenter(p.k) + p.k * X, 345, 1e-6)
+// 양옆 복사본: 화면에 걸칠 때만
+const P = 971.7 // 한 장 폭 (적도)
+assert.deepEqual(copiesInView(1, P, ...screenSpanX(1280, 800)), [0]) // 보통 화면, 1배: 가운데 장만
+assert.deepEqual(copiesInView(1, P, ...screenSpanX(2560, 1080)), [-1, 0, 1]) // 아주 넓은 화면: 양옆도
+assert.deepEqual(copiesInView(1, P, ...screenSpanX(5120, 1440)), [-1, 0, 1])
+assert.deepEqual(copiesInView(3, P, ...screenSpanX(5120, 1440)), [0]) // 확대하면 가운데 장만으로 충분
+const [a, b] = screenSpanX(2560, 1080)
+near(a, -(2560 - 960 * (1080 / 460)) / 2 / (1080 / 460), 1e-9)
+assert.ok(b > 960)
 console.log('ok')
