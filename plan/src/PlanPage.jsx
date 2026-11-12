@@ -1,14 +1,17 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@astryxdesign/core/Button'
 import { Heading } from '@astryxdesign/core/Heading'
 import { DateInput } from '@astryxdesign/core/DateInput'
 import { NumberInput } from '@astryxdesign/core/NumberInput'
 import { useToast } from '@astryxdesign/core/Toast'
-import { DEFAULT_DAYS, DEFAULT_END_HOUR, DEFAULT_DURATION, MAX_DAYS, MAX_END_HOUR } from './config.js'
+import { TextArea } from '@astryxdesign/core/TextArea'
+import { AlertDialog } from '@astryxdesign/core/AlertDialog'
+import { DEFAULT_DURATION, MAX_DAYS, MAX_END_HOUR } from './config.js'
 import { todayISO } from './time.js'
 import { placeBlock, resizeBlock, storeBlock, changeDays } from './schedule.js'
 import { useBlockDrag } from './useBlockDrag.js'
 import { useBlockResize } from './useBlockResize.js'
+import { loadPlan, savePlan, emptyPlan } from './persist.js'
 import Timetable from './Timetable.jsx'
 import Storage from './Storage.jsx'
 import BlockCard from './BlockCard.jsx'
@@ -21,15 +24,35 @@ const GHOST_WIDTH = 140 // 끄는 동안 커서를 따라다니는 블록 너비
 // map 코드를 가져다 쓸 수는 있지만, map이 plan을 가져다 쓰지는 않는다 (plan을 떼어 내도 map은 그대로 동작)
 export default function PlanPage() {
   const toast = useToast()
-  const [startDate, setStartDate] = useState(todayISO())
-  const [days, setDays] = useState(DEFAULT_DAYS)
+  // 처음 열 때 브라우저에 저장된 일정표를 불러온다 (없으면 오늘 출발 새 일정표)
+  const [saved] = useState(() => loadPlan(window.localStorage, todayISO()))
+  const [startDate, setStartDate] = useState(saved.startDate)
+  const [days, setDays] = useState(saved.days)
+  const [memo, setMemo] = useState(saved.memo)
   // 블록과 표 끝 시간은 밀어내기 계산이 같이 바꾸므로 한 묶음으로 둔다
-  const [sched, setSched] = useState({ blocks: [], endHour: DEFAULT_END_HOUR })
+  const [sched, setSched] = useState({ blocks: saved.blocks, endHour: saved.endHour })
   const schedRef = useRef(sched) // 끌기를 시작한 뒤에도 놓는 순간의 최신 값으로 계산하려고
   useLayoutEffect(() => {
     schedRef.current = sched
   })
   const { blocks, endHour } = sched
+
+  // 바뀔 때마다 자동 저장 (블록, 날짜, 메모)
+  useEffect(() => {
+    savePlan(window.localStorage, { startDate, days, endHour, memo, blocks })
+  }, [startDate, days, endHour, memo, blocks])
+
+  // [+ 새 일정표]: 확인 창을 거쳐 지금 일정을 지우고 새로 시작
+  const [isResetOpen, setResetOpen] = useState(false)
+  const resetPlan = () => {
+    const p = emptyPlan(todayISO())
+    setStartDate(p.startDate)
+    setDays(p.days)
+    setMemo(p.memo)
+    setSched({ blocks: p.blocks, endHour: p.endHour })
+    setResetOpen(false)
+  }
+
   const setBlocks = (fn) => setSched((s) => ({ ...s, blocks: fn(s.blocks) }))
 
   // 표 끝(최대 오전 6:00)을 넘거나 날짜가 줄어 보관함으로 옮긴 블록이 있으면 알려 준다
@@ -115,6 +138,10 @@ export default function PlanPage() {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12, padding: '12px 16px 0' }}>
         <DateInput label="출발일" value={startDate} onChange={(v) => v && setStartDate(v)} width={180} />
         <NumberInput label="며칠" value={days} onChange={changeDayCount} min={1} max={MAX_DAYS} width={100} />
+        <Button label="+ 새 일정표" variant="secondary" onClick={() => setResetOpen(true)} />
+        <p style={{ margin: 0, flexBasis: '100%', fontSize: 12, color: '#666' }}>
+          자동으로 이 브라우저에 저장돼요. 다른 브라우저·기기에서는 안 보이고, 브라우저 데이터(캐시·쿠키)를 지우면 사라져요.
+        </p>
       </div>
 
       <div className="plan-body">
@@ -131,8 +158,7 @@ export default function PlanPage() {
           onAddHour={() => setSched((s) => ({ ...s, endHour: Math.min(MAX_END_HOUR, s.endHour + 1) }))}
         />
         <aside className="plan-box">
-          <b>메모</b>
-          <p style={{ margin: '8px 0 0', fontSize: 13, color: '#666' }}>메모 칸은 다음 단계에서 추가돼요.</p>
+          <TextArea label="메모" placeholder="준비물, 예약 번호, 숙소 등 자유롭게" value={memo} onChange={setMemo} rows={14} />
         </aside>
       </div>
 
@@ -142,6 +168,15 @@ export default function PlanPage() {
           <BlockCard block={dragged} style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }} />
         </div>
       )}
+
+      <AlertDialog
+        isOpen={isResetOpen}
+        onOpenChange={setResetOpen}
+        title="새 일정표를 만들까요?"
+        description="지금 일정(블록, 날짜, 메모)이 모두 지워져요. 되돌릴 수 없어요."
+        actionLabel="지우고 새로 만들기"
+        onAction={resetPlan}
+      />
 
       {editing && (
         <BlockDialog key={editing.n} isOpen block={editing.block} onSave={saveBlock} onDelete={deleteBlock} onClose={() => setEditing(null)} />
