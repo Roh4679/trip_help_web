@@ -1,4 +1,5 @@
-import { COLORS, RISK_COLORS, DANGER_HATCH } from '../config.js'
+import { COLORS, RISK_COLORS, DANGER_HATCH, PIN_COLORS } from '../config.js'
+import { PIN_PATH } from '../utils/places.js'
 
 // 지도 빗금과 같은 모양을 CSS로 그린다
 const hatch = ({ base, hatch: line }) =>
@@ -23,6 +24,13 @@ export default function MapLegend() {
           {it.label}
         </li>
       ))}
+      {/* 핀은 지도에서 잘 안 보이는 작은 곳(싱가포르, 홍콩 등)에만 꽂는다. 색은 위와 같은 기준 */}
+      <li style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <svg aria-hidden width={12} height={14} viewBox="-7 -19 14 20">
+          <path d={PIN_PATH} fill={PIN_COLORS[1]} stroke="#fff" />
+        </svg>
+        작은 곳 (색 기준 같음)
+      </li>
     </ul>
   )
 }

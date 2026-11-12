@@ -8,7 +8,7 @@ import {
   TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS, FOCUS_ZOOM,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
-import { WIDTH, HEIGHT, projection, shapes, pins } from '../utils/places.js'
+import { WIDTH, HEIGHT, projection, shapes, pins, PIN_PATH } from '../utils/places.js'
 import { placeNotice } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 
@@ -42,7 +42,6 @@ function focusTransform(place) {
   return zoomIdentity.translate(clamp(WIDTH / 2 - k * cx, WIDTH), clamp(HEIGHT / 2 - k * cy, HEIGHT)).scale(k)
 }
 
-const PIN_PATH = 'M0,0 C-3,-5 -6,-8 -6,-12 A6,6 0 1,1 6,-12 C6,-8 3,-5 0,0Z'
 
 export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false }) {
   const toast = useToast()

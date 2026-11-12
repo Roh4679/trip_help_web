@@ -2,7 +2,7 @@ import { geoNaturalEarth1, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
 import world from 'world-atlas/countries-110m.json'
 import countries from '../data/countries.json'
-import { HOME_ID } from '../config.js'
+import { HOME_ID, PIN_SHAPE_IDS } from '../config.js'
 import { countryStatus, riskTone } from './countryStatus.js'
 import { countryName } from './countryName.js'
 import { splitOverseas } from './overseas.js'
@@ -49,8 +49,11 @@ export const smallPlaces = countries
     tone: riskTone(c),
   }))
 
-// 핀: 볼 수 있는 나라 + 작은 나라 (작은 나라는 상태와 상관없이 핀을 꽂고 색으로 구분한다)
+export const PIN_PATH = 'M0,0 C-3,-5 -6,-8 -6,-12 A6,6 0 1,1 6,-12 C6,-8 3,-5 0,0Z' // 지도 핀과 범례가 같이 쓴다
+
+// 핀: 지도에서 잘 안 보이는 작은 곳만 (작은 나라 marker + 하와이처럼 모양이 너무 작은 곳). 큰 나라는 색이 이미 상태를 보여 준다
+// 작은 곳은 상태와 상관없이 핀을 꽂고 색으로 구분한다
 export const pins = [
-  ...shapes.filter((s) => s.status === 'ok' && s.data.pin && !s.data.marker).map((s) => ({ place: s, point: projection(s.data.pin), offset: [0, 0] })),
+  ...shapes.filter((s) => PIN_SHAPE_IDS.includes(s.id) && s.data?.pin).map((s) => ({ place: s, point: projection(s.data.pin), offset: [0, 0] })),
   ...smallPlaces.map((p) => ({ place: p, point: p.point, offset: p.offset })),
 ]
