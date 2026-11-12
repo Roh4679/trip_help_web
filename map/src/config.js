@@ -51,12 +51,16 @@ export const PIN_SHAPE_IDS = ['US-HI'] // 지도에 모양은 있지만 너무 �
 export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서는 핀을 작게 (유럽처럼 핀이 몰린 곳이 겹치지 않게)
 export const FOCUS_ZOOM = { fill: 0.6, point: 4 } // 검색으로 고르면: 나라 모양은 화면의 60%를 채우게, 작은 나라 핀은 4배
 export const MAX_ZOOM = 8
+
+// 지도 회전 (좌우로 끝없이 이어지는 지도): 가로로 끌면 지도를 옮기는 대신 투영의 중심 경도를 돌린다
+export const MAP_SIZE = [960, 460] // 지도 그림 크기 (viewBox 좌표)
+export const START_LON = 127 // 처음 화면·'원래대로'의 가운데 경도 (한국 근처)
 export const ZOOM_STEP = 1.5 // +/− 버튼 한 번에 확대·축소하는 배율
 
 // 모바일
 export const MOBILE_QUERY = '(max-width: 639px)' // 상세 창을 화면 전체로 띄우는 폭
 export const TOUCH_QUERY = '(pointer: coarse)' // 손가락 터치 화면: 메모지 끄고, 누르는 영역을 넓힌다
-export const PORTRAIT_CENTER = [110, 25] // 세로 화면에서 처음 보여줄 곳 [경도, 위도] (아시아)
+export const PORTRAIT_LAT = 25 // 세로 화면에서 처음 가운데 둘 위도 (경도는 START_LON)
 export const TOUCH_HIT_RADIUS = 18 // 핀·버블을 누를 수 있는 영역 반지름 (px)
 
 // 환율: 키 없이 쓰는 open.er-api.com (원화 기준, 하루 한 번 갱신). 화면에 출처 표시 필요

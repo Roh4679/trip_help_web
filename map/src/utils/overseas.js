@@ -11,20 +11,8 @@ export const OVERSEAS = [
   { from: '643', id: '804', name: 'Ukraine', isPart: ([lon, lat]) => lon > 32 && lon < 37 && lat > 44 && lat < 46.5 },
 ]
 
-// 날짜변경선(경도 180°)을 넘는 나라: 서경 부분이 지도 반대쪽 끝에 따로 그려지므로 경도 180°에서 잘라 낸다
-// 러시아 동쪽 끝(추코트카, 브랑겔섬)이 알래스카 옆에 그려지는 조각. 러시아는 그 밖에 서경 땅이 없다
-export const CUT_AT_ANTIMERIDIAN = ['643']
-const EAST_EDGE = 179.99 // 정확히 180이면 왼쪽(-180)으로 그려질 수 있어 살짝 안쪽
-
-function cutAtAntimeridian(f) {
-  if (!CUT_AT_ANTIMERIDIAN.includes(f.id)) return f
-  const clamp = (ring) => ring.map(([lon, lat]) => [lon < 0 ? EAST_EDGE : lon, lat])
-  const polygons = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [f.geometry.coordinates]
-  return { ...f, geometry: { type: 'MultiPolygon', coordinates: polygons.map((rings) => rings.map(clamp)) } }
-}
-
 export function splitOverseas(features) {
-  return features.map(cutAtAntimeridian).flatMap((f) => {
+  return features.flatMap((f) => {
     const rule = OVERSEAS.find((r) => r.from === f.id)
     if (!rule) return [f]
     const polygons = f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [f.geometry.coordinates]

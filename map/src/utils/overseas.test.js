@@ -22,7 +22,7 @@ assert.equal(after.find((f) => f.properties.name === 'Ukraine' && f.id === '804'
 // 알래스카(북위 50도 위)는 미국에 남는다
 const us = after.find((f) => f.id === '840')
 assert.ok(us.geometry.coordinates.some((c) => geoCentroid({ type: 'Polygon', coordinates: c })[1] > 50))
-// 러시아 동쪽 끝: 서경 좌표가 남지 않는다 (알래스카 옆 조각 없음). 조각 수는 그대로
+// 러시아 동쪽 끝(추코트카)은 자르지 않는다: 지도가 좌우로 돌아가므로 d3가 그때 화면 가장자리에서 자른다
 const ru = after.find((f) => f.id === '643')
-assert.ok(ru.geometry.coordinates.every((rings) => rings.every((ring) => ring.every(([lon]) => lon >= 0))))
+assert.ok(ru.geometry.coordinates.some((rings) => rings.some((ring) => ring.some(([lon]) => lon < -170))))
 console.log('ok')

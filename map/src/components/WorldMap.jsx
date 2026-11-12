@@ -1,14 +1,16 @@
-import { useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { zoom, zoomIdentity } from 'd3-zoom'
 import { select } from 'd3-selection'
+import { geoCentroid, geoPath } from 'd3-geo'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import {
   COLORS, RISK_COLORS, PIN_COLORS, PIN_SMALL, RESULT_DIM_OPACITY, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
-  TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS, FOCUS_ZOOM,
+  TOUCH_QUERY, PORTRAIT_LAT, TOUCH_HIT_RADIUS, FOCUS_ZOOM, START_LON,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
-import { WIDTH, HEIGHT, projection, shapes, pins, PIN_PATH } from '../utils/places.js'
+import { WIDTH, HEIGHT, DEG_PX, makeProjection, shapes, pins, PIN_PATH } from '../utils/places.js'
+import { xCenter, lonOf, xFor, nearestLon, clampY } from '../utils/view.js'
 import { placeNotice } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 import { cardStyle } from '../../../shared/tokens.js'
@@ -17,39 +19,41 @@ import { cardStyle } from '../../../shared/tokens.js'
 const HATCHED = [3, 4]
 const fillOf = (tone) => (HATCHED.includes(tone) ? `url(#hatch-${tone})` : (COLORS[tone] ?? RISK_COLORS[tone]))
 
-// 처음(과 '원래대로') 보여줄 위치. 세로 화면이면 지도가 가운데 가는 띠로만 보이므로,
-// 화면 높이를 채우도록 확대하고 아시아(PORTRAIT_CENTER)를 가운데 둔다
+// 중심 경도·배율·세로 이동 → d3-zoom 변환 (가로 값은 회전으로 바꿔 쓰므로 xFor로 만든다)
+const viewTransform = (lon, k, y) => zoomIdentity.translate(xFor(lon, k, DEG_PX), clampY(y, k)).scale(k)
+
+// 처음(과 '원래대로') 보여줄 위치: 한국 근처(START_LON)가 가운데.
+// 세로 화면이면 지도가 가운데 가는 띠로만 보이므로, 화면 높이를 채우도록 확대하고 PORTRAIT_LAT를 가운데 둔다
 function startTransform(svgEl) {
   const { width, height } = svgEl.getBoundingClientRect()
-  if (height <= width) return zoomIdentity
-  const visibleHeight = (height * WIDTH) / width // 화면에 보이는 높이 (지도 좌표)
-  const k = Math.min(visibleHeight / HEIGHT, MAX_ZOOM)
-  const [px, py] = projection(PORTRAIT_CENTER)
-  return zoomIdentity.translate(WIDTH / 2 - k * px, HEIGHT / 2 - k * py).scale(k)
+  if (height <= width) return viewTransform(START_LON, 1, 0)
+  const k = Math.min((height * WIDTH) / width / HEIGHT, MAX_ZOOM) // 화면에 보이는 높이 ÷ 지도 높이
+  const [, py] = makeProjection(START_LON)([START_LON, PORTRAIT_LAT])
+  return viewTransform(START_LON, k, HEIGHT / 2 - k * py)
 }
 
-// 검색으로 고른 장소로 확대·이동할 위치. 나라 모양이면 화면에 꽉 차게, 작은 나라 핀이면 FOCUS_ZOOM배
-function focusTransform(place) {
+// 검색으로 고른 장소: 그 나라가 가운데 오도록 돌리고, 나라 모양이면 화면에 꽉 차게, 작은 나라 핀이면 FOCUS_ZOOM배
+// fromLon: 지금 중심 경도 (가장 가깝게 돌아가도록)
+function focusTransform(place, fromLon) {
+  const lonlat = place.feature ? geoCentroid(place.feature) : place.lonlat
+  const projection = makeProjection(lonlat[0])
   let k = FOCUS_ZOOM.point
-  let [cx, cy] = place.point ?? [0, 0]
-  if (place.bounds) {
-    const [[x0, y0], [x1, y1]] = place.bounds
+  let cy = projection(lonlat)[1]
+  if (place.feature) {
+    const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(place.feature)
     k = FOCUS_ZOOM.fill / Math.max((x1 - x0) / WIDTH, (y1 - y0) / HEIGHT)
-    ;[cx, cy] = [(x0 + x1) / 2, (y0 + y1) / 2]
+    cy = (y0 + y1) / 2
   }
   k = Math.min(Math.max(k, 1), MAX_ZOOM) // 지도보다 큰 나라(러시아 등)도 더 줄이지 않는다
-  // 드래그할 때(translateExtent)처럼 지도 밖 빈 곳이 보이지 않게 이동 범위를 막는다. k=1이면 처음 위치 그대로
-  const clamp = (v, size) => Math.min(0, Math.max(size - k * size, v))
-  return zoomIdentity.translate(clamp(WIDTH / 2 - k * cx, WIDTH), clamp(HEIGHT / 2 - k * cy, HEIGHT)).scale(k)
+  return viewTransform(nearestLon(fromLon, lonlat[0]), k, HEIGHT / 2 - k * cy)
 }
-
 
 // highlight: 추천 결과 나라의 iso2 Set. 있으면 결과 나라만 진하게, 나머지는 흐리게 (null이면 평소대로)
 export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsTop = null, highlight = null }) {
   const dimmed = (place) => highlight && !highlight.has(place.data?.iso2)
   const toast = useToast()
   const [hover, setHover] = useState(null)
-  const [transform, setTransform] = useState(zoomIdentity)
+  const [transform, setTransform] = useState(() => viewTransform(START_LON, 1, 0))
   const svgRef = useRef(null)
   const zoomRef = useRef(null)
   const enabledRef = useRef(isZoomEnabled)
@@ -60,16 +64,29 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
     const svg = select(svgRef.current)
     zoomRef.current = zoom()
       .scaleExtent([1, MAX_ZOOM])
-      .translateExtent([[0, 0], [WIDTH, HEIGHT]])
+      // 가로는 끝없이 (회전), 세로는 지도 위아래 밖이 보이지 않게
+      .translateExtent([[-Infinity, 0], [Infinity, HEIGHT]])
       // 창(Dialog)이 열려 있으면 휠·드래그 확대를 받지 않는다
       .filter((e) => enabledRef.current && (!e.ctrlKey || e.type === 'wheel') && !e.button)
       .on('zoom', (e) => setTransform(e.transform))
-    svg.call(zoomRef.current).on('dblclick.zoom', null) // 두 번 클릭 확대 끔
+    // 두 번 클릭 확대 끔. 끌기가 끝날 때의 클릭은 d3-zoom이 막아 준다 (나라가 잘못 눌리지 않게)
+    svg.call(zoomRef.current).on('dblclick.zoom', null)
     zoomRef.current.transform(svg, startTransform(svgRef.current))
     return () => svg.on('.zoom', null)
   }, [])
 
-  const zoomBy = (k) => zoomRef.current.scaleBy(select(svgRef.current), k)
+  // 지금 보기: 중심 경도로 투영을 돌리고, 지도 그룹은 가운데 기준 확대 + 세로 이동만
+  const { k } = transform
+  const lon = lonOf(transform, DEG_PX)
+  const projection = useMemo(() => makeProjection(lon), [lon])
+  const dByKey = useMemo(() => {
+    const path = geoPath(projection)
+    return Object.fromEntries(shapes.map((s) => [s.key, path(s.feature)]))
+  }, [projection])
+  const groupTransform = `translate(${xCenter(k)},${transform.y}) scale(${k})`
+  const toScreen = ([px, py]) => [xCenter(k) + k * px, transform.y + k * py]
+
+  const zoomBy = (factor) => zoomRef.current.scaleBy(select(svgRef.current), factor)
   const resetZoom = () => zoomRef.current.transform(select(svgRef.current), startTransform(svgRef.current))
 
   // 메모지는 마우스에서만 띄운다 (터치는 누르면 바로 상세 창이 열리므로)
@@ -81,10 +98,10 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
     style: { cursor: 'pointer' },
   })
 
-  // 나라 검색에서 고르면: 그 나라로 확대·이동한 뒤 지도에서 누른 것과 똑같이 동작한다
+  // 나라 검색에서 고르면: 그 나라가 가운데 오도록 돌려 확대한 뒤 지도에서 누른 것과 똑같이 동작한다
   useImperativeHandle(ref, () => ({
     focus(place) {
-      zoomRef.current.transform(select(svgRef.current), focusTransform(place))
+      zoomRef.current.transform(select(svgRef.current), focusTransform(place, lonOf(transform, DEG_PX)))
       handleClick(place)
     },
   }))
@@ -115,7 +132,7 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
               patternUnits="userSpaceOnUse"
               width={DANGER_HATCH.gap}
               height={DANGER_HATCH.gap}
-              patternTransform={`scale(${1 / transform.k}) rotate(45)`}
+              patternTransform={`scale(${1 / k}) rotate(45)`}
             >
               <rect width={DANGER_HATCH.gap} height={DANGER_HATCH.gap} fill={RISK_COLORS[tone].base} />
               <line x1={0} y1={0} x2={0} y2={DANGER_HATCH.gap} stroke={RISK_COLORS[tone].hatch} strokeWidth={DANGER_HATCH.width} />
@@ -123,20 +140,20 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
           ))}
         </defs>
         {/* 확대해도 선 두께는 그대로 (non-scaling-stroke) */}
-        <g transform={transform.toString()}>
+        <g transform={groupTransform}>
           {shapes.map((s) => (
-            <path key={s.key} d={s.d} fill={fillOf(s.tone)} opacity={dimmed(s) ? RESULT_DIM_OPACITY : 1} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
+            <path key={s.key} d={dByKey[s.key]} fill={fillOf(s.tone)} opacity={dimmed(s) ? RESULT_DIM_OPACITY : 1} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
           ))}
-          {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 */}
-          {hover?.shape.d && (
-            <path d={hover.shape.d} fill="none" stroke={COLORS.hoverBorder} strokeWidth={1.2} vectorEffect="non-scaling-stroke" pointerEvents="none" />
+          {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 (지금 회전으로 다시 그린 모양) */}
+          {hover?.shape.feature && (
+            <path d={dByKey[hover.shape.key]} fill="none" stroke={COLORS.hoverBorder} strokeWidth={1.2} vectorEffect="non-scaling-stroke" pointerEvents="none" />
           )}
         </g>
 
         {/* 핀은 줌 그룹 밖에 그려서 확대해도 크기가 일정하다. 색으로 상태를 구분한다 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시) */}
-        {pins.map(({ place, point, offset }) => {
-          const pinScale = transform.k < PIN_SMALL.untilZoom ? PIN_SMALL.scale : 1
-          const [x, y] = transform.apply(point)
+        {pins.map(({ place, lonlat, offset }) => {
+          const pinScale = k < PIN_SMALL.untilZoom ? PIN_SMALL.scale : 1
+          const [x, y] = toScreen(projection(lonlat))
           const [px, py] = [x + offset[0], y + offset[1]]
           const moved = offset[0] !== 0 || offset[1] !== 0
           return (
