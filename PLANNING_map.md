@@ -24,7 +24,7 @@
 | 지도 | `d3-geo` + `topojson-client`로 SVG 직접 그리기, 확대/이동은 `d3-zoom` | react-simple-maps는 React 19와 충돌할 수 있어 쓰지 않는다 |
 | 지도 데이터 | world-atlas TopoJSON (`countries-110m.json`) | 단순한 형태만 필요하므로 110m(저해상도) 사용. 작은 나라는 핀으로 보완 |
 | 스타일 | Astryx 테마 + 필요 시 CSS Modules | |
-| 데이터 | `src/data/*.json` | 런타임 API 호출 없음 (환율만 예외) |
+| 데이터 | `map/src/data/*.json` | 런타임 API 호출 없음 (환율만 예외) |
 | 배포 | Vercel (사이트에서 GitHub 저장소 연결) | 정적 사이트. `main`에 push하면 Vercel이 자동으로 빌드·배포 |
 
 ### 2.1 Astryx 설정 방법 (공식 README 기준)
@@ -127,7 +127,7 @@ npm run astryx -- component --list
 | 출발지 (대한민국) | **파랑** (`COLORS.home`, 위험도 색과 겹치지 않게) | "출발지예요" | "대한민국 · 출발지예요" 토스트 |
 | 데이터 없음 | **회색** | 나라 이름만 | "곧 추가될 예정이에요~" 안내 (토스트) |
 
-- 정보를 제공하지 않는 기준: 주요 관광지가 **4단계(여행금지)** 이거나 직접 막은 곳(`risk.blocked`). (`src/config.js`의 `RISK_LEVEL_BLOCK = 4`) 3단계(예: 두바이)와 특별여행주의보(예: 네팔)는 정보를 보여 주되 빨강 빗금과 빨간 경고 띠로 경고하고 추천에서 뺀다 (`RISK_LEVEL_WARN = 3`). 2026-11-11에 3단계에서 4단계로 바꿈.
+- 정보를 제공하지 않는 기준: 주요 관광지가 **4단계(여행금지)** 이거나 직접 막은 곳(`risk.blocked`). (`map/src/config.js`의 `RISK_LEVEL_BLOCK = 4`) 3단계(예: 두바이)와 특별여행주의보(예: 네팔)는 정보를 보여 주되 빨강 빗금과 빨간 경고 띠로 경고하고 추천에서 뺀다 (`RISK_LEVEL_WARN = 3`). 2026-11-11에 3단계에서 4단계로 바꿈.
 - **특별여행주의보**(2.5단계)가 주요 관광지에 걸린 나라는 데이터에 `risk.special: true`로 표시하고 3단계와 같이 빨강 빗금. `config.js`의 `BLOCK_SPECIAL_WARNING`을 `true`로 하면 정보 제공도 막는다 (지금은 `false`).
 - 색 우선순위: 4단계·방문 제한(진한 빨강 빗금) > 3단계·특별여행주의보(빨강 빗금, 데이터가 없어도) > 데이터 없음(회색) > 단계별 색(초록·연두·주황). 출발지(한국, `config.js`의 `HOME_ID`)는 따로 파랑.
 - 지역마다 단계가 다른 나라(`risk.mixed`)는 `risk.level`(주요 관광지 기준) 색으로 칠한다.
@@ -144,7 +144,7 @@ npm run astryx -- component --list
 - 숫자 ID가 없는 곳(북키프로스, 소말릴란드, 코소보)은 지도 데이터의 영어 이름을 그대로 보여준다.
 
 **해외 영토 분리**
-- 본국 모양에 붙어 있지만 따로 다뤄야 하는 곳은 `src/utils/overseas.js`의 `OVERSEAS` 목록으로 떼어낸다 (시험: `node src/utils/overseas.test.js`).
+- 본국 모양에 붙어 있지만 따로 다뤄야 하는 곳은 `map/src/utils/overseas.js`의 `OVERSEAS` 목록으로 떼어낸다 (시험: `node map/src/utils/overseas.test.js`).
   - **프랑스령 기아나**: 프랑스에서 떼어 별도 나라(ID `"254"`). 지금은 회색.
   - **하와이**: 미국에서 떼어 괌처럼 별도 여행지(ID `"US-HI"`, 국기 `us-hi`). 알래스카는 미국에 남는다.
   - **크림반도**: 러시아에서 떼어 우크라이나(ID `"804"`)로 붙인다. 외교부 기준 우크라이나 영토라 우크라이나와 같은 여행금지(빗금)로 보인다.
@@ -222,7 +222,7 @@ npm run astryx -- component --list
     - 콘센트에 **E나 F**가 있으면 → `어댑터 필요 없음`
     - **C만** 있고 E·F가 없으면 (태국, 중국, 스위스 등) → `얇은 플러그는 그대로 꽂혀요. 굵은 접지형 플러그(노트북, 드라이기 등)는 어댑터가 필요해요`
     - 둘 다 아니면 → `변환 어댑터 필요 · (모양 설명)예요`
-    - 기준 타입·전압 범위는 `config.js`의 `KOREA_PLUG`, 판단과 타입별 모양 설명은 `src/utils/plug.js`
+    - 기준 타입·전압 범위는 `config.js`의 `KOREA_PLUG`, 판단과 타입별 모양 설명은 `map/src/utils/plug.js`
   - 굵은 글씨 문장 대신 **아이콘이 있는 안내 박스**로 보여 준다: `🔌` 어댑터 안내, 전압 안내가 있으면 `⚡` 줄 추가. 그대로 쓸 수 있으면 초록 박스, 어댑터나 전압 확인이 필요하면 주황 박스 (`CountryDetail`의 `PlugBox`).
 - 나라별 추천 물품 목록 (JSON의 `items`)
 
@@ -287,7 +287,7 @@ npm run astryx -- component --list
 
 ## 5. 옷차림 추천 규칙
 
-월평균 기온 기준 (`src/utils/clothing.js`)
+월평균 기온 기준 (`map/src/utils/clothing.js`)
 
 | 평균 기온 | 추천 |
 |---|---|
@@ -427,11 +427,11 @@ src/data/
 - **`npm run check-risk`**: 0404 나라별 페이지(`risk.safetyId`)를 모두 읽어서, 지금 데이터와 여행경보 범위가 다른 나라만 표로 보여 준다. **데이터는 고치지 않는다** (고칠지는 표를 보고 정한다).
   - 비교: 데이터는 `risk.mixed`면 `range`, 아니면 `[level, level]`. 0404는 페이지의 단계 목록에서 [최소, 최대] (특별여행주의보 = 2.5, "전 지역"·"제외한 지역"·"이외 지역"이 없으면 나머지 지역은 경보 없음 = 0).
   - 하와이·괌·사이판처럼 다른 나라(미국) 페이지를 같이 쓰는 곳은 건너뛴다. 나라별 페이지가 없는 곳(북한)도 건너뛴다.
-  - 페이지 읽기 실패(시간 초과, 첫 화면으로 넘어감)는 표에 "읽기 실패"로 나온다. 순수 함수는 `src/utils/riskCheck.js` (시험: `riskCheck.test.js`).
+  - 페이지 읽기 실패(시간 초과, 첫 화면으로 넘어감)는 표에 "읽기 실패"로 나온다. 순수 함수는 `map/src/utils/riskCheck.js` (시험: `riskCheck.test.js`).
 - 기후는 월평균 값(기상 통계)을 사용한다.
 - AI로 초안을 만들어도 **비자, 여행경보, 플러그 타입은 반드시 공식 자료로 확인**한다.
 - 확인 전인 날짜(`risk.updated`, `currency.updated`)는 `"미확인"`으로 넣는다. 화면에는 날짜 대신 작은 회색 `미확인` 표시(`DateNote` 컴포넌트)가 붙는다.
-- 직접 확인할 값은 루트의 **`VERIFY.md`**에 나라별 체크리스트(여행경보, 무비자 기간, 전자여행허가·입국신고서, 환율, 플러그·전압 + 확인할 공식 사이트)로 정리한다. 확인한 값이 오면 `countries.json`과 `VERIFY.md`를 같이 고친다.
+- 직접 확인할 값은 **`map/VERIFY.md`**에 나라별 체크리스트(여행경보, 무비자 기간, 전자여행허가·입국신고서, 환율, 플러그·전압 + 확인할 공식 사이트)로 정리한다. 확인한 값이 오면 `countries.json`과 `map/VERIFY.md`를 같이 고친다.
 - 지도에 없는 나라(싱가포르 등)는 `id: null` + `marker`로 넣는다. 미국은 기후·시차·핀을 로스앤젤레스 기준으로 넣었다. 하와이는 별도 항목(`id: "US-HI"`).
 - 위험 국가(빗금)는 상세 정보 없이 `id`, `iso2`, `name`, `risk`만 넣어도 된다 (예: 우크라이나). 데이터가 없는 나라는 회색이다.
 
@@ -439,8 +439,29 @@ src/data/
 
 ## 8. 폴더 구조 (권장)
 
+지도 기능(map)과 새 기능(plan)을 폴더로 나눈다. 둘은 같은 웹에서 동작하고, plan은 나중에 뺄 수도 있어서 따로 둔다 (2026-11-12).
+
 ```
-src/
+trip_help_web/
+├── index.html, main.jsx       # 웹 입구. 지도를 기본 화면으로 띄우고 사이드 창 탭에 plan을 끼워 넣는다
+├── package.json, vite.config.js, public/   # 두 기능이 같이 쓰는 설정
+├── PLANNING_map.md            # 지도 기능 기획 (이 문서)
+├── map/                       # 지도 기능 (지금까지 만든 것)
+│   ├── VERIFY.md
+│   ├── scripts/               # update-rates.mjs(환율), check-risk.mjs(여행경보 비교), run-tests.mjs(npm test)
+│   └── src/                   # 아래 구조
+└── plan/                      # 새 기능 (여행 계획). map 코드를 가져다 쓸 수는 있지만 map은 plan을 가져다 쓰지 않는다
+    └── src/PlanPanel.jsx
+```
+
+- **plan 떼어 내기**: `plan/` 폴더를 지우고 `main.jsx`에서 `PlanPanel` import와 `extraTabs` 한 줄을 빼면 된다.
+- **사이드 창 탭**: 사이드 창(Drawer) 맨 위에 탭 `여행지 추천 | 여행 계획`. 왼쪽 위 버튼 `여행지 추천`, `여행 계획`이 각각 그 탭으로 사이드 창을 연다. map의 `App`은 `extraTabs` prop(`[{ value, label, content }]`)으로 탭을 받기만 한다. 탭을 바꿔도 추천 조건은 남는다.
+- **시험**: `npm test` (map/src/utils/*.test.js 전부).
+
+`map/src/`:
+
+```
+map/src/
 ├── App.jsx
 ├── config.js                  # 위험 기준 단계, 우기 기준 mm, 색상, 핀 색, 확대 배율 등
 ├── data/
@@ -496,8 +517,8 @@ src/
     - 한글 일부만 입력해도 목록이 뜨고, 영어 이름과 다른 이름(예: 터키 → 튀르키예)으로도 찾을 수 있게 한다.
     - 고르면 지도가 그 나라로 확대·이동하고, 지도에서 클릭했을 때와 같은 동작을 한다 (상세 창 / 준비 중 토스트 / 위험 토스트).
     - 목록의 각 나라 옆에 상태(볼 수 있음 / 준비 중 / 위험)를 작게 표시한다.
-    - 구현: `src/components/CountrySearch.jsx`(Astryx `Typeahead` + `createStaticSource`), 검색 목록·정렬은 `src/utils/search.js`(시험: `node src/utils/search.test.js`).
-    - 영어 이름과 언어 파일의 다른 이름은 `i18n-iso-countries`에서, 그 밖의 다른 이름은 `src/data/aliases.json`(키: 지도 숫자 ID, 작은 나라는 iso2).
+    - 구현: `map/src/components/CountrySearch.jsx`(Astryx `Typeahead` + `createStaticSource`), 검색 목록·정렬은 `map/src/utils/search.js`(시험: `node map/src/utils/search.test.js`).
+    - 영어 이름과 언어 파일의 다른 이름은 `i18n-iso-countries`에서, 그 밖의 다른 이름은 `map/src/data/aliases.json`(키: 지도 숫자 ID, 작은 나라는 iso2).
     - **도시 이름으로도 찾는다**: 각 나라의 `climateCity`는 자동으로 넣고, 그 밖의 도시는 `aliases.json`의 `cities`(키는 위와 같음, 나라마다 대표 관광 도시 2~5개). 도시는 따로 한 줄씩, 제목은 도시 이름, 설명은 `→ 아랍에미리트 · 볼 수 있음`. 도시 줄 제목에 나라 이름을 넣지 않아서 "일본"을 치면 일본 도시가 다 나오지 않는다. 목록은 나라가 먼저, 도시는 뒤.
     - 목록은 볼 수 있음 → 출발지 → 준비 중 → 위험 순, 같은 상태끼리는 가나다순. 크림반도처럼 한 나라가 두 모양이면 한 줄만.
     - 확대: 나라 모양은 화면의 60%를 채우게, 작은 나라 핀은 4배 (`config.js`의 `FOCUS_ZOOM`). 휴대폰 폭에서는 검색창이 추천 버튼 아랫줄로 간다.
@@ -507,9 +528,9 @@ src/
 ## 10. Claude Code 작업 지침
 
 - 이 문서를 기준으로 구현한다. 문서와 다르게 만들어야 하면 먼저 물어본다.
-- **런타임에 외부 API를 호출하지 않는다.** 모든 데이터는 `src/data/*.json`에서 읽는다. (국기 이미지 URL은 예외로 허용, 원하면 로컬 저장)
+- **런타임에 외부 API를 호출하지 않는다.** 모든 데이터는 `map/src/data/*.json`에서 읽는다. (국기 이미지 URL은 예외로 허용, 원하면 로컬 저장)
   - **예외: 환율.** 키 없이 쓰는 open.er-api.com(`config.js`의 `RATES_URL`, 원화 기준, 하루 한 번 갱신)을 쓴다.
-    - 빌드: Vercel 빌드 때 `prebuild`(`scripts/update-rates.mjs`)가 API를 한 번 불러 `countries.json`의 `krw`와 `updated`(ISO 시각)를 덮어쓴다. 실패해도 빌드는 멈추지 않고 기존 JSON을 쓴다. 로컬에서는 `npm run rates`로만 갱신한다.
+    - 빌드: Vercel 빌드 때 `prebuild`(`map/scripts/update-rates.mjs`)가 API를 한 번 불러 `countries.json`의 `krw`와 `updated`(ISO 시각)를 덮어쓴다. 실패해도 빌드는 멈추지 않고 기존 JSON을 쓴다. 로컬에서는 `npm run rates`로만 갱신한다.
     - 브라우저: 페이지를 열 때 가져오고 localStorage에 1시간 저장한다(`RATES_CACHE_MS`). 성공하면 "기준 시각", 실패하면 저장된 값 또는 JSON 값과 "마지막 갱신: 시각"을 보여 준다.
     - 이용 조건: 화면에 출처 링크(Rates By Exchange Rate API)를 둔다. 너무 자주 부르면 IP가 20분간 막힌다(429).
 - 기준값(위험 단계, 우기 mm, 색상)은 코드에 박지 말고 `config.js`에 둔다.

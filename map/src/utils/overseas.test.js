@@ -5,7 +5,7 @@ import { feature } from 'topojson-client'
 import { geoCentroid } from 'd3-geo'
 import { splitOverseas, OVERSEAS } from './overseas.js'
 
-const world = JSON.parse(readFileSync(new URL('../../node_modules/world-atlas/countries-110m.json', import.meta.url)))
+const world = JSON.parse(readFileSync(new URL('../../../node_modules/world-atlas/countries-110m.json', import.meta.url)))
 const before = feature(world, world.objects.countries).features
 const after = splitOverseas(before)
 const count = (id) => before.filter((f) => f.id === id).reduce((n, f) => n + (f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates.length : 1), 0)

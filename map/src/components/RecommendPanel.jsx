@@ -12,7 +12,8 @@ const toggle = (list, item, on) => (on ? [...list, item] : list.filter((x) => x 
 const row = { display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }
 
 // 사이드 창(Drawer) 안의 내용. 추천 받기 버튼은 아래(LayoutFooter)에 고정해서 조건이 늘어도 항상 보인다
-export default function RecommendPanel({ onSubmit, onClose }) {
+// tabs: 제목줄 아래에 붙일 사이드 창 탭 (App이 넘겨준다)
+export default function RecommendPanel({ onSubmit, onClose, tabs }) {
   const [maxHours, setMaxHours] = useState(20)
   const [seasons, setSeasons] = useState([])
   const [avoidRain, setAvoidRain] = useState(false)
@@ -20,7 +21,7 @@ export default function RecommendPanel({ onSubmit, onClose }) {
 
   return (
     <Layout
-      header={<DrawerHeader title="여행지 추천" onOpenChange={onClose} />}
+      header={<><DrawerHeader title="여행지 추천" onOpenChange={onClose} />{tabs}</>}
       content={
         <LayoutContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
