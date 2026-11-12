@@ -22,4 +22,7 @@ assert.equal(after.find((f) => f.properties.name === 'Ukraine' && f.id === '804'
 // 알래스카(북위 50도 위)는 미국에 남는다
 const us = after.find((f) => f.id === '840')
 assert.ok(us.geometry.coordinates.some((c) => geoCentroid({ type: 'Polygon', coordinates: c })[1] > 50))
+// 러시아 동쪽 끝: 서경 좌표가 남지 않는다 (알래스카 옆 조각 없음). 조각 수는 그대로
+const ru = after.find((f) => f.id === '643')
+assert.ok(ru.geometry.coordinates.every((rings) => rings.every((ring) => ring.every(([lon]) => lon >= 0))))
 console.log('ok')
