@@ -1,16 +1,18 @@
 import { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import { zoom, zoomIdentity } from 'd3-zoom'
 import { select } from 'd3-selection'
+import { interpolate } from 'd3-interpolate'
+import 'd3-transition' // selection.transition() (부드럽게 움직이기)
 import { geoCentroid, geoPath } from 'd3-geo'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import {
   COLORS, RISK_COLORS, PIN_COLORS, PIN_SMALL, RESULT_DIM_OPACITY, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
-  TOUCH_QUERY, PORTRAIT_LAT, TOUCH_HIT_RADIUS, FOCUS_ZOOM, START_LON,
+  TOUCH_QUERY, PORTRAIT_LAT, TOUCH_HIT_RADIUS, FOCUS_ZOOM, START_LON, FIT_RESULTS,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
-import { WIDTH, HEIGHT, DEG_PX, makeProjection, shapes, pins, PIN_PATH } from '../utils/places.js'
-import { xCenter, lonOf, xFor, nearestLon, clampY } from '../utils/view.js'
+import { WIDTH, HEIGHT, DEG_PX, makeProjection, shapes, smallPlaces, pins, PIN_PATH } from '../utils/places.js'
+import { xCenter, lonOf, xFor, nearestLon, clampY, meanLon, visibleBox, fitView } from '../utils/view.js'
 import { placeNotice } from '../utils/format.js'
 import CountryTooltip from './CountryTooltip.jsx'
 import { cardStyle } from '../../../shared/tokens.js'
@@ -68,6 +70,8 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
       .translateExtent([[-Infinity, 0], [Infinity, HEIGHT]])
       // 창(Dialog)이 열려 있으면 휠·드래그 확대를 받지 않는다
       .filter((e) => enabledRef.current && (!e.ctrlKey || e.type === 'wheel') && !e.button)
+      // 부드럽게 움직일 때 기본 보간(멀리 갈 때 크게 줄였다 키움)은 회전과 맞지 않아 직선 보간
+      .interpolate(interpolate)
       .on('zoom', (e) => setTransform(e.transform))
     // 두 번 클릭 확대 끔. 끌기가 끝날 때의 클릭은 d3-zoom이 막아 준다 (나라가 잘못 눌리지 않게)
     svg.call(zoomRef.current).on('dblclick.zoom', null)
@@ -98,11 +102,42 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
     style: { cursor: 'pointer' },
   })
 
-  // 나라 검색에서 고르면: 그 나라가 가운데 오도록 돌려 확대한 뒤 지도에서 누른 것과 똑같이 동작한다
+  // 부드럽게 움직이기 (추천 결과 맞추기·돌아가기)
+  const animateTo = (t) => select(svgRef.current).transition().duration(FIT_RESULTS.duration).call(zoomRef.current.transform, t)
+  // 추천 결과를 맞추기 직전 위치 (결과가 사라지면 여기로 돌아간다)
+  const beforeFitRef = useRef(null)
+
   useImperativeHandle(ref, () => ({
+    // 나라 검색에서 고르면: 그 나라가 가운데 오도록 돌려 확대한 뒤 지도에서 누른 것과 똑같이 동작한다
     focus(place) {
       zoomRef.current.transform(select(svgRef.current), focusTransform(place, lonOf(transform, DEG_PX)))
       handleClick(place)
+    },
+    // 추천 결과 나라들(iso2 목록)이 오른쪽 rightPx만큼 가려지는 화면에서도 모두 보이게 돌리고 맞춘다
+    fit(iso2s, rightPx) {
+      const geoms = iso2s.flatMap((iso) => {
+        const small = smallPlaces.find((p) => p.data.iso2 === iso)
+        if (small) return [{ type: 'Feature', geometry: { type: 'Point', coordinates: small.lonlat } }]
+        return shapes.filter((s) => s.data?.iso2 === iso).map((s) => s.feature)
+      })
+      if (!geoms.length) return
+      const lonC = meanLon(geoms.map((g) => geoCentroid(g)[0])) // 결과들의 가운데 경도
+      const bounds = geoPath(makeProjection(lonC)).bounds({ type: 'FeatureCollection', features: geoms })
+      const { width, height } = svgRef.current.getBoundingClientRect()
+      const { inset } = FIT_RESULTS
+      const box = visibleBox(width, height, { ...inset, right: inset.right + rightPx })
+      const v = fitView(bounds, lonC, box, FIT_RESULTS.maxZoom, DEG_PX)
+      const now = lonOf(transform, DEG_PX)
+      beforeFitRef.current ??= transform // 이미 맞춘 상태에서 다시 맞추면 처음 위치를 그대로 기억
+      animateTo(viewTransform(nearestLon(now, v.lon), v.k, v.y))
+    },
+    // 결과를 닫거나 조건을 바꾸면 맞추기 직전 위치로 (가장 가까운 방향으로 돌아간다)
+    restore() {
+      const before = beforeFitRef.current
+      if (!before) return
+      beforeFitRef.current = null
+      const now = lonOf(transform, DEG_PX)
+      animateTo(viewTransform(nearestLon(now, lonOf(before, DEG_PX)), before.k, before.y))
     },
   }))
 

@@ -55,6 +55,9 @@ export const MAX_ZOOM = 8
 // 지도 회전 (좌우로 끝없이 이어지는 지도): 가로로 끌면 지도를 옮기는 대신 투영의 중심 경도를 돌린다
 export const MAP_SIZE = [960, 460] // 지도 그림 크기 (viewBox 좌표)
 export const START_LON = 127 // 처음 화면·'원래대로'의 가운데 경도 (한국 근처)
+// 추천 결과 맞추기: 결과 나라들이 추천 패널에 가려지지 않는 영역에 모두 들어오게 돌리고 확대 (최대 maxZoom배, duration ms 동안 부드럽게)
+// inset: 화면 가장자리에서 비워 둘 px (위 툴바, 아래 범례·안내 문구). 오른쪽은 여기에 추천 패널 폭을 더한다
+export const FIT_RESULTS = { maxZoom: 3, duration: 400, inset: { top: 72, bottom: 96, left: 24, right: 24 } }
 export const ZOOM_STEP = 1.5 // +/− 버튼 한 번에 확대·축소하는 배율
 
 // 모바일

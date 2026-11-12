@@ -41,6 +41,14 @@ export default function App({ links = [] }) {
   // 추천 결과가 있으면 지도에서 결과 나라만 진하게 (조건을 바꾸거나 추천 패널을 닫으면 원래대로, 결과가 0곳이면 흐리게 하지 않는다)
   const highlight = useMemo(() => (results?.length ? new Set(results.map((r) => r.country.iso2)) : null), [results])
 
+  // 추천 결과가 나오면 지도를 돌려 결과 나라들이 추천 패널에 가려지지 않게 맞추고, 결과가 사라지면 원래 위치로
+  // (휴대폰은 추천 패널이 화면 전체를 덮어 지도가 안 보이므로 하지 않는다)
+  useEffect(() => {
+    if (isMobile) return
+    if (results?.length) mapRef.current.fit(results.map((r) => r.country.iso2), DRAWER_WIDTH)
+    else if (!results) mapRef.current.restore()
+  }, [results, isMobile])
+
   // 가운데 창은 나라 상세에만 쓴다. 추천 결과는 오른쪽 추천 패널 안에 보여 준다
   const close = (open) => !open && setSelected(null)
   // 추천 패널을 닫으면 결과도 지운다 (지도 강조도 원래대로)
