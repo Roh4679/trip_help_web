@@ -166,13 +166,13 @@ export function drawPlan(plan, font) {
   return canvas
 }
 
-// 그린 그림을 파일로 내려받는다: 일정표-2026-04-08.png
-export function downloadPlanPng(plan) {
+// 그린 그림을 파일로 내려받는다: 일정표-표 2-2026-04-08.png
+export function downloadPlanPng(plan, name = '') {
   const font = getComputedStyle(document.body).fontFamily || 'sans-serif'
   drawPlan(plan, font).toBlob((blob) => {
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
-    a.download = `일정표-${plan.startDate}.png`
+    a.download = `일정표-${name ? `${name}-` : ''}${plan.startDate}.png`
     a.click()
     setTimeout(() => URL.revokeObjectURL(a.href), 1000) // 바로 지우면 일부 브라우저에서 내려받기가 실패한다
   }, 'image/png')
