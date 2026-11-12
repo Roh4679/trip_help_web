@@ -1,0 +1,8 @@
+/* 일정표 화면 배치: 보관함 | 표 | 메모. 좁으면(900px 미만) 위아래로 */
+.plan-body { display: grid; grid-template-columns: 200px minmax(0, 1fr) 240px; gap: 16px; padding: 16px; align-items: start; }
+@media (max-width: 899px) {
+  .plan-body { grid-template-columns: minmax(0, 1fr); }
+}
+.plan-box { border: 1px solid #e3e6ea; border-radius: 8px; padding: 12px; background: #fafbfc; }
+.plan-table-wrap { overflow-x: auto; border: 1px solid #e3e6ea; border-radius: 8px; background: #fff; }
+.plan-head { display: flex; flex-direction: column; align-items: center; padding: 6px 4px; background: #f4f6f8; border-left: 1px solid #e3e6ea; border-bottom: 1px solid #cfd4da; }

@@ -10,7 +10,7 @@
     "rates": "node map/scripts/update-rates.mjs --force",
     "check-risk": "node map/scripts/check-risk.mjs",
     "lint": "oxlint",
-    "test": "node map/scripts/run-tests.mjs",
+    "test": "node map/scripts/run-tests.mjs map/src/utils plan/src",
     "preview": "vite preview",
     "astryx": "node node_modules/@astryxdesign/cli/clients/cli/bin/astryx.mjs"
   },
