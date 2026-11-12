@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Dialog, DialogHeader } from '@astryxdesign/core/Dialog'
 import { Button } from '@astryxdesign/core/Button'
 import { Drawer } from '@astryxdesign/core/Drawer'
@@ -25,6 +25,8 @@ export default function App() {
   const [isPanelOpen, setPanelOpen] = useState(false)
   const isMobile = useMedia(MOBILE_QUERY)
   const mapRef = useRef(null)
+  // 추천 결과가 떠 있으면 지도에서 결과 나라만 진하게 (결과 창을 닫으면 원래대로, 결과가 0곳이면 흐리게 하지 않는다)
+  const highlight = useMemo(() => (results?.length ? new Set(results.map((r) => r.country.iso2)) : null), [results])
 
   // 창은 하나만 쓰고 내용만 바꾼다 (Dialog 두 개를 동시에 닫고 열면 페이지가 멈췄다).
   // 추천 목록에서 연 나라를 닫으면 목록으로 돌아간다
@@ -45,6 +47,7 @@ export default function App() {
         controlsRight={isPanelOpen ? DRAWER_WIDTH + GAP : GAP}
         // 휴대폰 폭에서는 아래쪽을 범례·안내 문구에 내주고 확대 버튼을 오른쪽 위로
         controlsAtTop={isMobile}
+        highlight={highlight}
       />
       {/* 왼쪽 위: 추천 버튼 + 나라 검색. 휴대폰 폭에서는 확대 버튼이 오른쪽 위에 오므로 검색창을 아랫줄로 */}
       <div style={{ position: 'absolute', top: GAP, left: GAP, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'flex-start', gap: 8 }}>

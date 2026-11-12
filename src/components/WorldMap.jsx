@@ -4,7 +4,7 @@ import { select } from 'd3-selection'
 import { useToast } from '@astryxdesign/core/Toast'
 import { Button } from '@astryxdesign/core/Button'
 import {
-  COLORS, RISK_COLORS, PIN_COLORS, PIN_SMALL, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
+  COLORS, RISK_COLORS, PIN_COLORS, PIN_SMALL, RESULT_DIM_OPACITY, MAX_ZOOM, ZOOM_STEP, DANGER_HATCH,
   TOUCH_QUERY, PORTRAIT_CENTER, TOUCH_HIT_RADIUS, FOCUS_ZOOM,
 } from '../config.js'
 import { useMedia } from '../utils/useMedia.js'
@@ -43,7 +43,9 @@ function focusTransform(place) {
 }
 
 
-export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false }) {
+// highlight: 추천 결과 나라의 iso2 Set. 있으면 결과 나라만 진하게, 나머지는 흐리게 (null이면 평소대로)
+export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controlsRight = 12, controlsAtTop = false, highlight = null }) {
+  const dimmed = (place) => highlight && !highlight.has(place.data?.iso2)
   const toast = useToast()
   const [hover, setHover] = useState(null)
   const [transform, setTransform] = useState(zoomIdentity)
@@ -122,7 +124,7 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
         {/* 확대해도 선 두께는 그대로 (non-scaling-stroke) */}
         <g transform={transform.toString()}>
           {shapes.map((s) => (
-            <path key={s.key} d={s.d} fill={fillOf(s.tone)} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
+            <path key={s.key} d={s.d} fill={fillOf(s.tone)} opacity={dimmed(s) ? RESULT_DIM_OPACITY : 1} stroke={COLORS.border} strokeWidth={0.5} vectorEffect="non-scaling-stroke" {...hoverProps(s)} />
           ))}
           {/* 이웃 나라에 가려지지 않게 테두리를 맨 위에 한 번 더 그린다 */}
           {hover?.shape.d && (
@@ -137,7 +139,7 @@ export default function WorldMap({ ref, onSelect, isZoomEnabled = true, controls
           const [px, py] = [x + offset[0], y + offset[1]]
           const moved = offset[0] !== 0 || offset[1] !== 0
           return (
-            <g key={`pin-${place.key}`}>
+            <g key={`pin-${place.key}`} opacity={dimmed(place) ? RESULT_DIM_OPACITY : 1}>
               {/* 이웃 핀과 겹쳐서 옮긴 핀은 원래 위치까지 선을 긋는다 */}
               {moved && <line x1={x} y1={y} x2={px} y2={py} stroke={COLORS.hoverBorder} strokeWidth={0.8} />}
               {moved && <circle cx={x} cy={y} r={1.5} fill={COLORS.hoverBorder} />}

@@ -45,6 +45,7 @@ export const SAFETY_COUNTRY_URL = 'https://www.0404.go.kr/ntnSafetyInfo/{id}/det
 
 // 핀 색: 나라 색과 같은 기준, 같은 색 땅 위에서도 보이게 조금 진하게 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시)
 export const PIN_COLORS = { 0: '#3e9a52', 1: '#86b23f', 2: '#e0892a', 3: '#c4574b', 4: '#8e3b35', none: '#9e9e9e', home: '#2f6fc0' }
+export const RESULT_DIM_OPACITY = 0.25 // 추천 결과가 떠 있을 때 결과가 아닌 나라·핀의 투명도 (결과 나라만 진하게)
 export const PIN_SHAPE_IDS = ['US-HI'] // 지도에 모양은 있지만 너무 작아 핀도 꽂는 곳 (하와이). 그 밖의 나라는 색으로만 보여 준다
 export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서는 핀을 작게 (유럽처럼 핀이 몰린 곳이 겹치지 않게)
 export const FOCUS_ZOOM = { fill: 0.6, point: 4 } // 검색으로 고르면: 나라 모양은 화면의 60%를 채우게, 작은 나라 핀은 4배
