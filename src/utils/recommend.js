@@ -14,6 +14,8 @@ export function recommend(countries, { maxHours, seasons, avoidRain, moods }) {
         country: c,
         climate,
         avgTemp: Math.round((climate.reduce((sum, m) => sum + m.temp, 0) / climate.length) * 10) / 10,
+        // 계절을 안 골랐으면(1년 전체) 평균 대신 최저~최고 범위로 보여 준다
+        tempRange: seasons.length ? null : [Math.round(Math.min(...climate.map((m) => m.temp))), Math.round(Math.max(...climate.map((m) => m.temp)))],
         matchedMoods: c.moods.filter((m) => moods.includes(m)),
       }
     })

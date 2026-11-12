@@ -16,6 +16,11 @@ assert.deepEqual(names({ moods: ['전통', '휴양'] }), ['태국', '일본']) /
 assert.deepEqual(names({ moods: ['전통'], maxHours: 3 }), ['일본'])
 assert.equal(recommend(countries, { maxHours: 20, seasons: ['겨울'], avoidRain: false, moods: [] })[0].avgTemp, 6.4) // 도쿄 12·1·2월
 assert.deepEqual(names({ maxHours: 1 }), [])
+// 계절을 안 고르면 1년 최저~최고 기온 범위, 고르면 범위 없음
+const all = recommend(countries, { maxHours: 20, seasons: [], avoidRain: false, moods: [] })
+const jp = all.find((r) => r.country.iso2 === 'jp')
+assert.deepEqual(jp.tempRange, [Math.round(Math.min(...jp.country.climate.map((m) => m.temp))), Math.round(Math.max(...jp.country.climate.map((m) => m.temp)))])
+assert.equal(recommend(countries, { maxHours: 20, seasons: ['겨울'], avoidRain: false, moods: [] })[0].tempRange, null)
 // 위험 국가 제외
 assert.deepEqual(recommend([{ ...countries[0], risk: { level: 3 } }], { maxHours: 20, seasons: [], avoidRain: false, moods: [] }), [])
 assert.deepEqual(recommend([{ ...countries[0], risk: { level: 2.5, special: true } }], { maxHours: 20, seasons: [], avoidRain: false, moods: [] }), [])
