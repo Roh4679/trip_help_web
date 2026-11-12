@@ -18,6 +18,12 @@ export function tempColor(temp) {
   return rgb(stops.at(-1)[1])
 }
 
+// 기온 색 위에 올릴 글자색: 밝은 배경이면 검정, 어두운 배경(아주 춥거나 더울 때)이면 흰색
+export function tempTextColor(temp) {
+  const [r, g, b] = tempColor(temp).match(/\d+/g).map(Number)
+  return 0.299 * r + 0.587 * g + 0.114 * b > 150 ? '#222' : '#fff'
+}
+
 function rgb(c) {
   return `rgb(${c.map(Math.round).join(', ')})`
 }
