@@ -1,26 +1,46 @@
-import { useState } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@astryxdesign/core/Button'
 import { Heading } from '@astryxdesign/core/Heading'
 import { DateInput } from '@astryxdesign/core/DateInput'
 import { NumberInput } from '@astryxdesign/core/NumberInput'
+import { useToast } from '@astryxdesign/core/Toast'
 import { DEFAULT_DAYS, DEFAULT_END_HOUR, DEFAULT_DURATION, MAX_DAYS, MAX_END_HOUR } from './config.js'
 import { todayISO } from './time.js'
+import { placeBlock, storeBlock, changeDays } from './schedule.js'
+import { useBlockDrag } from './useBlockDrag.js'
 import Timetable from './Timetable.jsx'
 import Storage from './Storage.jsx'
+import BlockCard from './BlockCard.jsx'
 import BlockDialog from './BlockDialog.jsx'
 import './plan.css'
+
+const GHOST_WIDTH = 140 // 끄는 동안 커서를 따라다니는 블록 너비 (px)
 
 // 일정표 짜기 (plan) — 지도와 따로 쓰는 전체 화면. 기획은 PLANNER_plan.md
 // map 코드를 가져다 쓸 수는 있지만, map이 plan을 가져다 쓰지는 않는다 (plan을 떼어 내도 map은 그대로 동작)
 export default function PlanPage() {
+  const toast = useToast()
   const [startDate, setStartDate] = useState(todayISO())
   const [days, setDays] = useState(DEFAULT_DAYS)
-  const [endHour, setEndHour] = useState(DEFAULT_END_HOUR)
-  const [blocks, setBlocks] = useState([])
+  // 블록과 표 끝 시간은 밀어내기 계산이 같이 바꾸므로 한 묶음으로 둔다
+  const [sched, setSched] = useState({ blocks: [], endHour: DEFAULT_END_HOUR })
+  const schedRef = useRef(sched) // 끌기를 시작한 뒤에도 놓는 순간의 최신 값으로 계산하려고
+  useLayoutEffect(() => {
+    schedRef.current = sched
+  })
+  const { blocks, endHour } = sched
+  const setBlocks = (fn) => setSched((s) => ({ ...s, blocks: fn(s.blocks) }))
+
+  // 표 끝(최대 오전 6:00)을 넘거나 날짜가 줄어 보관함으로 옮긴 블록이 있으면 알려 준다
+  const tellStored = (ids, why) => {
+    if (!ids.length) return
+    const names = ids.map((id) => schedRef.current.blocks.find((b) => b.id === id)?.title).join(', ')
+    toast({ body: `${names} · ${why} 보관함으로 옮겼어요`, uniqueID: 'plan-stored' })
+  }
+
   // 블록 창: null이면 닫힘, { block: null }이면 새 블록, { block }이면 고치기. n은 열 때마다 창을 새로 그리는 key
   const [editing, setEditing] = useState(null)
   const openEditor = (block) => setEditing({ block, n: (editing?.n ?? 0) + 1 })
-
   const saveBlock = ({ title, color }) => {
     const target = editing.block
     setBlocks((bs) =>
@@ -35,8 +55,44 @@ export default function PlanPage() {
     setEditing(null)
   }
 
+  // 끌어다 놓기: 표의 하루 칸이면 30분 칸에 맞춰 놓고 아래 블록을 밀어낸다, 보관함이면 표에서 뺀다, 그 밖이면 취소
+  const { drag, start: startDrag } = useBlockDrag({
+    onClick: openEditor,
+    onDrop: (id, target) => {
+      const s = schedRef.current
+      if (target?.kind === 'storage') return setSched({ ...s, blocks: storeBlock(s.blocks, id) })
+      if (target?.kind !== 'day') return
+      const r = placeBlock(s.blocks, id, target.day, target.start, s.endHour)
+      setSched({ blocks: r.blocks, endHour: r.endHour })
+      tellStored(r.stored, '하루 24시간을 넘어서')
+    },
+  })
+
+  // 끄는 동안 표 위에 있으면, 놓았을 때 모습을 미리 보여 준다 (밀릴 블록은 흐리게, 놓을 자리는 점선)
+  const preview = useMemo(
+    () => (drag?.target?.kind === 'day' ? placeBlock(blocks, drag.id, drag.target.day, drag.target.start, endHour) : null),
+    [drag, blocks, endHour],
+  )
+  const shown = preview ?? sched
+  const look = (b) => {
+    if (!drag) return null
+    if (b.id === drag.id) return preview ? 'moving' : 'lifted'
+    const before = blocks.find((o) => o.id === b.id)
+    return preview && before.start !== b.start ? 'pushed' : null
+  }
+
+  const changeDayCount = (v) => {
+    const n = Math.min(MAX_DAYS, Math.max(1, Math.round(v)))
+    const r = changeDays(blocks, n)
+    tellStored(r.stored, '날짜가 줄어서')
+    setBlocks(() => r.blocks)
+    setDays(n)
+  }
+
+  const dragged = drag && blocks.find((b) => b.id === drag.id)
+
   return (
-    <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: '#fff' }}>
+    <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: '#fff', cursor: drag ? 'grabbing' : undefined }}>
       <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: '1px solid #e5e5e5' }}>
         <Button label="← 지도로" href="#/" variant="ghost" size="sm" />
         <Heading level={1}>일정표 짜기</Heading>
@@ -45,17 +101,33 @@ export default function PlanPage() {
       {/* 여행 날짜: 출발일 + 며칠. 바꾸면 표가 바로 다시 그려진다 */}
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12, padding: '12px 16px 0' }}>
         <DateInput label="출발일" value={startDate} onChange={(v) => v && setStartDate(v)} width={180} />
-        <NumberInput label="며칠" value={days} onChange={(v) => setDays(Math.min(MAX_DAYS, Math.max(1, Math.round(v))))} min={1} max={MAX_DAYS} width={100} />
+        <NumberInput label="며칠" value={days} onChange={changeDayCount} min={1} max={MAX_DAYS} width={100} />
       </div>
 
       <div className="plan-body">
-        <Storage blocks={blocks} onNew={() => openEditor(null)} onEdit={openEditor} />
-        <Timetable startDate={startDate} days={days} endHour={endHour} onAddHour={() => setEndHour((h) => Math.min(MAX_END_HOUR, h + 1))} />
+        <Storage blocks={blocks} onNew={() => openEditor(null)} onEdit={openEditor} onDragStart={startDrag} isDropTarget={drag?.target?.kind === 'storage'} />
+        <Timetable
+          startDate={startDate}
+          days={days}
+          endHour={shown.endHour}
+          blocks={shown.blocks}
+          look={look}
+          onDragStart={startDrag}
+          onEdit={openEditor}
+          onAddHour={() => setSched((s) => ({ ...s, endHour: Math.min(MAX_END_HOUR, s.endHour + 1) }))}
+        />
         <aside className="plan-box">
           <b>메모</b>
           <p style={{ margin: '8px 0 0', fontSize: 13, color: '#666' }}>메모 칸은 다음 단계에서 추가돼요.</p>
         </aside>
       </div>
+
+      {/* 끄는 동안 커서를 따라다니는 블록 (마우스 이벤트는 그 아래로 통과) */}
+      {dragged && (
+        <div style={{ position: 'fixed', left: drag.x - GHOST_WIDTH / 2, top: drag.y - drag.offsetY, width: GHOST_WIDTH, pointerEvents: 'none', opacity: 0.85, zIndex: 20 }}>
+          <BlockCard block={dragged} style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }} />
+        </div>
+      )}
 
       {editing && (
         <BlockDialog key={editing.n} isOpen block={editing.block} onSave={saveBlock} onDelete={deleteBlock} onClose={() => setEditing(null)} />

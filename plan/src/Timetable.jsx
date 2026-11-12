@@ -1,14 +1,26 @@
 import { Button } from '@astryxdesign/core/Button'
-import { ROW_PX, MAX_END_HOUR } from './config.js'
+import { DAY_START_MIN, MAX_END_HOUR, ROW_PX, SLOT_MIN } from './config.js'
 import { slots, dayLabel, timeLabel } from './time.js'
+import BlockCard from './BlockCard.jsx'
 
 const TIME_COL = 52 // 시간 글자 칸 너비 (px)
 const DAY_COL = 140 // 하루 칸 최소 너비 (px). 날이 많으면 표 안에서 가로로 넘긴다
 
-// 일정표: 가로는 날짜, 세로는 30분 칸. 정시는 실선, 30분은 점선
-export default function Timetable({ startDate, days, endHour, onAddHour }) {
+const line = (min) => (min % 60 === 0 ? '1px solid #cfd4da' : '1px dashed #e3e6ea') // 정시 실선, 30분 점선
+const topOf = (min) => ((min - DAY_START_MIN) / SLOT_MIN) * ROW_PX
+
+// 끄는 중 미리보기 모양: 'moving' 놓을 자리(점선 테두리) · 'pushed' 밀릴 블록(흐리게) · 'lifted' 들어 올린 원래 자리(더 흐리게)
+const LOOK = {
+  moving: { borderStyle: 'dashed', boxShadow: '0 0 0 2px #5a74d8' },
+  pushed: { opacity: 0.5 },
+  lifted: { opacity: 0.3 },
+}
+
+// 일정표: 가로는 날짜, 세로는 30분 칸. 하루 칸(data-plan-day)마다 블록을 시각에 맞춰 겹쳐 그린다
+// look(block): 위 LOOK 중 하나의 이름 또는 null
+export default function Timetable({ startDate, days, endHour, blocks, look = () => null, onDragStart, onEdit, onAddHour }) {
   const rows = slots(endHour)
-  const line = (min) => (min % 60 === 0 ? '1px solid #cfd4da' : '1px dashed #e3e6ea')
+  const height = rows.length * ROW_PX
   return (
     <div className="plan-table-wrap">
       <div style={{ display: 'grid', gridTemplateColumns: `${TIME_COL}px repeat(${days}, minmax(${DAY_COL}px, 1fr))`, minWidth: TIME_COL + days * DAY_COL }}>
@@ -24,17 +36,48 @@ export default function Timetable({ startDate, days, endHour, onAddHour }) {
           )
         })}
 
-        {/* 시간 칸 */}
-        {rows.map((min) => (
-          <div key={min} style={{ display: 'contents' }}>
-            <div style={{ height: ROW_PX, borderTop: line(min), fontSize: 11, color: '#666', paddingRight: 6, textAlign: 'right', lineHeight: '12px' }}>
+        {/* 시간 글자 */}
+        <div style={{ height }}>
+          {rows.map((min) => (
+            <div key={min} style={{ height: ROW_PX, borderTop: line(min), fontSize: 11, color: '#666', paddingRight: 6, textAlign: 'right', lineHeight: '12px' }}>
               {min % 60 === 0 && timeLabel(min)}
             </div>
-            {Array.from({ length: days }, (_, i) => (
-              <div key={i} style={{ height: ROW_PX, borderTop: line(min), borderLeft: '1px solid #e3e6ea' }} />
+          ))}
+        </div>
+
+        {/* 하루 칸: 줄 + 블록 */}
+        {Array.from({ length: days }, (_, i) => (
+          <div key={i} data-plan-day={i + 1} style={{ position: 'relative', height, borderLeft: '1px solid #e3e6ea' }}>
+            {rows.map((min) => (
+              <div key={min} style={{ height: ROW_PX, borderTop: line(min) }} />
             ))}
+            {blocks
+              .filter((b) => b.day === i + 1)
+              .map((b) => {
+                const h = (b.duration / SLOT_MIN) * ROW_PX
+                return (
+                  <BlockCard
+                    key={b.id}
+                    block={b}
+                    compact={h < 40}
+                    // 잡은 위치(블록 윗변에서 커서까지)를 기억해 두어, 끌 때 블록이 커서 위로 튀지 않게
+                    onPointerDown={(e) => onDragStart(e, b, e.clientY - e.currentTarget.getBoundingClientRect().top)}
+                    onEdit={() => onEdit(b)}
+                    style={{
+                      position: 'absolute',
+                      top: topOf(b.start) + 1,
+                      left: 3,
+                      width: 'calc(100% - 6px)',
+                      height: h - 2,
+                      transition: 'top 0.12s',
+                      ...LOOK[look(b)],
+                    }}
+                  />
+                )
+              })}
           </div>
         ))}
+
         {/* 마지막 줄 아래 끝선 + 끝 시간 */}
         <div style={{ borderTop: '1px solid #cfd4da', fontSize: 11, color: '#666', paddingRight: 6, textAlign: 'right' }}>{timeLabel(endHour * 60)}</div>
         <div style={{ gridColumn: `span ${days}`, borderTop: '1px solid #cfd4da' }} />
