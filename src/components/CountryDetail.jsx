@@ -23,6 +23,20 @@ function Section({ title, children }) {
   )
 }
 
+// 플러그·전압 안내 박스. 그대로 쓸 수 있으면 초록, 어댑터나 전압 확인이 필요하면 주황
+function PlugBox({ plug }) {
+  const adapter = adapterText(plug)
+  const voltage = voltageText(plug)
+  const ok = adapter === '어댑터 필요 없음' && !voltage
+  const line = { display: 'flex', gap: 8, alignItems: 'flex-start' }
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, padding: '10px 12px', borderRadius: 8, background: ok ? '#edf7ee' : '#fff4e5', border: `1px solid ${ok ? '#b7dfbd' : '#f3cf9b'}` }}>
+      <div style={line}><span aria-hidden>🔌</span><span>{adapter}</span></div>
+      {voltage && <div style={line}><span aria-hidden>⚡</span><span>{voltage}</span></div>}
+    </div>
+  )
+}
+
 function SummaryItem({ label, children }) {
   return (
     <div>
@@ -81,10 +95,7 @@ export default function CountryDetail({ country: c }) {
       </Section>
 
       <Section title="가져가면 좋을 물품">
-        <p>
-          <b>{adapterText(plug)}</b>
-        </p>
-        {voltageText(plug) && <p>{voltageText(plug)}</p>}
+        <PlugBox plug={plug} />
         <ul style={listStyle}>
           {c.items.map((item) => <li key={item}>{item}</li>)}
         </ul>
