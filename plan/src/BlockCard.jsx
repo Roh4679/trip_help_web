@@ -1,5 +1,6 @@
 import { BLOCK_COLORS } from './config.js'
 import { timeLabel, durationLabel } from './time.js'
+import { COLOR } from '../../shared/tokens.js'
 
 // 블록 한 개의 모양. 보관함과 표에서 같이 쓴다. 표 안이면 이름과 시간(10:00~11:30)을 함께 보여 준다
 // 마우스로 누르면 onPointerDown(끌기 시작, 안 움직이고 떼면 고치기), 키보드(Enter·Space)로 누르면 onEdit
@@ -25,7 +26,7 @@ export default function BlockCard({ block, onPointerDown, onEdit, compact, style
         background: c.bg,
         border: `1px solid ${c.border}`,
         borderLeftWidth: 4,
-        color: '#222',
+        color: COLOR.text,
         font: 'inherit',
         fontSize: 13,
         lineHeight: 1.3,
@@ -37,7 +38,7 @@ export default function BlockCard({ block, onPointerDown, onEdit, compact, style
       }}
     >
       <b style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%' }}>{block.title}</b>
-      <span style={{ fontSize: 11, color: '#444', whiteSpace: 'nowrap' }}>{time}</span>
+      <span style={{ fontSize: 11, color: COLOR.textSub, whiteSpace: 'nowrap' }}>{time}</span>
     </button>
   )
 }

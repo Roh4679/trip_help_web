@@ -1,5 +1,6 @@
 import { flightText, timeDiffText, placeNotice, shortRiskText } from '../utils/format.js'
 import RiskWarning from './RiskWarning.jsx'
+import { COLOR } from '../../../shared/tokens.js'
 
 const WIDTH = 300
 const GAP = 14
@@ -17,7 +18,7 @@ export default function CountryTooltip({ name, data, status, x, y }) {
         width: WIDTH,
         padding: '10px 12px',
         // 앱 전체와 같은 흰 카드 (Astryx 테마 색을 쓰고, 없으면 흰색)
-        background: 'var(--color-background-surface, #fff)',
+        background: COLOR.surface,
         border: '1px solid rgba(0,0,0,0.08)',
         borderRadius: 8,
         boxShadow: '0 4px 16px rgba(0,0,0,0.12)',

@@ -1,6 +1,7 @@
 import { Tooltip } from '@astryxdesign/core/Tooltip'
 import { Text } from '@astryxdesign/core/Text'
 import { isRainy, tempColor } from '../utils/climate.js'
+import { COLOR } from '../../../shared/tokens.js'
 
 const ICON_H = 18
 const BAR_H = 8
@@ -46,7 +47,7 @@ export default function ClimateBar({ climate, city, selectedMonth, onSelectMonth
                       height: BAR_H,
                       margin: '0 1px',
                       borderRadius: 3,
-                      boxShadow: selected ? '0 0 0 2px #222' : 'none',
+                      boxShadow: selected ? `0 0 0 2px ${COLOR.text}` : 'none',
                     }}
                   />
                   <span className="climate-month" style={{ fontSize: 12, marginTop: 4, fontWeight: selected ? 700 : 400 }}>{m.month}</span>

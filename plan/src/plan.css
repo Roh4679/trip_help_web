@@ -3,9 +3,9 @@
 @media (max-width: 899px) {
   .plan-body { grid-template-columns: minmax(0, 1fr); }
 }
-.plan-box { border: 1px solid #e3e6ea; border-radius: 8px; padding: 12px; background: #fafbfc; }
-.plan-table-wrap { overflow-x: auto; border: 1px solid #e3e6ea; border-radius: 8px; background: #fff; }
-.plan-head { display: flex; flex-direction: column; align-items: center; padding: 6px 4px; background: #f4f6f8; border-left: 1px solid #e3e6ea; border-bottom: 1px solid #cfd4da; }
+.plan-box { border: 1px solid var(--tk-border); border-radius: 8px; padding: 12px; background: var(--tk-surfaceMuted); }
+.plan-table-wrap { overflow-x: auto; border: 1px solid var(--tk-border); border-radius: 8px; background: var(--tk-surface); }
+.plan-head { display: flex; flex-direction: column; align-items: center; padding: 6px 4px; background: var(--tk-surfaceSub); border-left: 1px solid var(--tk-border); border-bottom: 1px solid var(--tk-borderStrong); }
 /* 블록 아래쪽 끝 손잡이 (길이 바꾸기). 올리면 짧은 막대가 보인다 */
 .plan-resize { position: absolute; left: 0; right: 0; bottom: -3px; height: 8px; cursor: ns-resize; touch-action: none; }
 .plan-resize:hover::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 24px; height: 3px; margin-left: -12px; border-radius: 2px; background: rgba(0, 0, 0, 0.35); }

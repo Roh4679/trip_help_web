@@ -3,6 +3,7 @@ import { Dialog, DialogHeader } from '@astryxdesign/core/Dialog'
 import { TextInput } from '@astryxdesign/core/TextInput'
 import { Button } from '@astryxdesign/core/Button'
 import { BLOCK_COLORS } from './config.js'
+import { COLOR } from '../../shared/tokens.js'
 
 // 블록 만들기·고치기 창. block이 있으면 고치기(삭제 버튼 포함), 없으면 새로 만들기
 // 열 때마다 새로 그려지도록 부모가 key를 바꿔 준다 (입력값 초기화)
@@ -43,7 +44,7 @@ export default function BlockDialog({ isOpen, block, onSave, onDelete, onClose }
                   cursor: 'pointer',
                   background: c.bg,
                   border: `2px solid ${c.border}`,
-                  outline: color === i ? '3px solid #222' : 'none',
+                  outline: color === i ? `3px solid ${COLOR.text}` : 'none',
                   outlineOffset: 2,
                 }}
               />

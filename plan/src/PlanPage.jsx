@@ -7,6 +7,7 @@ import { todayISO } from './time.js'
 import { loadBook, saveBook, newSheet } from './persist.js'
 import PlanSheet from './PlanSheet.jsx'
 import './plan.css'
+import { COLOR } from '../../shared/tokens.js'
 
 // 일정표 짜기 (plan) — 지도와 따로 쓰는 전체 화면. 기획은 PLANNER_plan.md
 // map 코드를 가져다 쓸 수는 있지만, map이 plan을 가져다 쓰지는 않는다 (plan을 떼어 내도 map은 그대로 동작)
@@ -41,8 +42,8 @@ export default function PlanPage() {
   }
 
   return (
-    <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: '#fff' }}>
-      <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: '1px solid #e5e5e5' }}>
+    <div style={{ position: 'fixed', inset: 0, overflowY: 'auto', background: COLOR.surface }}>
+      <header style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: `1px solid ${COLOR.border}` }}>
         <Button label="← 지도로" href="#/" variant="ghost" size="sm" />
         <Heading level={1}>일정표 짜기</Heading>
       </header>
@@ -54,7 +55,7 @@ export default function PlanPage() {
         </TabList>
         <Button label="+ 새 일정표" variant="secondary" size="sm" onClick={addSheet} />
         <Button label="이 표 지우기" variant="ghost" size="sm" isDisabled={book.sheets.length < 2} onClick={() => setDeleteOpen(true)} />
-        <p style={{ margin: 0, flexBasis: '100%', fontSize: 12, color: '#666' }}>
+        <p style={{ margin: 0, flexBasis: '100%', fontSize: 12, color: COLOR.textSub }}>
           자동으로 이 브라우저에 저장돼요. 다른 브라우저·기기에서는 안 보이고, 브라우저 데이터(캐시·쿠키)를 지우면 사라져요.
         </p>
       </div>

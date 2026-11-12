@@ -2,6 +2,7 @@
 // 화면에 다 안 보이는 긴 표·많은 날도 한 장에 전부 들어간다. 메모도 오른쪽에 같이 그린다
 import { BLOCK_COLORS, DAY_START_MIN, SLOT_MIN } from './config.js'
 import { slots, dayLabel, timeLabel } from './time.js'
+import { COLOR } from '../../shared/tokens.js'
 
 const SCALE = 2 // 선명하게 2배로 그린다
 const PAD = 20
@@ -60,14 +61,14 @@ export function drawPlan(plan, font) {
   canvas.height = height * SCALE
   const ctx = canvas.getContext('2d')
   ctx.scale(SCALE, SCALE)
-  ctx.fillStyle = '#fff'
+  ctx.fillStyle = COLOR.surface
   ctx.fillRect(0, 0, L.width, height)
   ctx.textBaseline = 'middle'
 
   // 제목
   const first = dayLabel(startDate, 0).date
   const last = dayLabel(startDate, days - 1).date
-  ctx.fillStyle = '#222'
+  ctx.fillStyle = COLOR.text
   ctx.font = `bold 18px ${font}`
   ctx.fillText(`여행 일정표 · ${first} ~ ${last}`, PAD, PAD + TITLE_H / 2 - 4)
 
@@ -76,16 +77,16 @@ export function drawPlan(plan, font) {
   const yOf = (min) => y0 + HEAD_H + ((min - DAY_START_MIN) / SLOT_MIN) * ROW
 
   // 머리글
-  ctx.fillStyle = '#f4f6f8'
+  ctx.fillStyle = COLOR.surfaceSub
   ctx.fillRect(x0, y0, L.tableW, HEAD_H)
   ctx.textAlign = 'center'
   for (let i = 0; i < days; i++) {
     const { title, date } = dayLabel(startDate, i)
     const cx = x0 + TIME_W + i * DAY_W + DAY_W / 2
-    ctx.fillStyle = '#222'
+    ctx.fillStyle = COLOR.text
     ctx.font = `bold 13px ${font}`
     ctx.fillText(title, cx, y0 + 15)
-    ctx.fillStyle = '#666'
+    ctx.fillStyle = COLOR.textSub
     ctx.font = `11px ${font}`
     ctx.fillText(date, cx, y0 + 31)
   }
@@ -95,20 +96,20 @@ export function drawPlan(plan, font) {
   for (const min of [...slots(endHour), endHour * 60]) {
     const y = Math.round(yOf(min)) + 0.5
     const hour = min % 60 === 0
-    ctx.strokeStyle = hour ? '#cfd4da' : '#e3e6ea'
+    ctx.strokeStyle = hour ? COLOR.borderStrong : COLOR.border
     ctx.setLineDash(hour ? [] : [3, 3])
     ctx.beginPath()
     ctx.moveTo(x0 + TIME_W, y)
     ctx.lineTo(x0 + L.tableW, y)
     ctx.stroke()
     if (hour) {
-      ctx.fillStyle = '#666'
+      ctx.fillStyle = COLOR.textSub
       ctx.font = `11px ${font}`
       ctx.fillText(timeLabel(min), x0 + TIME_W - 6, y)
     }
   }
   ctx.setLineDash([])
-  ctx.strokeStyle = '#e3e6ea'
+  ctx.strokeStyle = COLOR.border
   for (let i = 0; i <= days; i++) {
     const x = Math.round(x0 + TIME_W + i * DAY_W) + 0.5
     ctx.beginPath()
@@ -116,7 +117,7 @@ export function drawPlan(plan, font) {
     ctx.lineTo(x, y0 + L.tableH)
     ctx.stroke()
   }
-  ctx.strokeStyle = '#cfd4da'
+  ctx.strokeStyle = COLOR.borderStrong
   ctx.strokeRect(x0 + 0.5, y0 + 0.5, L.tableW, L.tableH)
 
   // 블록
@@ -136,31 +137,31 @@ export function drawPlan(plan, font) {
     ctx.fillStyle = c.border
     ctx.fillRect(x, y + 2, 4, h - 4)
     const time = `${timeLabel(b.start)}~${timeLabel(b.start + b.duration)}`
-    ctx.fillStyle = '#222'
+    ctx.fillStyle = COLOR.text
     ctx.font = `bold 13px ${font}`
     if (h < 40) {
       ctx.fillText(fit(ctx, `${b.title}  ${time}`, w - 14), x + 9, y + h / 2)
     } else {
       ctx.fillText(fit(ctx, b.title, w - 14), x + 9, y + 12)
       ctx.font = `11px ${font}`
-      ctx.fillStyle = '#444'
+      ctx.fillStyle = COLOR.textSub
       ctx.fillText(time, x + 9, y + 28)
     }
   }
 
   // 메모
   const mx = x0 + L.tableW + GAP
-  ctx.fillStyle = '#fafbfc'
-  ctx.strokeStyle = '#e3e6ea'
+  ctx.fillStyle = COLOR.surfaceMuted
+  ctx.strokeStyle = COLOR.border
   ctx.beginPath()
   ctx.roundRect(mx, y0, MEMO_W, height - y0 - PAD, 8)
   ctx.fill()
   ctx.stroke()
-  ctx.fillStyle = '#222'
+  ctx.fillStyle = COLOR.text
   ctx.font = `bold 14px ${font}`
   ctx.fillText('메모', mx + 12, y0 + 18)
   ctx.font = `13px ${font}`
-  ctx.fillStyle = memoLines.length ? '#333' : '#999'
+  ctx.fillStyle = memoLines.length ? COLOR.text : COLOR.textMuted
   ;(memoLines.length ? memoLines : ['(메모 없음)']).forEach((line, i) => ctx.fillText(line, mx + 12, y0 + 44 + i * 20))
 
   return canvas

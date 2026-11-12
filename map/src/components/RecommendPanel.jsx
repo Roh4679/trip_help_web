@@ -7,6 +7,7 @@ import { DrawerHeader } from '@astryxdesign/core/Drawer'
 import { Layout, LayoutContent, LayoutFooter } from '@astryxdesign/core/Layout'
 import moodList from '../data/moods.json'
 import { SEASON_MONTHS } from '../utils/season.js'
+import { COLOR } from '../../../shared/tokens.js'
 
 const toggle = (list, item, on) => (on ? [...list, item] : list.filter((x) => x !== item))
 const row = { display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }
@@ -47,7 +48,7 @@ export default function RecommendPanel({ onSubmit, onClose }) {
             <CheckboxInput label="우기 피하기" description="고른 시기에 우기인 달이 있으면 빼요" value={avoidRain} onChange={setAvoidRain} />
             {/* 시기를 안 고르면 1년 중 한 달이라도 우기면 빠져서 결과가 너무 적어진다 */}
             {avoidRain && !seasons.length && (
-              <p role="status" style={{ margin: 0, padding: '8px 10px', borderRadius: 6, background: '#fff4e5', border: '1px solid #f3cf9b', fontSize: 13 }}>
+              <p role="status" style={{ margin: 0, padding: '8px 10px', borderRadius: 6, background: COLOR.noticeBg, border: `1px solid ${COLOR.noticeBorder}`, fontSize: 13 }}>
                 ℹ️ 여행 시기를 고르면 더 정확해요
               </p>
             )}

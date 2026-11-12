@@ -12,6 +12,7 @@ import countries from './data/countries.json'
 import { recommend } from './utils/recommend.js'
 import { useMedia } from './utils/useMedia.js'
 import { MOBILE_QUERY } from './config.js'
+import { COLOR } from '../../shared/tokens.js'
 
 // Dialog 안쪽은 넘치면 잘리게(overflow: hidden) 되어 있어서, 스크롤 영역은 직접 만든다. 제목줄은 그 밖에 있어 고정된다
 const DRAWER_WIDTH = 360
@@ -71,9 +72,9 @@ export default function App({ links = [] }) {
         }}
       >
         <MapLegend />
-        <p style={{ margin: 0, padding: '2px 6px', fontSize: 12, lineHeight: 1.5, color: '#444', background: 'rgba(255,255,255,0.8)', borderRadius: 4 }}>
+        <p style={{ margin: 0, padding: '2px 6px', fontSize: 12, lineHeight: 1.5, color: COLOR.textSub, background: 'rgba(255,255,255,0.8)', borderRadius: 4 }}>
           정보는 참고용이에요. 출국 전 외교부 해외안전여행(0404.go.kr) 등 공식 사이트에서 꼭 확인하세요.{' '}
-          <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer" style={{ color: '#888' }}>Rates By Exchange Rate API</a>
+          <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer" style={{ color: COLOR.textMuted }}>Rates By Exchange Rate API</a>
         </p>
       </div>
 

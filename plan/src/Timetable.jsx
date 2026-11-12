@@ -2,16 +2,17 @@ import { Button } from '@astryxdesign/core/Button'
 import { DAY_START_MIN, MAX_END_HOUR, ROW_PX, SLOT_MIN } from './config.js'
 import { slots, dayLabel, timeLabel } from './time.js'
 import BlockCard from './BlockCard.jsx'
+import { COLOR } from '../../shared/tokens.js'
 
 const TIME_COL = 52 // 시간 글자 칸 너비 (px)
 const DAY_COL = 140 // 하루 칸 최소 너비 (px). 날이 많으면 표 안에서 가로로 넘긴다
 
-const line = (min) => (min % 60 === 0 ? '1px solid #cfd4da' : '1px dashed #e3e6ea') // 정시 실선, 30분 점선
+const line = (min) => (min % 60 === 0 ? `1px solid ${COLOR.borderStrong}` : `1px dashed ${COLOR.border}`) // 정시 실선, 30분 점선
 const topOf = (min) => ((min - DAY_START_MIN) / SLOT_MIN) * ROW_PX
 
 // 끄는 중 미리보기 모양: 'moving' 놓을 자리(점선 테두리) · 'pushed' 밀릴 블록(흐리게) · 'lifted' 들어 올린 원래 자리(더 흐리게)
 const LOOK = {
-  moving: { borderStyle: 'dashed', boxShadow: '0 0 0 2px #5a74d8' },
+  moving: { borderStyle: 'dashed', boxShadow: `0 0 0 2px ${COLOR.primary}` },
   pushed: { opacity: 0.5 },
   lifted: { opacity: 0.3 },
 }
@@ -32,7 +33,7 @@ export default function Timetable({ startDate, days, endHour, blocks, look = () 
           return (
             <div key={i} className="plan-head">
               <b>{title}</b>
-              <span style={{ fontSize: 12, color: '#666' }}>{date}</span>
+              <span style={{ fontSize: 12, color: COLOR.textSub }}>{date}</span>
             </div>
           )
         })}
@@ -40,7 +41,7 @@ export default function Timetable({ startDate, days, endHour, blocks, look = () 
         {/* 시간 글자 */}
         <div style={{ height }}>
           {rows.map((min) => (
-            <div key={min} style={{ height: ROW_PX, borderTop: line(min), fontSize: 11, color: '#666', paddingRight: 6, textAlign: 'right', lineHeight: '12px' }}>
+            <div key={min} style={{ height: ROW_PX, borderTop: line(min), fontSize: 11, color: COLOR.textSub, paddingRight: 6, textAlign: 'right', lineHeight: '12px' }}>
               {min % 60 === 0 && timeLabel(min)}
             </div>
           ))}
@@ -48,7 +49,7 @@ export default function Timetable({ startDate, days, endHour, blocks, look = () 
 
         {/* 하루 칸: 줄 + 블록 */}
         {Array.from({ length: days }, (_, i) => (
-          <div key={i} data-plan-day={i + 1} style={{ position: 'relative', height, borderLeft: '1px solid #e3e6ea' }}>
+          <div key={i} data-plan-day={i + 1} style={{ position: 'relative', height, borderLeft: `1px solid ${COLOR.border}` }}>
             {rows.map((min) => (
               <div key={min} style={{ height: ROW_PX, borderTop: line(min) }} />
             ))}
@@ -75,8 +76,8 @@ export default function Timetable({ startDate, days, endHour, blocks, look = () 
         ))}
 
         {/* 마지막 줄 아래 끝선 + 끝 시간 */}
-        <div style={{ borderTop: '1px solid #cfd4da', fontSize: 11, color: '#666', paddingRight: 6, textAlign: 'right' }}>{timeLabel(endHour * 60)}</div>
-        <div style={{ gridColumn: `span ${days}`, borderTop: '1px solid #cfd4da' }} />
+        <div style={{ borderTop: `1px solid ${COLOR.borderStrong}`, fontSize: 11, color: COLOR.textSub, paddingRight: 6, textAlign: 'right' }}>{timeLabel(endHour * 60)}</div>
+        <div style={{ gridColumn: `span ${days}`, borderTop: `1px solid ${COLOR.borderStrong}` }} />
       </div>
 
       {/* [ + ] 끝 시간을 1시간 늘린다 (최대 다음 날 오전 6:00) */}
