@@ -47,7 +47,7 @@ export default function ClimateBar({ climate, city, selectedMonth, onSelectMonth
                       height: BAR_H,
                       margin: '0 1px',
                       borderRadius: 3,
-                      boxShadow: selected ? `0 0 0 2px ${COLOR.text}` : 'none',
+                      boxShadow: selected ? `0 0 0 2px ${COLOR.primary}` : 'none', // 고른 달: 대표색
                     }}
                   />
                   <span className="climate-month" style={{ fontSize: 12, marginTop: 4, fontWeight: selected ? 700 : 400 }}>{m.month}</span>

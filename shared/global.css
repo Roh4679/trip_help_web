@@ -13,3 +13,12 @@
 body {
   font-family: var(--font-family-body);
 }
+
+/* 대표색(진한 남색): Astryx의 강조색(주요 버튼, 체크박스, 선택된 탭 등)을 대표색으로 바꾼다. 값은 shared/tokens.js */
+[data-astryx-theme] {
+  --color-accent: var(--tk-primary);
+  --color-text-accent: var(--tk-primary);
+  --color-icon-accent: var(--tk-primary);
+  --color-accent-muted: var(--tk-primarySoft);
+  --color-on-accent: var(--tk-onDark);
+}

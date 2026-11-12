@@ -44,7 +44,7 @@ export default function BlockDialog({ isOpen, block, onSave, onDelete, onClose }
                   cursor: 'pointer',
                   background: c.bg,
                   border: `2px solid ${c.border}`,
-                  outline: color === i ? `3px solid ${COLOR.text}` : 'none',
+                  outline: color === i ? `3px solid ${COLOR.primary}` : 'none', // 고른 색: 대표색
                   outlineOffset: 2,
                 }}
               />

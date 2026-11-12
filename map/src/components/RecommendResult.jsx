@@ -24,10 +24,10 @@ export default function RecommendResult({ results, onSelect }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
               <b style={{ fontSize: 16 }}>{c.name}</b>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                <Badge label={flightText(c.flight)} variant="teal" />
+                <Badge label={flightText(c.flight)} variant="neutral" />
                 {/* 계절을 안 골랐으면 1년 최저~최고 */}
                 <TempBadge temp={avgTemp} range={tempRange} label={tempRange ? `${tempRange[0]}~${tempRange[1]}℃` : `평균 ${avgTemp}℃`} />
-                {matchedMoods.map((m) => <Badge key={m} label={m} variant="blue" />)}
+                {matchedMoods.map((m) => <Badge key={m} label={m} variant="neutral" />)}
               </div>
             </div>
           </div>

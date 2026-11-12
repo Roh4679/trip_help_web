@@ -1,3 +1,4 @@
+import { COLOR } from '../../shared/tokens.js'
 // 기준값은 여기서만 바꾼다 (PLANNING_map.md 10장)
 export const RISK_LEVEL_BLOCK = 4 // 여행경보 이 단계 이상이면 정보를 제공하지 않는다 (토스트만)
 export const BLOCK_SPECIAL_WARNING = false // true면 특별여행주의보(risk.special) 나라도 정보를 제공하지 않는다
@@ -7,7 +8,7 @@ export const WARNING_COLORS = { background: '#fdecea', border: '#e0a29b', text: 
 export const COLORS = {
   ocean: '#dbe9f4',
   none: '#c8c8c8', // 데이터 없음 (준비 중)
-  home: '#5b8fd9', // 출발지(한국). 위험도 색(초록~빨강)과 겹치지 않게 파랑
+  home: COLOR.primary, // 출발지(한국): 대표색. 초록~빨강은 위험도에만 쓴다
   border: '#fff',
   hoverBorder: '#333',
 }
@@ -44,7 +45,7 @@ export const SAFETY_SITE = 'https://www.0404.go.kr/'
 export const SAFETY_COUNTRY_URL = 'https://www.0404.go.kr/ntnSafetyInfo/{id}/detail'
 
 // 핀 색: 나라 색과 같은 기준, 같은 색 땅 위에서도 보이게 조금 진하게 (작은 나라는 데이터가 없거나 위험해도 핀으로 표시)
-export const PIN_COLORS = { 0: '#3e9a52', 1: '#86b23f', 2: '#e0892a', 3: '#c4574b', 4: '#8e3b35', none: '#9e9e9e', home: '#2f6fc0' }
+export const PIN_COLORS = { 0: '#3e9a52', 1: '#86b23f', 2: '#e0892a', 3: '#c4574b', 4: '#8e3b35', none: '#9e9e9e', home: COLOR.primary }
 export const RESULT_DIM_OPACITY = 0.25 // 추천 결과가 떠 있을 때 결과가 아닌 나라·핀의 투명도 (결과 나라만 진하게)
 export const PIN_SHAPE_IDS = ['US-HI'] // 지도에 모양은 있지만 너무 작아 핀도 꽂는 곳 (하와이). 그 밖의 나라는 색으로만 보여 준다
 export const PIN_SMALL = { scale: 0.7, untilZoom: 2 } // 이 배율 미만에서는 핀을 작게 (유럽처럼 핀이 몰린 곳이 겹치지 않게)

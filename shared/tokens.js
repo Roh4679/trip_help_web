@@ -18,13 +18,11 @@ export const COLOR = {
   border: '#e3e6ea', // 연한 선 (칸 경계, 30분 점선)
   borderStrong: '#cfd4da', // 진한 선 (정시 실선, 표 테두리)
 
-  badgeBg: '#eef0f3', // 연회색 배지 (비행시간, 분위기)
-  badgeText: '#3a3f45',
-
-  noticeBg: '#fff4e5', // 주의 안내 박스 (어댑터 필요, 시기 고르기 안내)
-  noticeBorder: '#f3cf9b',
-  okBg: '#edf7ee', // 괜찮음 안내 박스 (어댑터 필요 없음)
-  okBorder: '#b7dfbd',
+  // 안내 박스. 초록~빨강은 위험도에만 쓰므로 안내는 대표색 계열과 회색으로
+  noticeBg: '#eef3fb', // 확인이 필요한 안내 (어댑터 필요, 시기 고르기 안내): 대표색 연한 바탕
+  noticeBorder: '#c3d1e8',
+  okBg: '#f4f6f8', // 괜찮다는 안내 (어댑터 필요 없음): 연회색
+  okBorder: '#e3e6ea',
 }
 
 // 떠 있는 흰 카드 모양 (툴바, 범례, 안내 문구, 확대 버튼, 메모지, 일정표 헤더 모두 같게)
