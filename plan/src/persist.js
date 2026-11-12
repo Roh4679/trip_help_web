@@ -1,12 +1,13 @@
 // 일정표 자동 저장 (PLANNER_plan.md 3.8, 4장). 브라우저 localStorage에 표 여러 개(엑셀 시트처럼)를 한 묶음으로 저장한다
-// 표 하나: { startDate, days, endHour, memo, blocks } / 묶음: { sheets: [{ id, name, plan }], activeId }
+// 표 하나: { startDate, days, endHour, memo, blocks, packing } — packing은 준비물 [{ id, text, packed }] / 묶음: { sheets: [{ id, name, plan }], activeId }
 import { DEFAULT_DAYS, DEFAULT_END_HOUR, MAX_DAYS, MAX_END_HOUR, BLOCK_COLORS, SLOT_MIN } from './config.js'
+import { clampText } from './packing.js'
 
 export const BOOK_KEY = 'trip-planner-book'
 export const OLD_KEY = 'trip-planner' // 표가 하나뿐이던 때의 저장 위치. 있으면 '표 1'로 옮겨 온다
 
 export function emptyPlan(startDate) {
-  return { startDate, days: DEFAULT_DAYS, endHour: DEFAULT_END_HOUR, memo: '', blocks: [] }
+  return { startDate, days: DEFAULT_DAYS, endHour: DEFAULT_END_HOUR, memo: '', blocks: [], packing: [] }
 }
 
 const isInt = (n) => Number.isInteger(n)
@@ -23,7 +24,11 @@ export function checkPlan(p) {
   const blocks = (Array.isArray(p.blocks) ? p.blocks : [])
     .filter(validBlock)
     .map((b) => (b.day != null && (b.day < 1 || b.day > days) ? { ...b, day: null, start: null } : b))
-  return { startDate: p.startDate, days, endHour, memo: typeof p.memo === 'string' ? p.memo : '', blocks }
+  // 준비물: 모양이 이상한 것은 버리고, 최대 글자 수를 넘으면 자른다 (준비물이 없던 예전 저장은 빈 목록)
+  const packing = (Array.isArray(p.packing) ? p.packing : [])
+    .filter((it) => it && typeof it.id === 'string' && typeof it.text === 'string' && it.text.trim())
+    .map((it) => ({ id: it.id, text: clampText(it.text.trim()), packed: it.packed === true }))
+  return { startDate: p.startDate, days, endHour, memo: typeof p.memo === 'string' ? p.memo : '', blocks, packing }
 }
 
 const parse = (raw) => {

@@ -13,6 +13,9 @@ import Timetable from './Timetable.jsx'
 import Storage from './Storage.jsx'
 import BlockCard from './BlockCard.jsx'
 import BlockDialog from './BlockDialog.jsx'
+import PackingList from './PackingList.jsx'
+import PackDialog from './PackDialog.jsx'
+import { addItem, renameItem, removeItem, toggleItem, moveItem } from './packing.js'
 
 const GHOST_WIDTH = 140 // 끄는 동안 커서를 따라다니는 블록 너비 (px)
 
@@ -23,6 +26,15 @@ export default function PlanSheet({ initial: saved, name, onChange }) {
   const [startDate, setStartDate] = useState(saved.startDate)
   const [days, setDays] = useState(saved.days)
   const [memo, setMemo] = useState(saved.memo)
+  // 준비물 (표마다 따로). 고치기 창: null이면 닫힘, { item: null }이면 추가, { item }이면 고치기. n은 창을 새로 그리는 key
+  const [packing, setPacking] = useState(saved.packing)
+  const [packEditing, setPackEditing] = useState(null)
+  const openPack = (item) => setPackEditing({ item, n: (packEditing?.n ?? 0) + 1 })
+  const savePack = (text) => {
+    const target = packEditing.item
+    setPacking((list) => (target ? renameItem(list, target.id, text) : addItem(list, text)))
+    setPackEditing(null)
+  }
   // 블록과 표 끝 시간은 밀어내기 계산이 같이 바꾸므로 한 묶음으로 둔다
   const [sched, setSched] = useState({ blocks: saved.blocks, endHour: saved.endHour })
   const schedRef = useRef(sched) // 끌기를 시작한 뒤에도 놓는 순간의 최신 값으로 계산하려고
@@ -37,8 +49,8 @@ export default function PlanSheet({ initial: saved, name, onChange }) {
     onChangeRef.current = onChange
   })
   useEffect(() => {
-    onChangeRef.current({ startDate, days, endHour, memo, blocks })
-  }, [startDate, days, endHour, memo, blocks])
+    onChangeRef.current({ startDate, days, endHour, memo, blocks, packing })
+  }, [startDate, days, endHour, memo, blocks, packing])
 
   const setBlocks = (fn) => setSched((s) => ({ ...s, blocks: fn(s.blocks) }))
 
@@ -121,7 +133,7 @@ export default function PlanSheet({ initial: saved, name, onChange }) {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12, padding: '12px 16px 0' }}>
         <DateInput label="출발일" value={startDate} onChange={(v) => v && setStartDate(v)} width={180} />
         <NumberInput label="며칠" value={days} onChange={changeDayCount} min={1} max={MAX_DAYS} width={100} />
-        <Button label="PNG로 저장" variant="secondary" onClick={() => downloadPlanPng({ startDate, days, endHour, memo, blocks }, name)} />
+        <Button label="PNG로 저장" variant="secondary" onClick={() => downloadPlanPng({ startDate, days, endHour, memo, blocks, packing }, name)} />
       </div>
 
       <div className="plan-body">
@@ -137,9 +149,20 @@ export default function PlanSheet({ initial: saved, name, onChange }) {
           onEdit={openEditor}
           onAddHour={() => setSched((s) => ({ ...s, endHour: Math.min(MAX_END_HOUR, s.endHour + 1) }))}
         />
-        <aside className="plan-box">
-          <TextArea label="메모" placeholder="준비물, 예약 번호, 숙소 등 자유롭게" value={memo} onChange={setMemo} rows={14} />
-        </aside>
+        {/* 오른쪽: 메모, 그 아래 준비물 */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
+          <aside className="plan-box">
+            <TextArea label="메모" placeholder="예약 번호, 숙소 등 자유롭게" value={memo} onChange={setMemo} rows={10} />
+          </aside>
+          <PackingList
+            items={packing}
+            onAdd={() => openPack(null)}
+            onEdit={openPack}
+            onDelete={(id) => setPacking((list) => removeItem(list, id))}
+            onToggle={(id) => setPacking((list) => toggleItem(list, id))}
+            onMove={(id, index) => setPacking((list) => moveItem(list, id, index))}
+          />
+        </div>
       </div>
 
       {/* 끄는 동안 커서를 따라다니는 블록 (마우스 이벤트는 그 아래로 통과) */}
@@ -148,6 +171,8 @@ export default function PlanSheet({ initial: saved, name, onChange }) {
           <BlockCard block={dragged} style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }} />
         </div>
       )}
+
+      {packEditing && <PackDialog key={packEditing.n} item={packEditing.item} onSave={savePack} onClose={() => setPackEditing(null)} />}
 
       {editing && (
         <BlockDialog key={editing.n} isOpen block={editing.block} onSave={saveBlock} onDelete={deleteBlock} onClose={() => setEditing(null)} />

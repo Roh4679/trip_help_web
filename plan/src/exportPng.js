@@ -13,6 +13,7 @@ const TIME_W = 52
 const DAY_W = 160
 const MEMO_W = 260
 const GAP = 20
+const PACK_ROW = 22 // 준비물 한 줄 높이
 
 // 그림 크기와 칸 위치 (그리기와 분리해 둔 계산)
 export function pngLayout({ days, endHour }) {
@@ -54,7 +55,12 @@ export function drawPlan(plan, font) {
     c.font = `13px ${font}`
     return memo.trim() ? wrap(c, memo, MEMO_W - 24) : []
   })()
-  const height = Math.max(L.height, PAD * 2 + TITLE_H + 40 + memoLines.length * 20)
+  // 오른쪽 열: 메모 상자, 그 아래 준비물 상자 (준비물이 있을 때만)
+  const packing = plan.packing ?? []
+  const memoH = 44 + Math.max(1, memoLines.length) * 20
+  const packH = packing.length ? 40 + packing.length * PACK_ROW : 0
+  const sideH = memoH + (packH ? GAP + packH : 0)
+  const height = Math.max(L.height, PAD * 2 + TITLE_H + sideH)
 
   const canvas = document.createElement('canvas')
   canvas.width = L.width * SCALE
@@ -149,20 +155,51 @@ export function drawPlan(plan, font) {
     }
   }
 
-  // 메모
+  // 메모 (준비물이 없으면 아래 끝까지)
   const mx = x0 + L.tableW + GAP
-  ctx.fillStyle = COLOR.surfaceMuted
-  ctx.strokeStyle = COLOR.border
-  ctx.beginPath()
-  ctx.roundRect(mx, y0, MEMO_W, height - y0 - PAD, 8)
-  ctx.fill()
-  ctx.stroke()
-  ctx.fillStyle = COLOR.text
-  ctx.font = `bold 14px ${font}`
-  ctx.fillText('메모', mx + 12, y0 + 18)
+  const box = (y, h, title) => {
+    ctx.fillStyle = COLOR.surfaceMuted
+    ctx.strokeStyle = COLOR.border
+    ctx.beginPath()
+    ctx.roundRect(mx, y, MEMO_W, h, 8)
+    ctx.fill()
+    ctx.stroke()
+    ctx.fillStyle = COLOR.text
+    ctx.font = `bold 14px ${font}`
+    ctx.fillText(title, mx + 12, y + 18)
+  }
+  box(y0, packH ? memoH : height - y0 - PAD, '메모')
   ctx.font = `13px ${font}`
   ctx.fillStyle = memoLines.length ? COLOR.text : COLOR.textMuted
   ;(memoLines.length ? memoLines : ['(메모 없음)']).forEach((line, i) => ctx.fillText(line, mx + 12, y0 + 44 + i * 20))
+
+  // 준비물: 메모 아래, 한 줄에 하나씩. 챙긴 것은 대표색 체크 상자
+  if (packH) {
+    const py = y0 + memoH + GAP
+    box(py, height - py - PAD, '준비물')
+    packing.forEach((it, i) => {
+      const cy = py + 40 + i * PACK_ROW + PACK_ROW / 2 - 4
+      ctx.lineWidth = 1.5
+      ctx.strokeStyle = it.packed ? COLOR.primary : COLOR.borderStrong
+      ctx.fillStyle = it.packed ? COLOR.primary : COLOR.surface
+      ctx.beginPath()
+      ctx.roundRect(mx + 12, cy - 6, 12, 12, 3)
+      ctx.fill()
+      ctx.stroke()
+      if (it.packed) {
+        ctx.strokeStyle = COLOR.onDark
+        ctx.beginPath()
+        ctx.moveTo(mx + 14.5, cy)
+        ctx.lineTo(mx + 17, cy + 3)
+        ctx.lineTo(mx + 21.5, cy - 3)
+        ctx.stroke()
+      }
+      ctx.lineWidth = 1
+      ctx.font = `13px ${font}`
+      ctx.fillStyle = it.packed ? COLOR.textSub : COLOR.text
+      ctx.fillText(fit(ctx, it.text, MEMO_W - 46), mx + 32, cy)
+    })
+  }
 
   return canvas
 }

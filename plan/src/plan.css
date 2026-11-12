@@ -9,3 +9,8 @@
 /* 블록 아래쪽 끝 손잡이 (길이 바꾸기). 올리면 짧은 막대가 보인다 */
 .plan-resize { position: absolute; left: 0; right: 0; bottom: -3px; height: 8px; cursor: ns-resize; touch-action: none; }
 .plan-resize:hover::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 24px; height: 3px; margin-left: -12px; border-radius: 2px; background: rgba(0, 0, 0, 0.35); }
+/* 준비물 블록의 고치기·삭제 버튼: 마우스를 올리거나 키보드 초점이 가면 블록 오른쪽 위에 작게 */
+.pack-actions { position: absolute; top: -10px; right: -6px; display: none; gap: 2px; z-index: 2; }
+.pack-item:hover .pack-actions,
+.pack-item:focus-within .pack-actions { display: flex; }
+.pack-actions button { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; border-radius: 50%; border: var(--tk-card-border); background: var(--tk-surface); box-shadow: var(--tk-shadow); cursor: pointer; }

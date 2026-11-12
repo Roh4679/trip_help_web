@@ -19,3 +19,7 @@ export const BLOCK_COLORS = [
   { name: '보라', bg: '#e8dafe', border: '#9068d6' },
   { name: '분홍', bg: '#fbd9ec', border: '#d0609f' },
 ]
+
+// 준비물 (메모 아래 칸)
+export const PACK_MAX_LEN = 20 // 준비물 이름 최대 글자 수 (넘으면 더 입력되지 않는다)
+export const PACK_PILL_PX = 30 // 준비물 블록 높이 (가로는 글자 길이에 맞춤)

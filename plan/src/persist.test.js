@@ -9,6 +9,7 @@ const sample = {
     { id: 'b1', title: '점심 먹기', color: 3, day: 1, start: 720, duration: 60 },
     { id: 'b2', title: '박물관', color: 5, day: null, start: null, duration: 90 },
   ],
+  packing: [{ id: 'p1', text: '여권', packed: true }, { id: 'p2', text: '충전기', packed: false }],
 }
 assert.deepEqual(checkPlan(sample), sample)
 assert.equal(checkPlan(null), null)
@@ -28,6 +29,13 @@ assert.deepEqual(odd.blocks.map((b) => b.id), ['ok', 'gone-day'])
 assert.equal(odd.blocks[1].day, null) // 사라진 날의 블록은 보관함으로
 assert.equal(odd.endHour, 30) // 최대 오전 6:00
 assert.equal(odd.memo, '')
+assert.deepEqual(odd.packing, []) // 준비물이 없던 예전 저장은 빈 목록
+
+// 준비물: 이상한 것은 버리고, 길면 자른다
+const pk = checkPlan({ ...sample, packing: [{ id: 'ok', text: 'ㄱ'.repeat(30), packed: 'yes' }, { id: 'empty', text: '  ' }, { text: '아이디 없음' }, null] })
+assert.equal(pk.packing.length, 1)
+assert.equal(pk.packing[0].text.length, 20)
+assert.equal(pk.packing[0].packed, false) // true가 아니면 안 챙김
 
 // 표 이름: 가장 큰 번호 + 1 (지운 번호는 다시 쓰지 않음)
 assert.equal(nextSheetName([]), '표 1')
