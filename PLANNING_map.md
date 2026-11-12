@@ -444,19 +444,28 @@ src/data/
 ```
 trip_help_web/
 ├── index.html, main.jsx       # 웹 입구 (테마)
-├── Root.jsx                   # 화면 고르기: 지도가 기본, 주소 #/plan이면 여행 계획 화면
+├── Root.jsx                   # 화면 고르기: 지도가 기본, 주소 #/plan이면 일정표 짜기 화면
 ├── package.json, vite.config.js, public/   # 두 기능이 같이 쓰는 설정
 ├── PLANNING_map.md            # 지도 기능 기획 (이 문서)
 ├── map/                       # 지도 기능 (지금까지 만든 것)
 │   ├── VERIFY.md
 │   ├── scripts/               # update-rates.mjs(환율), check-risk.mjs(여행경보 비교), run-tests.mjs(npm test)
 │   └── src/                   # 아래 구조
-└── plan/                      # 새 기능 (여행 계획). map 코드를 가져다 쓸 수는 있지만 map은 plan을 가져다 쓰지 않는다
-    └── src/PlanPage.jsx       # 여행 계획 전체 화면
+└── plan/src/                  # 일정표 짜기 (기획은 PLANNER_plan.md, 2026-11-12 main에 합침). map 코드를 가져다 쓸 수는 있지만 map은 plan을 가져다 쓰지 않는다
+    ├── PlanPage.jsx           # 전체 화면: 날짜 입력, 보관함 | 표 | 메모, 끌기·미리보기, 자동 저장, PNG
+    ├── Timetable.jsx          # 표 (정시 실선, 30분 점선, 블록, 아래쪽 끝 손잡이, [+ 1시간])
+    ├── Storage.jsx, BlockCard.jsx, BlockDialog.jsx   # 보관함, 블록 모양, 만들기·고치기 창
+    ├── useBlockDrag.js, useBlockResize.js            # 끌어다 놓기, 길이 조절 (PC 마우스)
+    ├── schedule.js            # 밀어내기 순수 함수 (placeBlock, resizeBlock, storeBlock, changeDays) + 시험
+    ├── persist.js             # localStorage 자동 저장·읽기 검사 + 시험
+    ├── exportPng.js           # 데이터로 직접 그리는 PNG (canvas) + 크기 계산 시험
+    ├── time.js                # 시각·날짜·길이 문구 + 시험
+    ├── config.js              # 30분 칸, 6:00~1:00, 최대 오전 6:00, 블록 8색 등 기준값
+    └── plan.css
 ```
 
 - **plan 떼어 내기**: `plan/` 폴더를 지우고 `Root.jsx`에서 `PlanPage` import, `links`, `PlanPage` 줄을 빼면 된다.
-- **화면 나누기**: 왼쪽 위에 `여행지 추천`(사이드 창)과 `여행 계획`(새 화면) 버튼. 여행 계획은 메인 기능이라 사이드 창이 아니라 **전체 화면**(`#/plan`)으로 열고, `← 지도로`로 돌아온다. 라이브러리 없이 주소 `#`으로 나누어 브라우저 뒤로 가기도 된다. 지도는 숨기기만 해서 계획 화면에 다녀와도 확대 위치·추천 결과가 남는다. map의 `App`은 `links` prop(`[{ label, href }]`)으로 버튼만 받는다.
+- **화면 나누기**: 왼쪽 위에 `여행지 추천`(사이드 창)과 `일정표 짜기`(새 화면) 버튼. 일정표 짜기는 메인 기능이라 사이드 창이 아니라 **전체 화면**(`#/plan`)으로 열고, `← 지도로`로 돌아온다. 라이브러리 없이 주소 `#`으로 나누어 브라우저 뒤로 가기도 된다. 지도는 숨기기만 해서 계획 화면에 다녀와도 확대 위치·추천 결과가 남는다. map의 `App`은 `links` prop(`[{ label, href }]`)으로 버튼만 받는다.
 - **시험**: `npm test` (map/src/utils/*.test.js 전부).
 
 `map/src/`:
