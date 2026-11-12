@@ -443,7 +443,8 @@ src/data/
 
 ```
 trip_help_web/
-├── index.html, main.jsx       # 웹 입구. 지도를 기본 화면으로 띄우고 사이드 창 탭에 plan을 끼워 넣는다
+├── index.html, main.jsx       # 웹 입구 (테마)
+├── Root.jsx                   # 화면 고르기: 지도가 기본, 주소 #/plan이면 여행 계획 화면
 ├── package.json, vite.config.js, public/   # 두 기능이 같이 쓰는 설정
 ├── PLANNING_map.md            # 지도 기능 기획 (이 문서)
 ├── map/                       # 지도 기능 (지금까지 만든 것)
@@ -451,11 +452,11 @@ trip_help_web/
 │   ├── scripts/               # update-rates.mjs(환율), check-risk.mjs(여행경보 비교), run-tests.mjs(npm test)
 │   └── src/                   # 아래 구조
 └── plan/                      # 새 기능 (여행 계획). map 코드를 가져다 쓸 수는 있지만 map은 plan을 가져다 쓰지 않는다
-    └── src/PlanPanel.jsx
+    └── src/PlanPage.jsx       # 여행 계획 전체 화면
 ```
 
-- **plan 떼어 내기**: `plan/` 폴더를 지우고 `main.jsx`에서 `PlanPanel` import와 `extraTabs` 한 줄을 빼면 된다.
-- **사이드 창 탭**: 사이드 창(Drawer) 맨 위에 탭 `여행지 추천 | 여행 계획`. 왼쪽 위 버튼 `여행지 추천`, `여행 계획`이 각각 그 탭으로 사이드 창을 연다. map의 `App`은 `extraTabs` prop(`[{ value, label, content }]`)으로 탭을 받기만 한다. 탭을 바꿔도 추천 조건은 남는다.
+- **plan 떼어 내기**: `plan/` 폴더를 지우고 `Root.jsx`에서 `PlanPage` import, `links`, `PlanPage` 줄을 빼면 된다.
+- **화면 나누기**: 왼쪽 위에 `여행지 추천`(사이드 창)과 `여행 계획`(새 화면) 버튼. 여행 계획은 메인 기능이라 사이드 창이 아니라 **전체 화면**(`#/plan`)으로 열고, `← 지도로`로 돌아온다. 라이브러리 없이 주소 `#`으로 나누어 브라우저 뒤로 가기도 된다. 지도는 숨기기만 해서 계획 화면에 다녀와도 확대 위치·추천 결과가 남는다. map의 `App`은 `links` prop(`[{ label, href }]`)으로 버튼만 받는다.
 - **시험**: `npm test` (map/src/utils/*.test.js 전부).
 
 `map/src/`:

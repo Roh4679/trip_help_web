@@ -1,9 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { Dialog, DialogHeader } from '@astryxdesign/core/Dialog'
 import { Button } from '@astryxdesign/core/Button'
-import { Drawer, DrawerHeader } from '@astryxdesign/core/Drawer'
-import { TabList, Tab } from '@astryxdesign/core/TabList'
-import { Layout, LayoutContent } from '@astryxdesign/core/Layout'
+import { Drawer } from '@astryxdesign/core/Drawer'
 import WorldMap from './components/WorldMap.jsx'
 import CountryDetail from './components/CountryDetail.jsx'
 import RecommendPanel from './components/RecommendPanel.jsx'
@@ -21,20 +19,11 @@ const GAP = 12
 
 const scrollBody = { flex: '1 1 auto', minHeight: 0, overflowY: 'auto', overflowX: 'hidden', overflowWrap: 'anywhere', padding: 20 }
 
-// extraTabs: 사이드 창에 더 붙일 탭 [{ value, label, content }]. 입구(main.jsx)가 넘겨준다 (여행 계획 등). map은 그 내용을 모른다
-export default function App({ extraTabs = [] }) {
+// links: 왼쪽 위에 더 붙일 다른 화면 버튼 [{ label, href }]. 입구(main.jsx)가 넘겨준다 (여행 계획 등). map은 그 화면을 모른다
+export default function App({ links = [] }) {
   const [selected, setSelected] = useState(null)
   const [results, setResults] = useState(null)
-  // 사이드 창: 열린 탭 값 ('recommend' 또는 extraTabs의 value). null이면 닫힘
-  const [panelTab, setPanelTab] = useState(null)
-  const isPanelOpen = panelTab !== null
-  const closePanel = (open) => !open && setPanelTab(null)
-  const panelTabs = [{ value: 'recommend', label: '여행지 추천' }, ...extraTabs]
-  const tabBar = panelTabs.length > 1 && (
-    <TabList value={panelTab} onChange={setPanelTab} layout="fill" hasDivider role="tablist" aria-label="사이드 메뉴">
-      {panelTabs.map((t) => <Tab key={t.value} value={t.value} label={t.label} />)}
-    </TabList>
-  )
+  const [isPanelOpen, setPanelOpen] = useState(false)
   const isMobile = useMedia(MOBILE_QUERY)
   const mapRef = useRef(null)
   // 추천 결과가 떠 있으면 지도에서 결과 나라만 진하게 (결과 창을 닫으면 원래대로, 결과가 0곳이면 흐리게 하지 않는다)
@@ -63,8 +52,8 @@ export default function App({ extraTabs = [] }) {
       />
       {/* 왼쪽 위: 추천 버튼 + 나라 검색. 휴대폰 폭에서는 확대 버튼이 오른쪽 위에 오므로 검색창을 아랫줄로 */}
       <div style={{ position: 'absolute', top: GAP, left: GAP, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'flex-start', gap: 8 }}>
-        <Button label="여행지 추천" variant="primary" elevation="med" onClick={() => setPanelTab('recommend')} />
-        {extraTabs.map((t) => <Button key={t.value} label={t.label} variant="secondary" elevation="med" onClick={() => setPanelTab(t.value)} />)}
+        <Button label="여행지 추천" variant="primary" elevation="med" onClick={() => setPanelOpen(true)} />
+        {links.map((l) => <Button key={l.href} label={l.label} href={l.href} variant="secondary" elevation="med" />)}
         <CountrySearch onPick={(place) => mapRef.current.focus(place)} width={isMobile ? 220 : 260} />
       </div>
 
@@ -91,21 +80,13 @@ export default function App({ extraTabs = [] }) {
       {/* 지도 위에 겹쳐 뜨는 사이드 창. 배경막 없이 띄워서 지도는 계속 움직일 수 있다. 화면이 좁으면(640px 미만) 전체 너비 */}
       <Drawer
         isOpen={isPanelOpen}
-        onOpenChange={closePanel}
-        label={panelTabs.find((t) => t.value === panelTab)?.label ?? '사이드 메뉴'}
+        onOpenChange={setPanelOpen}
+        label="여행지 추천"
         hasScrim={false}
         width={DRAWER_WIDTH}
         experimental={{ isFullWidthOnMobile: true }}
       >
-        {/* 탭을 바꿔도 고른 조건이 남도록 두 탭 모두 그려 두고 안 보이는 쪽만 숨긴다 */}
-        <div style={{ height: '100%', display: panelTab === 'recommend' ? 'block' : 'none' }}>
-          <RecommendPanel onSubmit={(conditions) => setResults(recommend(countries, conditions))} onClose={closePanel} tabs={tabBar} />
-        </div>
-        {extraTabs.map((t) => (
-          <div key={t.value} style={{ height: '100%', display: panelTab === t.value ? 'block' : 'none' }}>
-            <Layout header={<><DrawerHeader title={t.label} onOpenChange={closePanel} />{tabBar}</>} content={<LayoutContent>{t.content}</LayoutContent>} />
-          </div>
-        ))}
+        <RecommendPanel onSubmit={(conditions) => setResults(recommend(countries, conditions))} onClose={setPanelOpen} />
       </Drawer>
 
       {/* 휴대폰에서는 창을 화면 전체로 */}
