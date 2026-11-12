@@ -12,6 +12,7 @@ import { placeBlock, resizeBlock, storeBlock, changeDays } from './schedule.js'
 import { useBlockDrag } from './useBlockDrag.js'
 import { useBlockResize } from './useBlockResize.js'
 import { loadPlan, savePlan, emptyPlan } from './persist.js'
+import { downloadPlanPng } from './exportPng.js'
 import Timetable from './Timetable.jsx'
 import Storage from './Storage.jsx'
 import BlockCard from './BlockCard.jsx'
@@ -138,6 +139,7 @@ export default function PlanPage() {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12, padding: '12px 16px 0' }}>
         <DateInput label="출발일" value={startDate} onChange={(v) => v && setStartDate(v)} width={180} />
         <NumberInput label="며칠" value={days} onChange={changeDayCount} min={1} max={MAX_DAYS} width={100} />
+        <Button label="PNG로 저장" variant="primary" onClick={() => downloadPlanPng({ startDate, days, endHour, memo, blocks })} />
         <Button label="+ 새 일정표" variant="secondary" onClick={() => setResetOpen(true)} />
         <p style={{ margin: 0, flexBasis: '100%', fontSize: 12, color: '#666' }}>
           자동으로 이 브라우저에 저장돼요. 다른 브라우저·기기에서는 안 보이고, 브라우저 데이터(캐시·쿠키)를 지우면 사라져요.
