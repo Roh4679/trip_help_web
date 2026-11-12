@@ -11,6 +11,8 @@ import { flightText, timeDiffText, mainAreaText } from '../utils/format.js'
 import { rateView } from '../utils/rates.js'
 import { useRates } from '../utils/useRates.js'
 import { COLOR } from '../../../shared/tokens.js'
+import { Icon } from '@astryxdesign/core/Icon'
+import { Plug, Zap } from 'lucide-react'
 
 const PRICE_LEVELS = ['', '아주 쌈', '조금 쌈', '비슷함', '조금 비쌈', '아주 비쌈']
 const listStyle = { listStyle: 'disc', paddingLeft: 20, margin: 0 }
@@ -29,11 +31,11 @@ function PlugBox({ plug }) {
   const adapter = adapterText(plug)
   const voltage = voltageText(plug)
   const ok = adapter === '어댑터 필요 없음' && !voltage
-  const line = { display: 'flex', gap: 8, alignItems: 'flex-start' }
+  const line = { display: 'flex', gap: 8, alignItems: 'center' }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, padding: '10px 12px', borderRadius: 8, background: ok ? COLOR.okBg : COLOR.noticeBg, border: `1px solid ${ok ? COLOR.okBorder : COLOR.noticeBorder}` }}>
-      <div style={line}><span aria-hidden>🔌</span><span>{adapter}</span></div>
-      {voltage && <div style={line}><span aria-hidden>⚡</span><span>{voltage}</span></div>}
+      <div style={line}><Icon icon={Plug} size="sm" color="secondary" /><span>{adapter}</span></div>
+      {voltage && <div style={line}><Icon icon={Zap} size="sm" color="secondary" /><span>{voltage}</span></div>}
     </div>
   )
 }

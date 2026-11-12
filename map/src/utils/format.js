@@ -57,7 +57,7 @@ export function placeNotice({ data, status }) {
 // 3단계·특별여행주의보 경고 문구. 지역별 상이면 주요 관광지(risk.level) 기준
 export function warningText({ level, label, mixed }) {
   const text = level % 1 ? label : `여행경보 ${level}단계(${label})`
-  return `⚠ ${text}${mixed ? ' · 주요 관광지 기준' : ''}`
+  return `${text}${mixed ? ' · 주요 관광지 기준' : ''}` // 앞의 경고 아이콘은 RiskWarning이 붙인다
 }
 
 // 메모지·요약 카드용 짧은 문구. 날짜와 지역 설명은 상세 창 "여행경보" 칸에만

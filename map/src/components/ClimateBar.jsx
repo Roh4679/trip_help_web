@@ -2,6 +2,8 @@ import { Tooltip } from '@astryxdesign/core/Tooltip'
 import { Text } from '@astryxdesign/core/Text'
 import { isRainy, tempColor } from '../utils/climate.js'
 import { COLOR } from '../../../shared/tokens.js'
+import { Icon } from '@astryxdesign/core/Icon'
+import { Umbrella } from 'lucide-react'
 
 const ICON_H = 18
 const BAR_H = 8
@@ -40,7 +42,7 @@ export default function ClimateBar({ climate, city, selectedMonth, onSelectMonth
                   onClick={() => onSelectMonth(m.month)}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
                 >
-                  <span aria-hidden style={{ height: ICON_H, fontSize: 11, lineHeight: `${ICON_H}px` }}>{isRainy(m) ? '☂️' : ''}</span>
+                  <span aria-hidden style={{ height: ICON_H, display: 'flex', alignItems: 'center' }}>{isRainy(m) && <Icon icon={Umbrella} size="xsm" color="accent" />}</span>
                   <span
                     style={{
                       alignSelf: 'stretch',

@@ -26,8 +26,8 @@ assert.deepEqual(placeNotice({ status: 'none', data: undefined }), { detail: '�
 assert.deepEqual(placeNotice({ status: 'home' }), { detail: '출발지예요' })
 assert.equal(placeNotice({ status: 'ok', data: { risk: {} } }), null)
 
-assert.equal(warningText({ level: 3, label: '출국권고' }), '⚠ 여행경보 3단계(출국권고)')
-assert.equal(warningText({ level: 2.5, label: '특별여행주의보', special: true, mixed: true }), '⚠ 특별여행주의보 · 주요 관광지 기준')
+assert.equal(warningText({ level: 3, label: '출국권고' }), '여행경보 3단계(출국권고)')
+assert.equal(warningText({ level: 2.5, label: '특별여행주의보', special: true, mixed: true }), '특별여행주의보 · 주요 관광지 기준')
 
 assert.equal(riskText({ level: 2, label: '여행자제' }), '여행경보 2단계 여행자제')
 assert.equal(riskText({ level: 0, label: '없음' }), '여행경보 없음')
