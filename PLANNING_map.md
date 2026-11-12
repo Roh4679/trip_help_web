@@ -475,6 +475,7 @@ trip_help_web/
     ├── useBlockDrag.js, useBlockResize.js            # 끌어다 놓기, 길이 조절 (PC 마우스)
     ├── schedule.js            # 밀어내기 순수 함수 (placeBlock, resizeBlock, storeBlock, changeDays) + 시험
     ├── persist.js             # localStorage 자동 저장(표 여러 개)·읽기 검사·예전 저장 옮겨 오기 + 시험
+    ├── PackingList.jsx, PackDialog.jsx, packing.js   # 준비물 칸(알약 블록, 챙김, 칸 안 순서 바꾸기), 입력 창, 순수 함수 + 시험
     ├── exportPng.js           # 데이터로 직접 그리는 PNG (canvas) + 크기 계산 시험
     ├── time.js                # 시각·날짜·길이 문구 + 시험
     ├── config.js              # 30분 칸, 6:00~1:00, 최대 오전 6:00, 블록 8색 등 기준값
