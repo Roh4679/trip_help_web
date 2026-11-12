@@ -14,7 +14,8 @@ export default function Storage({ blocks, onNew, onEdit, onDragStart, isDropTarg
       style={{ display: 'flex', flexDirection: 'column', gap: 8, outline: isDropTarget ? `2px dashed ${COLOR.primary}` : 'none', outlineOffset: -2 }}
     >
       <b>블록 보관함</b>
-      <Button label="+ 새 블록" variant="primary" width="100%" onClick={onNew} /> {/* 일정표의 주요 동작: 대표색 */}
+      {/* 일정표의 주요 동작이라 대표색 버튼 */}
+      <Button label="+ 새 블록" variant="primary" width="100%" onClick={onNew} />
       {stored.length === 0 ? (
         <p style={{ margin: 0, fontSize: 13, color: COLOR.textSub }}>블록을 만들어 표로 끌어다 놓으세요.</p>
       ) : (
