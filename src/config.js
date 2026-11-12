@@ -1,4 +1,4 @@
-// 기준값은 여기서만 바꾼다 (PLANNING.md 10장)
+// 기준값은 여기서만 바꾼다 (PLANNING_map.md 10장)
 export const RISK_LEVEL_BLOCK = 4 // 여행경보 이 단계 이상이면 정보를 제공하지 않는다 (토스트만)
 export const BLOCK_SPECIAL_WARNING = false // true면 특별여행주의보(risk.special) 나라도 정보를 제공하지 않는다
 export const RISK_LEVEL_WARN = 3 // 이 단계 이상(또는 특별여행주의보)은 정보는 보여 주되 빨강 빗금 + 빨간 경고 띠로 경고하고 추천에서 뺀다
@@ -31,7 +31,7 @@ export const TEMP_COLORS = [
   [35, [178, 24, 43]], // 진한 빨강
 ]
 
-// 한국 플러그 기준 (PLANNING.md 4.3)
+// 한국 플러그 기준 (PLANNING_map.md 4.3)
 // fullTypes가 있으면 굵은 접지형까지 그대로 꽂힘, thinTypes만 있으면 얇은 플러그만 꽂힘
 export const KOREA_PLUG = { fullTypes: ['E', 'F'], thinTypes: ['C'], minVoltage: 220, maxVoltage: 240 }
 

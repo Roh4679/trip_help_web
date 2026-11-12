@@ -19,7 +19,7 @@ const SOCKET_SHAPES = {
 const has = (types, list) => types.some((t) => list.includes(t))
 const voltageOk = (v) => v >= KOREA_PLUG.minVoltage && v <= KOREA_PLUG.maxVoltage
 
-// 판단 규칙 (PLANNING.md 4.3): E·F가 있으면 그대로, C만 있으면 얇은 플러그만, 둘 다 아니면 변환 어댑터. 전압은 voltageText가 따로 안내
+// 판단 규칙 (PLANNING_map.md 4.3): E·F가 있으면 그대로, C만 있으면 얇은 플러그만, 둘 다 아니면 변환 어댑터. 전압은 voltageText가 따로 안내
 export function adapterText({ types }) {
   if (has(types, KOREA_PLUG.fullTypes)) return '어댑터 필요 없음'
   if (has(types, KOREA_PLUG.thinTypes)) return '얇은 플러그는 그대로 꽂혀요. 굵은 접지형 플러그(노트북, 드라이기 등)는 어댑터가 필요해요'

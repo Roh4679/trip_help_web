@@ -3,7 +3,7 @@ import { Typeahead, TypeaheadItem, createStaticSource } from '@astryxdesign/core
 import { shapes, smallPlaces } from '../utils/places.js'
 import { buildSearchItems, STATUS_LABEL } from '../utils/search.js'
 
-// 나라 검색 (PLANNING.md 9장 10단계). 고르면 onPick(장소) → 지도가 그 나라로 이동하고 클릭했을 때와 같은 동작을 한다
+// 나라 검색 (PLANNING_map.md 9장 10단계). 고르면 onPick(장소) → 지도가 그 나라로 이동하고 클릭했을 때와 같은 동작을 한다
 export default function CountrySearch({ onPick, width = 240 }) {
   const [value, setValue] = useState(null)
   const source = useMemo(

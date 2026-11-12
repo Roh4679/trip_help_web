@@ -1,6 +1,6 @@
 import { geoCentroid } from 'd3-geo'
 
-// 지도 데이터에서 본국 모양에 붙어 있지만 따로 다뤄야 하는 곳 (PLANNING.md 4.1)
+// 지도 데이터에서 본국 모양에 붙어 있지만 따로 다뤄야 하는 곳 (PLANNING_map.md 4.1)
 // isPart는 조각의 중심 [경도, 위도]를 받아 떼어낼 조각인지 판단한다
 export const OVERSEAS = [
   // 기후·입국 정보가 프랑스와 다름

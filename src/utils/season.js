@@ -1,4 +1,4 @@
-// 계절 = 한국 기준 여행 시기 (PLANNING.md 4.4)
+// 계절 = 한국 기준 여행 시기 (PLANNING_map.md 4.4)
 export const SEASON_MONTHS = {
   봄: [3, 4, 5],
   여름: [6, 7, 8],
