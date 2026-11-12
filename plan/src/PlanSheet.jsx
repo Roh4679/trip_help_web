@@ -121,7 +121,7 @@ export default function PlanSheet({ initial: saved, name, onChange }) {
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12, padding: '12px 16px 0' }}>
         <DateInput label="출발일" value={startDate} onChange={(v) => v && setStartDate(v)} width={180} />
         <NumberInput label="며칠" value={days} onChange={changeDayCount} min={1} max={MAX_DAYS} width={100} />
-        <Button label="PNG로 저장" variant="primary" onClick={() => downloadPlanPng({ startDate, days, endHour, memo, blocks }, name)} />
+        <Button label="PNG로 저장" variant="secondary" onClick={() => downloadPlanPng({ startDate, days, endHour, memo, blocks }, name)} />
       </div>
 
       <div className="plan-body">
