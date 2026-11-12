@@ -14,6 +14,13 @@ export function slots(endHour) {
   return out
 }
 
+// 블록 길이(분) → "1시간", "30분", "1시간 30분"
+export function durationLabel(min) {
+  const h = Math.floor(min / 60)
+  const m = min % 60
+  return [h && `${h}시간`, m && `${m}분`].filter(Boolean).join(' ')
+}
+
 const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토']
 
 // 출발일("2026-04-08") + 몇째 날(0부터) → { title: "1일차", date: "4월 8일 (수)" }
