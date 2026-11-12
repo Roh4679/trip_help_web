@@ -37,23 +37,17 @@ function Summary({ country: c }) {
   const { entry } = c
   const visa = entry.visaFreeDays ? `무비자 ${entry.visaFreeDays}일` : '비자 필요'
   const eta = entry.eta && `${entry.eta.split(' (')[0]} 필요` // 예: "ESTA (출발 …)" → "ESTA 필요"
+  // 4칸 한 줄, 좁으면 2×2 (index.css의 .summary-grid 컨테이너 쿼리)
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-        gap: 12,
-        padding: 14,
-        background: '#f4f6f8',
-        borderRadius: 8,
-      }}
-    >
+    <div className="summary" style={{ padding: 14, background: '#f4f6f8', borderRadius: 8 }}>
+      <div className="summary-grid">
       <SummaryItem label="여행경보">
         <RiskLink risk={c.risk} short />
       </SummaryItem>
       <SummaryItem label="비행시간">{flightText(c.flight)}</SummaryItem>
       <SummaryItem label="시차">{timeDiffText(c.timeDiff, c.dstTimeDiff)}</SummaryItem>
       <SummaryItem label="입국">{eta ? `${visa} · ${eta}` : visa}</SummaryItem>
+      </div>
     </div>
   )
 }
