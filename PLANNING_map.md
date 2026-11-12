@@ -451,8 +451,17 @@ trip_help_web/
 │   ├── VERIFY.md
 │   ├── scripts/               # update-rates.mjs(환율), check-risk.mjs(여행경보 비교), run-tests.mjs(npm test)
 │   └── src/                   # 아래 구조
-└── plan/                      # 새 기능 (일정표 짜기, 기획은 PLANNER_plan.md). map 코드를 가져다 쓸 수는 있지만 map은 plan을 가져다 쓰지 않는다
-    └── src/PlanPage.jsx       # 일정표 짜기 전체 화면
+└── plan/src/                  # 일정표 짜기 (기획은 PLANNER_plan.md, 2026-11-12 main에 합침). map 코드를 가져다 쓸 수는 있지만 map은 plan을 가져다 쓰지 않는다
+    ├── PlanPage.jsx           # 전체 화면: 날짜 입력, 보관함 | 표 | 메모, 끌기·미리보기, 자동 저장, PNG
+    ├── Timetable.jsx          # 표 (정시 실선, 30분 점선, 블록, 아래쪽 끝 손잡이, [+ 1시간])
+    ├── Storage.jsx, BlockCard.jsx, BlockDialog.jsx   # 보관함, 블록 모양, 만들기·고치기 창
+    ├── useBlockDrag.js, useBlockResize.js            # 끌어다 놓기, 길이 조절 (PC 마우스)
+    ├── schedule.js            # 밀어내기 순수 함수 (placeBlock, resizeBlock, storeBlock, changeDays) + 시험
+    ├── persist.js             # localStorage 자동 저장·읽기 검사 + 시험
+    ├── exportPng.js           # 데이터로 직접 그리는 PNG (canvas) + 크기 계산 시험
+    ├── time.js                # 시각·날짜·길이 문구 + 시험
+    ├── config.js              # 30분 칸, 6:00~1:00, 최대 오전 6:00, 블록 8색 등 기준값
+    └── plan.css
 ```
 
 - **plan 떼어 내기**: `plan/` 폴더를 지우고 `Root.jsx`에서 `PlanPage` import, `links`, `PlanPage` 줄을 빼면 된다.
