@@ -7,7 +7,7 @@ import { adapterText, voltageText } from '../utils/plug.js'
 import DateNote from './DateNote.jsx'
 import RiskLink from './RiskLink.jsx'
 import RiskWarning from './RiskWarning.jsx'
-import { flightText, timeDiffText, riskText } from '../utils/format.js'
+import { flightText, timeDiffText, mainAreaText } from '../utils/format.js'
 import { rateView } from '../utils/rates.js'
 import { useRates } from '../utils/useRates.js'
 
@@ -68,7 +68,7 @@ export default function CountryDetail({ country: c }) {
           <RiskLink risk={c.risk} />
           <DateNote updated={c.risk.updated} />
         </p>
-        {c.risk.mixed && <p style={{ color: '#666', fontSize: 13 }}>지도 색은 주요 관광지 기준: {riskText({ ...c.risk, mixed: false })}</p>}
+        {c.risk.mixed && <p style={{ color: '#666', fontSize: 13 }}>{mainAreaText(c)}</p>}
         {c.risk.note && <p style={{ fontSize: 14 }}>{c.risk.note}</p>}
       </Section>
 

@@ -69,6 +69,12 @@ export function shortRiskText({ level, label, mixed, range }) {
   return `${head} · ${max > level ? '일부 지역 더 높음' : min < level ? '일부 지역 더 낮음' : '지역별 상이'}`
 }
 
+// 지역별 상이인 나라의 상세 창 설명: "마닐라 등 주요 관광지는 2단계(여행자제)" (대표 도시 = climateCity)
+export function mainAreaText({ climateCity, risk: { level, label } }) {
+  const what = level % 1 ? label : level ? `${level}단계(${label})` : '여행경보 없음'
+  return `${climateCity} 등 주요 관광지는 ${what}`
+}
+
 // 해외안전여행 나라별 페이지. 나라가 아닌 곳(괌 등)은 데이터의 safetyId가 속한 나라(미국) 번호
 export function safetyUrl(risk) {
   return risk?.safetyId ? SAFETY_COUNTRY_URL.replace('{id}', risk.safetyId) : SAFETY_SITE

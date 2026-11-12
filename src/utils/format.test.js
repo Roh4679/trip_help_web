@@ -1,6 +1,6 @@
 // 실행: node src/utils/format.test.js
 import assert from 'node:assert'
-import { flightText, timeDiffText, riskText, dangerText, safetyUrl, warningText, placeNotice, shortRiskText } from './format.js'
+import { flightText, timeDiffText, riskText, dangerText, safetyUrl, warningText, placeNotice, shortRiskText, mainAreaText } from './format.js'
 
 // 짧은 여행경보 (메모지·요약 카드)
 assert.equal(shortRiskText({ level: 1, label: '여행유의' }), '1단계 여행유의')
@@ -9,6 +9,11 @@ assert.equal(shortRiskText({ level: 2.5, label: '특별여행주의보', special
 assert.equal(shortRiskText({ level: 1, label: '여행유의', mixed: true, range: [1, 3] }), '1단계 · 일부 지역 더 높음')
 assert.equal(shortRiskText({ level: 0, label: '없음', mixed: true, range: [0, 3] }), '여행경보 없음 · 일부 지역 더 높음') // 일본
 assert.equal(shortRiskText({ level: 2.5, label: '특별여행주의보', special: true, mixed: true, range: [1, 2.5] }), '특별여행주의보 · 일부 지역 더 낮음') // 네팔
+
+// 지역별 상이 설명
+assert.equal(mainAreaText({ climateCity: '마닐라', risk: { level: 2, label: '여행자제' } }), '마닐라 등 주요 관광지는 2단계(여행자제)')
+assert.equal(mainAreaText({ climateCity: '도쿄', risk: { level: 0, label: '없음' } }), '도쿄 등 주요 관광지는 여행경보 없음')
+assert.equal(mainAreaText({ climateCity: '카트만두', risk: { level: 2.5, label: '특별여행주의보' } }), '카트만두 등 주요 관광지는 특별여행주의보')
 
 // 상세 창 대신 보여 줄 안내
 const RU = { level: 2.5, label: '특별여행주의보', special: true, blocked: true, safetyId: '39' }
