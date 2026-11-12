@@ -50,7 +50,6 @@ function Summary({ country: c }) {
     >
       <SummaryItem label="여행경보">
         <RiskLink risk={c.risk} short />
-        <DateNote updated={c.risk.updated} />
       </SummaryItem>
       <SummaryItem label="비행시간">{flightText(c.flight)}</SummaryItem>
       <SummaryItem label="시차">{timeDiffText(c.timeDiff, c.dstTimeDiff)}</SummaryItem>

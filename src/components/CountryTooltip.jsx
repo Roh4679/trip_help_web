@@ -1,7 +1,5 @@
-import { flightText, timeDiffText, placeNotice } from '../utils/format.js'
-import RiskLink from './RiskLink.jsx'
+import { flightText, timeDiffText, placeNotice, shortRiskText } from '../utils/format.js'
 import RiskWarning from './RiskWarning.jsx'
-import DateNote from './DateNote.jsx'
 
 const WIDTH = 300
 const GAP = 14
@@ -37,10 +35,8 @@ export default function CountryTooltip({ name, data, status, x, y }) {
       {status === 'ok' && (
         <>
           <RiskWarning country={data} compact />
-          <div>
-            <RiskLink risk={data.risk} />
-            <DateNote updated={data.risk.updated} />
-          </div>
+          {/* 메모지는 누를 수 없으니 밑줄·↗ 없이 짧게. 날짜·지역 설명은 상세 창에서 */}
+          <div>{shortRiskText(data.risk)}</div>
           <div>{flightText(data.flight)}</div>
           <div>{timeDiffText(data.timeDiff, data.dstTimeDiff)}</div>
         </>

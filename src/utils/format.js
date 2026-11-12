@@ -60,6 +60,15 @@ export function warningText({ level, label, mixed }) {
   return `⚠ ${text}${mixed ? ' · 주요 관광지 기준' : ''}`
 }
 
+// 메모지·요약 카드용 짧은 문구. 날짜와 지역 설명은 상세 창 "여행경보" 칸에만
+// 단일: "1단계 여행유의" / 지역별 상이: "1단계 · 일부 지역 더 높음" (주요 관광지 risk.level 기준)
+export function shortRiskText({ level, label, mixed, range }) {
+  if (!mixed) return level % 1 ? label : level ? `${level}단계 ${label}` : '여행경보 없음'
+  const head = level % 1 ? label : level ? `${level}단계` : '여행경보 없음'
+  const [min, max] = range
+  return `${head} · ${max > level ? '일부 지역 더 높음' : min < level ? '일부 지역 더 낮음' : '지역별 상이'}`
+}
+
 // 해외안전여행 나라별 페이지. 나라가 아닌 곳(괌 등)은 데이터의 safetyId가 속한 나라(미국) 번호
 export function safetyUrl(risk) {
   return risk?.safetyId ? SAFETY_COUNTRY_URL.replace('{id}', risk.safetyId) : SAFETY_SITE

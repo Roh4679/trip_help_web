@@ -1,6 +1,14 @@
 // 실행: node src/utils/format.test.js
 import assert from 'node:assert'
-import { flightText, timeDiffText, riskText, dangerText, safetyUrl, warningText, placeNotice } from './format.js'
+import { flightText, timeDiffText, riskText, dangerText, safetyUrl, warningText, placeNotice, shortRiskText } from './format.js'
+
+// 짧은 여행경보 (메모지·요약 카드)
+assert.equal(shortRiskText({ level: 1, label: '여행유의' }), '1단계 여행유의')
+assert.equal(shortRiskText({ level: 0, label: '없음' }), '여행경보 없음')
+assert.equal(shortRiskText({ level: 2.5, label: '특별여행주의보', special: true }), '특별여행주의보')
+assert.equal(shortRiskText({ level: 1, label: '여행유의', mixed: true, range: [1, 3] }), '1단계 · 일부 지역 더 높음')
+assert.equal(shortRiskText({ level: 0, label: '없음', mixed: true, range: [0, 3] }), '여행경보 없음 · 일부 지역 더 높음') // 일본
+assert.equal(shortRiskText({ level: 2.5, label: '특별여행주의보', special: true, mixed: true, range: [1, 2.5] }), '특별여행주의보 · 일부 지역 더 낮음') // 네팔
 
 // 상세 창 대신 보여 줄 안내
 const RU = { level: 2.5, label: '특별여행주의보', special: true, blocked: true, safetyId: '39' }
