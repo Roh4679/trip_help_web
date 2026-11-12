@@ -83,3 +83,21 @@ export function screenSpanX(screenW, screenH) {
   const ox = (screenW - W * s) / 2
   return [-ox / s, (screenW - ox) / s]
 }
+
+// ── 지구본 ──────────────────────────────────────────────
+// 지구본도 d3-zoom 변환을 쓴다: 가로 값(x) → 중심 경도(평면과 같은 lonOf), 세로 값(y) → 중심 위도
+// 아래로 끌면(y 증가) 위쪽이 화면 가운데로 내려와 중심 위도가 올라간다
+export const yCenter = (k) => (H / 2) * (1 - k)
+
+export function latOf(t, degPx, startLat) {
+  return startLat + (t.y - yCenter(t.k)) / (t.k * degPx)
+}
+
+export function yForLat(lat, k, degPx, startLat) {
+  return yCenter(k) + (lat - startLat) * k * degPx
+}
+
+// 위도를 ±maxLat 안으로 (넘어가면 그 자리에 멈춘다 — 반대로 끌 때 헛도는 구간이 없게 변환 자체를 묶는다)
+export function clampGlobeY(y, k, degPx, startLat, maxLat) {
+  return Math.min(yForLat(maxLat, k, degPx, startLat), Math.max(yForLat(-maxLat, k, degPx, startLat), y))
+}

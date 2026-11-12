@@ -1,8 +1,8 @@
-import { geoNaturalEarth1 } from 'd3-geo'
+import { geoNaturalEarth1, geoOrthographic } from 'd3-geo'
 import { feature } from 'topojson-client'
 import world from 'world-atlas/countries-110m.json'
 import countries from '../data/countries.json'
-import { HOME_ID, PIN_SHAPE_IDS, MAP_SIZE } from '../config.js'
+import { HOME_ID, PIN_SHAPE_IDS, MAP_SIZE, GLOBE } from '../config.js'
 import { countryStatus, riskTone } from './countryStatus.js'
 import { countryName } from './countryName.js'
 import { splitOverseas } from './overseas.js'
@@ -19,6 +19,10 @@ const base = geoNaturalEarth1().fitSize([WIDTH, HEIGHT], { type: 'FeatureCollect
 const SCALE = base.scale()
 const TRANSLATE = base.translate()
 export const makeProjection = (lon) => geoNaturalEarth1().scale(SCALE).translate(TRANSLATE).rotate([-lon, 0])
+
+// 지구본: (lon, lat)이 가운데 오도록 돌린 공. 확대하면 공이 커진다. 뒤쪽 반구는 자른다
+export const makeGlobe = (lon, lat, k) =>
+  geoOrthographic().scale(GLOBE.radius * k).translate([WIDTH / 2, HEIGHT / 2]).rotate([-lon, -lat]).clipAngle(90)
 
 // 적도에서 경도 1도가 지도 좌표로 몇 px인지 (가로로 끌기 → 회전 각도 환산에 쓴다)
 export const DEG_PX = base([1, 0])[0] - base([0, 0])[0]

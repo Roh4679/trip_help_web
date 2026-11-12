@@ -1,6 +1,6 @@
 // 실행: node map/src/utils/view.test.js — 좌우로 끝없이 이어지는 지도의 보기 계산
 import assert from 'node:assert/strict'
-import { xCenter, lonOf, xFor, wrapLon, nearestLon, clampY, meanLon, visibleBox, fitView, copiesInView, screenSpanX } from './view.js'
+import { xCenter, lonOf, xFor, wrapLon, nearestLon, clampY, meanLon, visibleBox, fitView, copiesInView, screenSpanX, yCenter, latOf, yForLat, clampGlobeY } from './view.js'
 import { START_LON } from '../config.js'
 
 const near = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) < eps, `${a} ≈ ${b}`)
@@ -56,4 +56,12 @@ assert.deepEqual(copiesInView(3, P, ...screenSpanX(5120, 1440)), [0]) // 확대�
 const [a, b] = screenSpanX(2560, 1080)
 near(a, -(2560 - 960 * (1080 / 460)) / 2 / (1080 / 460), 1e-9)
 assert.ok(b > 960)
+// 지구본: 세로로 끌면 위도, 한계에서 멈춤
+assert.equal(yCenter(1), 0)
+near(latOf({ k: 1, y: 0 }, DEG, 25), 25) // 처음 위도
+near(latOf({ k: 1, y: 20 }, DEG, 25), 35) // 아래로 20px → 북쪽으로 10°
+for (const [lat, k] of [[0, 1], [60, 2], [-45, 3]]) near(latOf({ k, y: yForLat(lat, k, DEG, 25) }, DEG, 25), lat)
+near(latOf({ k: 1, y: clampGlobeY(9999, 1, DEG, 25, 80) }, DEG, 25), 80) // 북쪽 한계
+near(latOf({ k: 2, y: clampGlobeY(-9999, 2, DEG, 25, 80) }, DEG, 25), -80) // 남쪽 한계
+assert.equal(clampGlobeY(10, 1, DEG, 25, 80), 10) // 한계 안이면 그대로
 console.log('ok')
